@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="javascript/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="style/estilos.css" />
+    <link rel="stylesheet" href="style/guardados.css" />
+    <script src="javascript/eliguardatos.js"></script>
+</head>
+
+<body>
+    <div id="areaImprimir">
+        <header>
+            <ul>
+                <div class="img-nav">
+                    <img class="img-nav"
+                        src="https://acemardistributor.com/wp-content/uploads/2022/07/LOGO-Acemar-Gris-2020.png" />
+                </div>
+                <ul class="nav justify-content-end quoter-ul">
+                    <li class="nav-item ">
+                        <a href="guardados" aria-current="page" class="Quoter-nav">Quoter</a>
+                    </li>
+                    <li>
+                        <a class="text-black cerrarlog" style="color: black;" href="/">Logout</a>
+                    </li>
+                </ul>
+            </ul>
+        </header>
+        <div class="linea"></div>
+        <div class="titulo">
+            <h4><b> DISTRIBUTORS QUOTATION</b></h4>
+        </div>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Codigo</th>
+                <th>Foto</th>
+                <th>Frame</th>
+                <th>Foto</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Finish</th>
+                <th>Opening</th>
+                <th>Core</th>
+                <th>Thickness</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Eliminar</th>
+            </thead>
+            <div>
+                <tbody>
+                    <% datos.forEach(function (datos) { %>
+                        <tr>
+                            <td>
+                                <p class="contador">
+                                    <input type="text" class="id" value="<%= datos.id%>">
+                                </p>
+                            </td>
+                            <td>
+                                <%= datos.producto%>
+                            </td>
+                            <td>
+                                <%= datos.codigo%>
+                            </td>
+                            <td>
+                                <input type="image" src="images/productos/<%= datos.imgpuerta%>" height="100px">
+                            </td>
+                            <td>
+                                <%= datos.frame%>
+                            </td>
+                            <td>
+                                <input type="image" src="images/productos/<%= datos.imgframe%>" height="70px">
+                            </td>
+                            <td>
+                                <%= datos.height%>
+                            </td>
+                            <td>
+                                <%= datos.width%>
+                            </td>
+                            <td>
+                                <%= datos.finish%>
+                            </td>
+                            <td>
+                                <%= datos.opening%>
+                            </td>
+                            <td>
+                                <%= datos.core%>
+                            </td>
+                            <td>
+                                <%= datos.thickness%>
+                            </td>
+                            <td>
+                                <%= datos.quantity%>
+                            </td>
+                            <td>
+                                <%= datos.total%>
+                            </td>
+                            <td>
+                                <input type="submit" value="eliminar" class="elim" id="">
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </div>
+        </table>
+        <div class="ultimo">
+            <h3>
+                subtotal:
+                <%= pagar[0].comprando%>
+                    <input type="hidden" value="<%= pagar[0].comprando%>" class="total" id="total" name="">
+            </h3>
+            <h1>
+                cantidad:
+                <%= quantity[0].cantidad%>
+
+                    <input type="hidden" value="<%= quantity[0].cantidad%>" class="cantidad" id="cantidad" name="">
+            </h1>
+            <h1>
+                <span>impuesto: 27%</span>
+                <br>
+                flete:
+                <span id="subtotal"></span>
+                <br>
+                total:
+                <span id="lblLenguajeSeleccionado"></span>
+            </h1>
+        </div>
+    </div>
+    <input type="button" onclick="printDiv('areaImprimir')" value="imprimir div" />
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+<script type="text/javascript" src="javascript/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="javascript/jspdf.min.js"></script>
+<script type="text/javascript" src="javascript/jspdf.plugin.autotable.min.js"></script>
+<script type="text/javascript" src="javascript/tableHTMLExport.js"></script>
+<script>
+    $(document).ready(function () {
+        let doc = $('.total');
+        let d = doc.val();
+        let can = $('.cantidad');
+        let c = can.val();
+        let flete = 0, imp = 0, impuesto = 0, total = 0;
+        if (c < 120) {
+            flete = 8000;
+        }
+        else {
+            flete = 10000;
+        }
+        imp = flete * 0.27;
+        impuesto = flete + imp;
+        total = Number(impuesto) + Number(d);
+        document.getElementById('subtotal').innerText = `${flete}`;
+        document.getElementById('lblLenguajeSeleccionado').innerText = `${total}`;
+    });
+</script>
+<script>
+    function printDiv(nombreDiv) {
+        var contenido = document.getElementById(nombreDiv).innerHTML;
+        var contenidoOriginal = document.body.innerHTML;
+        document.body.innerHTML = contenido;
+        window.print();
+        document.body.innerHTML = contenido;
+    }
+</script>
+<script type="text/javascript">
+    /* $("#imptabla").on("click", function () {
+        $("#areaImprimir").tableHTMLExport({
+            type: 'pdf',
+            filename: 'cotizador.pdf',
+        })
+    }) */
+</script>
+
+</html>

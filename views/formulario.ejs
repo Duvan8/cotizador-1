@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acemar</title>
+    <script src="/javascript/jquery-3.6.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/estilos.css" />
+    <link rel="stylesheet" href="/style/formulario.css">
+</head>
+
+<body>
+    <header>
+        <ul>
+            <div class="img-nav">
+                <img class="img-nav"
+                    src="https://acemardistributor.com/wp-content/uploads/2022/07/LOGO-Acemar-Gris-2020.png" />
+            </div>
+            <ul class="nav justify-content-end quoter-ul">
+                <li class="nav-item ">
+                    <a href="../guardados" aria-current="page" class="Quoter-nav">Quoter</a>
+                </li>
+                <li>
+                    <a class="text-black cerrarlog" style="color: black;" href="/">Logout</a>
+                </li>
+            </ul>
+        </ul>
+    </header>
+    <div class="linea">
+
+    </div>
+    <div class="completo">
+        <div class="contenido">
+            <div class="foto">
+                <% if (datos) { %>
+                    <img class="presentacion" src="/images/productos/<%= datos.imgpuerta%>">
+            </div>
+            <div class="formulario">
+                <h5 style="font-weight: bold; text-transform: capitalize; text-align:center;">
+                    <%= datos.producto%>
+                </h5>
+                <h6 style="font-style: italic; text-align:center;">
+                    <%= datos.codigo%>
+                </h6>
+                <div class="linea-form" style="background-color: black;"></div>
+                <form action="/cotizador" method="post" class="cuestionario">
+                    <input type="hidden" value="<%= datos.imgpuerta%>" name="puerta">
+                    <input type="hidden" value="<%= datos.producto%>" name="nombre">
+                    <input type="hidden" value="<%= datos.codigo%>" name="codigo">
+                    <input type="hidden" value="<%= datos.finish%>" name="acabado">
+                    <ul>
+                        <div>
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web- Height.png"
+                                    style="height: 30px; width: 20px; margin: auto; margin-right: 10px;">
+                                <label class="label-sec" style="margin-left: 10px;">Hight</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" name="hight">
+                                    <option selected>Select</option>
+                                    <option value="80">80"</option>
+                                    <option value="84">84"</option>
+                                    <option value="95">95"</option>
+                                    <option value="108">108"</option>
+                                    <option value="120">120"</option>
+                                </select>
+                            </li>
+
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web- width.png"
+                                    style="height: 10px; width: 30px; margin: auto;">
+                                <label class="label-sec">Width</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" name="width">
+                                    <option selected>Select</option>
+                                    <option value="24">24"</option>
+                                    <option value="28">28"</option>
+                                    <option value="30">30"</option>
+                                    <option value="32">32"</option>
+                                    <option value="36">36"</option>
+                                </select>
+                            </li>
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web- opening.png"
+                                    style="height: 30px; margin: auto; margin-right: 10px;">
+                                <label class="label-sec">Opening</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" name="opening">
+                                    <option selected>Select</option>
+                                    <option value="Outside-Riht">Outside Right</option>
+                                    <option value="Outside-Left">Outside Left</option>
+                                </select>
+                            </li>
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web- core.png"
+                                    style="height: 31px; margin: auto; margin-right: 10px;">
+                                <label class="label-sec">Core</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" name="core">
+                                    <option selected>Select</option>
+                                    <option value="Honey Comb">Honey Comb</option>
+                                    <option value="Solid">Solid</option>
+                                </select>
+                            </li>
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web-frame.png"
+                                    style="height: 45px; width: 20px; margin: auto; margin-right: 10px;">
+                                <label class="label-sec">Frame</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" id="cbxLenguajes" onchange="marco();"
+                                    name="frame">
+                                    <option value="">Select</option>
+                                    <option value="<%= datos.conmarco%>">Yes</option>
+                                    <option value="<%= datos.sinmarco%>">No</option>
+                                    <input type="hidden" value="<%= datos.conmarco%>" id="precio" name="precio">
+                                </select>
+                            </li>
+                            <li class="li-sec caja">
+                                <img src="/images/icons/simbolos pagina web-thickness.png"
+                                    style="height: 30px; margin: auto; margin-right: 10px;">
+                                <label class="label-sec">Thickness</label>
+                                <select class="form-select form-select-sm selected-line"
+                                    aria-label=".form-select-sm example" name="Thickness">
+                                    <option selected>Select</option>
+                                    <option value='1"1/8(28mm)'>1"1/8(28mm)</option>
+                                    <option value='1"1/2(38mm)'>1"1/2(38mm)</option>
+                                    <option value='1"5/8(42mm)'>1"5/8(42mm)</option>
+                                    <option value='2"1/8(54mm)'>2"1/8(54mm)</option>
+                                </select>
+                            </li>
+                        </div>
+                        <li class="cantidad">
+                            <img src="/images/icons/simbolos pagina web-quantity.png"
+                                style="height: 35px; margin: auto; margin-right: 10px;">
+                            <label class="label-sec">Quantity</label>
+                            <br>
+                            <div class="input-group input-number-group" style="margin-left: 15px;">
+                                <div class="input-group-button">
+                                    <span class="input-number-decrement">-</span>
+                                </div>
+                                <input class="input-number" onchange="marco();" id="cantidad" name="cantidad"
+                                    type="number" value="1" min="0" max="1000">
+                                <div class="input-group-button">
+                                    <span class="input-number-increment">+</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="linea-total" style="background-color: black;"></div>
+                            <label class="label-sec total" name="total">Total:
+                            </label>
+                            <span id="lblLenguajeSeleccionado"></span>
+                        </li>
+                    </ul>
+                    <input type="submit" value="Agregar cotizador"
+                        class="btn btn-warning btn btn-outline-light agregar">
+                    <input height="300px" width="400px" style="margin-left: 40px;" id="mrpuert" name="mrpuert"
+                        class="mrpuert" type="hidden" src="/images/productos/frame/<%= datos.imgmarco%>">
+                    <input type="hidden" name="juan" value="<%= datos.imgmarco%>">
+                </form>
+            </div>
+        </div>
+
+        <% } %>
+    </div>
+
+
+    <footer class="footer">
+        <div class="part">
+            <div class="sec" style="margin-left: 15%;">
+                <h5 class="tit-footer">Sites of interest</h5>
+                <ul>
+                    <a style="text-decoration: none; color:white;" class="cont-footer"
+                        href="https://athomefloors.biz/">Colortile</a>
+                </ul>
+                <ul>
+                    <a style="text-decoration: none; color:white;" class="cont-footer"
+                        href="https://www.acemar.co/">Acemar</a>
+                </ul>
+                <div class="social" style="margin-left: -20%;">
+                    <a href="https://www.facebook.com/people/Acemar-Wood/100076103297662/"><img
+                            src="/images/redes/facebook.jpg" alt=""></a>
+                    <a href="https://www.instagram.com/acemarwood/?utm_medium=copy_link"><img
+                            src="/images/redes/instagram.jpg" alt=""></a>
+                    <a href="https://twitter.com/Acemar1958"><img src="/images/redes/twitter.jpg" alt=""></a>
+                    <a href="https://www.linkedin.com/in/triplex-acemar-sas-06323556"><img
+                            src="/images/redes/LinkedIn.jpg" alt=""></a>
+                    <a href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber"><img
+                            src="/images/redes/YouTube.jpg" alt=""></a>
+                </div>
+            </div>
+            <div class="maps">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.17503655854!2d-82.76075328552254!3d27.896601423757517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2faeae4991bd7%3A0x93b550d0f6a385a4!2s2310%20Tall%20Pines%20Dr%2C%20Largo%2C%20FL%2033771%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1665514952999!5m2!1ses!2sco"
+                    width="675" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    document.getElementById('imgmac').style.visibility = "hidden";
+    function marco() {
+        let cbxLenguajes = document.getElementById('cbxLenguajes');
+        let lenguaje = cbxLenguajes.value;
+        let precio = document.getElementById('cantidad');
+        let valor = precio.value;
+        let Total = lenguaje * valor;
+        let redondear = Number(Total.toFixed(2));
+        let coste = document.getElementById('precio');
+        let costo = coste.value;
+        let marco = document.getElementById('mrpuert');
+        if (lenguaje == costo) {
+            marco.type = "image";
+        } else {
+            marco.type = "hidden";
+        }
+        document.getElementById('lblLenguajeSeleccionado').innerText = `${redondear}`;
+    }
+</script>
+<script>
+    $('.input-number-increment').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val + 1);
+    });
+
+    $('.input-number-decrement').click(function () {
+        var $input = $(this).parents('.input-number-group').find('.input-number');
+        var val = parseInt($input.val(), 10);
+        $input.val(val - 1);
+    })
+</script>
+
+</html>
