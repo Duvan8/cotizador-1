@@ -1,7 +1,6 @@
 * {
   margin: 0;
 }
-
 @font-face {
   font-family: monserrat;
   src: url(fuentes/Montserrat-Italic-VariableFont_wght.ttf);
@@ -12,6 +11,13 @@
   margin-left: 10%;
   width: 250px;
   height: 70px;
+}
+.linea {
+  background-color: #000000;
+  width: 100%;
+  height: 1px;
+  margin-top: -60px;
+  margin-bottom: 60px;
 }
 header{
   margin-bottom: 8%;
@@ -114,7 +120,7 @@ section {
 }
 .columnas {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 50px;
   grid-auto-rows: minmax(100px, auto);
   margin-left: 200px;

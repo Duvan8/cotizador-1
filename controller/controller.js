@@ -121,7 +121,7 @@ controller.guardados = (req, res, next) => {
 controller.eliguardatos = async (req, res) => {
   const doc = req.body.ii;
   console.log("hola mundo"+doc);
-    conexion.query(
+    cnn.query(
     'DELETE FROM agregados WHERE id="' + doc + '"',
     async (err) => {
       if (err) {

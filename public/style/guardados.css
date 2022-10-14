@@ -1,10 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+/* body {
+  font-family: "Montserrat", sans-serif;
+} */
 .titulo {
   background-color: rgb(231, 231, 231);
   text-align: center;
-  margin-top: -55px;
+  margin-top: -57px;
   width: 95%;
   margin-left: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+}
+.arr{
+  font-size: 30px;
 }
 .linea {
   background-color: black;
@@ -12,6 +19,13 @@
   height: 1px;
   margin-top: -60px;
   margin-bottom: 60px;
+  margin-left: 20px;
+}
+.linea1 {
+  display: flex;
+  background-color: black;
+  width: 95%;
+  height: 1px;
   margin-left: 20px;
 }
 .contador {
@@ -30,17 +44,21 @@
   width: 1px;
   height: 50px;
   margin-right: 10px;
-}   
+}
 table {
-    width: 100%;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-spacing: 0px;
   margin-bottom: 10px;
   background: rgb(231, 231, 231);
 }
-th{
-    text-align: center;
+th {
+  text-align: center;
+  padding-bottom: 10px;
 }
-td{
+td {
   background: #fff;
   color: #000;
   height: 50px;
@@ -50,11 +68,32 @@ td{
   border-bottom: 2px solid #cfcfcf;
   text-align: center;
 }
-.ultimo{
-    display: block;
-    position: absolute;
-    margin-left: 75%;
-    width: 20%;
-    background-color: aqua;
-    text-align: center;
+.ultimo {
+  /* display: block;
+    position: absolute; */
+  width: 50%;
+  text-align: left;
+  font-size: 25px;
+}
+.tot{
+  height: 1px;
+  width: 20%;
+  margin-left: 75%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 20%;
+  background-color: #000  ;
+}
+.informacion{
+  width: 50%;
+  height: 40%;
+  background-color: #000;
+  color: #fff;
+  margin-left: 20px;
+}
+.conpacto{
+  display: flex;
+  flex-flow: row wrap;
+  background-color: #000;
+  color: white;
 }

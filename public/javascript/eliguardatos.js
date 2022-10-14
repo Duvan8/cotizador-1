@@ -8,7 +8,7 @@ $(document).ready(function(){
         
         $.ajax({
             type:"POST",
-            url:'eliguardatos',
+            url:'/eliguardatos',
             data:{
                 ii:i
             }
