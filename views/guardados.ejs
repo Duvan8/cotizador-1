@@ -20,10 +20,7 @@
                 </div>
                 <ul class="nav justify-content-end quoter-ul">
                     <li class="nav-item ">
-                        <a href="guardados" aria-current="page" class="Quoter-nav">Quoter</a>
-                    </li>
-                    <li>
-                        <a class="text-black cerrarlog" style="color: black;" href="/">Logout</a>
+                        <a href="javascript:history.back()" class="atras">Back</a>
                     </li>
                 </ul>
             </ul>
@@ -53,12 +50,9 @@
             <div>
                 <tbody>
                     <% datos.forEach(function (datos) { %>
-
                         <tr>
                             <td>
-                                <p class="contador">
-                                    <input type="text" class="id" value="<%= datos.id%>">
-                                </p>
+                                <input type="hidden" class="id" value="<%= datos.id%>">
                             </td>
                             <td>
                                 <%= datos.producto%>
@@ -100,7 +94,7 @@
                                 <%= datos.total%>
                             </td>
                             <td>
-                                <input type="submit" value="eliminar" class="elim" id="">
+                                <button type="submit" class="elim btn-eli-pro"> <img class="img-del" src="images/icons/eliminar.png"/></button>
                             </td>
                         </tr>
                         <% }) %>
@@ -115,36 +109,30 @@
                 <br>
                 <label for="">sales@acemar.us</label>
             </div>
-            <div class="tot">
-            </div>
             <div class="ultimo">
-                <b><label for="">subtotal:</label></b>
-                <%= pagar[0].comprando%>
-                    <input type="hidden" value="<%= pagar[0].comprando%>" class="total" id="total" name="">
-                    <br>
-                    <b><label for="">cantidad:</label></b>
-                    <%= quantity[0].cantidad%>
-                        <input type="hidden" value="<%= quantity[0].cantidad%>" class="cantidad" id="cantidad" name="">
+                <div class="tot">
+                </div>
+                <div class="calc">
+                    <b><label class="precio">subtotal:</label></b>
+                    <%= pagar[0].comprando%>
+                        <input type="hidden" value="<%= pagar[0].comprando%>" class="total" id="total" name="">
                         <br>
                         <b><span>impuesto: </span></b><span>27%</span>
                         <br>
-                        <b><label for="">flete:</label></b>
+                        <b><label class="precio">flete:</label></b>
                         <span id="subtotal"></span>
                         <br>
-                        <b><label for="">total:</label></b>
+                        <b><label class="precio">total:</label></b>
                         <span id="lblLenguajeSeleccionado"></span>
+                </div>
             </div>
         </div>
     </div>
-    <input type="button" onclick="printDiv('areaImprimir')" value="imprimir div" />
+    <div class="btn-eli">
+        <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png" height ="80" width="100" /></button>
+    </div>
 </body>
 <script src="javascript/jquery-3.6.1.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
-<script type="text/javascript" src="javascript/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript" src="javascript/jspdf.min.js"></script>
-<script type="text/javascript" src="javascript/jspdf.plugin.autotable.min.js"></script>
-<script type="text/javascript" src="javascript/tableHTMLExport.js"></script> -->
 <script src="javascript/eliguardatos.js"></script>
 <script>
     $(document).ready(function () {
@@ -174,14 +162,6 @@
         window.print();
         document.body.innerHTML = contenido;
     }
-</script>
-<script type="text/javascript">
-    /* $("#imptabla").on("click", function () {
-        $("#areaImprimir").tableHTMLExport({
-            type: 'pdf',
-            filename: 'cotizador.pdf',
-        })
-    }) */
 </script>
 
 </html>

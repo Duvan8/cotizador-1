@@ -206,3 +206,11 @@ section {
     height: 70px;
   }
 }
+.detalle{
+  text-decoration: none;
+  color: black;
+}
+.tabla{ 
+  width: 85%;
+  margin-bottom: 5%;
+}
