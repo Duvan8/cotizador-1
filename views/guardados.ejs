@@ -91,11 +91,14 @@
                                 <%= datos.quantity%>
                             </td>
                             <td>
-                                <input type="text" value="<%= datos.total%>" class="to">
+                                <%= datos.total%>
                             </td>
                             <td>
-                                <button type="submit" class="elim btn-eli-pro"> <img class="img-del"
-                                        src="images/icons/eliminar.png" /></button>
+
+                                <a href="delete/<%= datos.id%>" class="btn-eli-pro"><img class="img-del"
+                                        src="images/icons/eliminar.png" /></a>
+                                <!-- <button type="submit" class="elim btn-eli-pro"> <img class="img-del"
+                                        src="images/icons/eliminar.png" /></button> -->
                             </td>
                         </tr>
                         <% }) %>
@@ -115,7 +118,7 @@
                 </div>
                 <div class="calc">
                     <b><label class="precio">subtotal:</label></b>
-                    <input type="text" class="subtotal" value="<%= pagar[0].comprando%>">
+                    <%= pagar[0].comprando%>
                         <input type="hidden" value="<%= pagar[0].comprando%>" class="total" id="total" name="">
                         <input type="hidden" class="cantidad" value="<%= quantity[0].cantidad%>">
                         <br>

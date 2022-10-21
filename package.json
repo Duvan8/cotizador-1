@@ -15,7 +15,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
-    "pdfmake": "^0.2.5",
+    "pdfkit": "^0.13.0",
     "session": "^0.1.0"
   },
   "devDependencies": {
