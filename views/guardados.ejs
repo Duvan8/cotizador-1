@@ -29,81 +29,79 @@
         <div class="titulo">
             <label class="arr"><b> DISTRIBUTORS QUOTATION</b></label>
         </div>
-        <form class="eliminar-anim">
-            <table>
-                <thead>
-                    <th>#</th>
-                    <th>Producto</th>
-                    <th>Codigo</th>
-                    <th>Foto</th>
-                    <th>Frame</th>
-                    <th>Foto</th>
-                    <th>Height</th>
-                    <th>Width</th>
-                    <th>Finish</th>
-                    <th>Opening</th>
-                    <th>Core</th>
-                    <th>Thickness</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Eliminar</th>
-                </thead>
-                <div>
-                    <tbody>
-                        <% datos.forEach(function (datos) { %>
-                            <tr>
-                                <td>
-                                    <input type="hidden" class="id" value="<%= datos.id%>">
-                                </td>
-                                <td>
-                                    <%= datos.producto%>
-                                </td>
-                                <td>
-                                    <%= datos.codigo%>
-                                </td>
-                                <td>
-                                    <input type="image" src="images/productos/<%= datos.imgpuerta%>" height="100px">
-                                </td>
-                                <td>
-                                    <%= datos.frame%>
-                                </td>
-                                <td>
-                                    <input type="image" src="images/productos/<%= datos.imgframe%>" height="70px">
-                                </td>
-                                <td>
-                                    <%= datos.height%>
-                                </td>
-                                <td>
-                                    <%= datos.width%>
-                                </td>
-                                <td>
-                                    <%= datos.finish%>
-                                </td>
-                                <td>
-                                    <%= datos.opening%>
-                                </td>
-                                <td>
-                                    <%= datos.core%>
-                                </td>
-                                <td>
-                                    <%= datos.thickness%>
-                                </td>
-                                <td>
-                                    <%= datos.quantity%>
-                                </td>
-                                <td>
-                                    <%= datos.total%>
-                                </td>
-                                <td>
-                                    <button type="submit" class="elim btn-eli-pro"> <img class="img-del"
-                                            src="images/icons/eliminar.png" /></button>
-                                </td>
-                            </tr>
-                            <% }) %>
-                    </tbody>
-                </div>
-            </table>
-        </form>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Codigo</th>
+                <th>Foto</th>
+                <th>Frame</th>
+                <th>Foto</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Finish</th>
+                <th>Opening</th>
+                <th>Core</th>
+                <th>Thickness</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Eliminar</th>
+            </thead>
+            <div>
+                <tbody>
+                    <% datos.forEach(function (datos) { %>
+                        <tr>
+                            <td>
+                                <input type="hidden" class="id" value="<%= datos.id%>">
+                            </td>
+                            <td>
+                                <%= datos.producto%>
+                            </td>
+                            <td>
+                                <%= datos.codigo%>
+                            </td>
+                            <td>
+                                <input type="image" src="images/productos/<%= datos.imgpuerta%>" height="100px">
+                            </td>
+                            <td>
+                                <%= datos.frame%>
+                            </td>
+                            <td>
+                                <input type="image" src="images/productos/<%= datos.imgframe%>" height="70px">
+                            </td>
+                            <td>
+                                <%= datos.height%>
+                            </td>
+                            <td>
+                                <%= datos.width%>
+                            </td>
+                            <td>
+                                <%= datos.finish%>
+                            </td>
+                            <td>
+                                <%= datos.opening%>
+                            </td>
+                            <td>
+                                <%= datos.core%>
+                            </td>
+                            <td>
+                                <%= datos.thickness%>
+                            </td>
+                            <td>
+                                <%= datos.quantity%>
+                            </td>
+                            <td>
+                                <input type="text" value="<%= datos.total%>" class="to">
+                            </td>
+                            <td>
+                                <button type="submit" class="elim btn-eli-pro"> <img class="img-del"
+                                        src="images/icons/eliminar.png" /></button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </div>
+        </table>
         <div class="conpacto">
             <div class="informacion">
                 <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
@@ -117,10 +115,11 @@
                 </div>
                 <div class="calc">
                     <b><label class="precio">subtotal:</label></b>
-                    <%= pagar[0].comprando%>
+                    <input type="text" class="subtotal" value="<%= pagar[0].comprando%>">
                         <input type="hidden" value="<%= pagar[0].comprando%>" class="total" id="total" name="">
+                        <input type="hidden" class="cantidad" value="<%= quantity[0].cantidad%>">
                         <br>
-                        <b><span>impuesto: </span></b><span>27%</span>
+                        <b><span>impuesto: </span></b><span>7%</span>
                         <br>
                         <b><label class="precio">flete:</label></b>
                         <span id="subtotal"></span>
@@ -152,11 +151,12 @@
         else {
             flete = 10000;
         }
-        imp = flete * 0.27;
-        impuesto = flete + imp;
-        total = Number(impuesto) + Number(d);
+        total = Number(flete) + Number(d);
+        imp = total * 0.07;
+        impuesto = total + imp;
+        impuesto = Number(impuesto.toFixed(2));
         document.getElementById('subtotal').innerText = `${flete}`;
-        document.getElementById('lblLenguajeSeleccionado').innerText = `${total}`;
+        document.getElementById('lblLenguajeSeleccionado').innerText = `${impuesto}`;
     });
 </script>
 <script>

@@ -2,7 +2,12 @@ $(document).ready(function () {
   $(".elim").on("click", function (e) {
     let btn = $(".elim").index(this);
     let id = $(".id").eq(btn);
+    let total = $(".to").eq(btn);
+    let subtotal = $(".subtotal").eq(btn);
     let i = id.val();
+    let t = total.val();
+    let st = subtotal.val();
+    console.log(st-t)
     e.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
