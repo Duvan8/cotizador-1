@@ -12,7 +12,8 @@ router.post('/index', controller.index);
 router.post('/cotizador', controller.cotizador);
 router.post('/guardados', controller.guardados);
 router.post('/eliguardatos', controller.eliguardatos);
-router.get('/delete/:id', (req,res)=>{
+router.get('/imprimir', controller.pedido);
+router.get('delete', (req,res)=>{
     const id = req.params.id;
     connection.query(
         'DELETE FROM agregados WHERE id="' + id + '"',

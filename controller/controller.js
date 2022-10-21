@@ -3,6 +3,8 @@ const cnn = connection;
 const { render } = require("ejs");
 const controller = {};
 const req = require("express/lib/request");
+const fs = require("fs");
+const pdfService = require('../public/javascript/pdf')
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -26,6 +28,17 @@ controller.index = async (req, res) => {
     }
   });
 };
+controller.pedido = async (req, res) => {
+  const stream = res.writeHead(200, {
+    'Content-Type': 'application/pdf',
+    'Content-Disposition': 'attachment;filename=invoice.pdf'
+  });
+  pdfService.buildPDF(
+    (chunk) => stream.write(chunk),
+    () => stream.end()
+  );
+};
+
 controller.cotizador = async (req, res) => {
   const articulo = req.body.nombre;
   const alto = req.body.hight;
@@ -120,18 +133,15 @@ controller.guardados = (req, res, next) => {
 };
 controller.eliguardatos = async (req, res) => {
   const doc = req.body.ii;
-    cnn.query(
-    'DELETE FROM agregados WHERE id="' + doc + '"',
-    async (err) => {
-      if (err) {
-        console.log("error al eliminar en usuarios");
-        throw err;
-      } else {
-        console.log("usuario eliminado");
-        res.redirect("guardados");
-      }
+  cnn.query('DELETE FROM agregados WHERE id="' + doc + '"', async (err) => {
+    if (err) {
+      console.log("error al eliminar en usuarios");
+      throw err;
+    } else {
+      console.log("usuario eliminado");
+      res.redirect("guardados");
     }
-  );
+  });
 };
 controller.detalle = (req, res, next) => {
   const id = req.body.dd;
