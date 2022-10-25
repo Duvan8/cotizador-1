@@ -36,7 +36,7 @@
         <div class="contenido">
             <div class="foto">
                 <% if (datos) { %>
-                    <!-- <img class="presentacion" src="/images/productos/<%= datos.imgpuerta%>"> -->
+                    <img class="presentacion" src="/images/productos/<%= datos.imgpuerta%>">
             </div>
             <div class="formulario">
                 <h5 style="font-weight: bold; text-transform: capitalize; text-align:center;">
@@ -157,7 +157,7 @@
                     </ul>
                     <input type="submit" value="Agregar cotizador"
                         class="btn btn-warning btn btn-outline-light agregar">
-                    <input height="300px" width="400px" style="margin-left: 40px;" id="mrpuert" name="mrpuert"
+                    <input height="300px" width="400px" id="mrpuert" name="mrpuert"
                         class="mrpuert" type="hidden" src="/images/productos/frame/<%= datos.imgmarco%>">
                     <input type="hidden" name="juan" value="<%= datos.imgmarco%>">
                 </form>

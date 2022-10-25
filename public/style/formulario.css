@@ -234,14 +234,14 @@ select:focus {
   .contenido {
     display: flex;
     flex-direction: row;
-    height: 100em;
+    height: 120em;
   }
   .mrpuert {
-    position: absolute;
-    top: 70em;
+    position: relative;
+    top: 45em;
     height: 500px;
     width: 250px;
-    margin-left: 10%;
+    margin-left: 140%;
     margin-bottom: 5%;
     margin-top: -4%;
   }
