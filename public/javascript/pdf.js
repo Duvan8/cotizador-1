@@ -22,4 +22,4 @@ function buildPDF(dataCallback, endCallback) {
   doc.end();
 }
 
-module.exports = { buildPDF };
+module.exports = { buildPDF }
