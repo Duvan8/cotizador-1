@@ -40,12 +40,6 @@ header{
   text-decoration: none;
 }
 
-.cerrarlog {
-  font-size: 16px;
-  text-decoration: none;
-  margin-left: 30px;
-}
-
 html {
   min-height: 100%;
   position: relative;
