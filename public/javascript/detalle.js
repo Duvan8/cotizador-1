@@ -6,7 +6,6 @@ $(document).ready(function () {
     let d = id.val();
 
     alert("datos para actualizar" + d);
-
     $.ajax({
       type: "post",
       url: "/buscando",

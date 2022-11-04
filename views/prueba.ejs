@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acemar</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/estilos.css"/>
+    <link rel="stylesheet" href="style/normalize.css"/>
+    <link rel="stylesheet" href="style/guardados.css" />
+</head>
+
+<body>
+    <div id="areaImprimir">
+        <header>
+            <ul>
+                <div class="img-nav">
+                    <img class="img-nav"
+                        src="https://acemardistributor.com/wp-content/uploads/2022/07/LOGO-Acemar-Gris-2020.png" />
+                </div>
+                <ul class=" justify-content-end quoter-ul">
+                    <li class="nav-item ">
+                        <a href="javascript:history.back()" class="atras">Back</a>
+                    </li>
+                </ul>
+            </ul>
+        </header>
+        <div class="linea"></div>
+        <div class="titulo">
+            <label class="arr"><b> DISTRIBUTORS QUOTATION</b></label>
+        </div>
+        <table class="table" id="dbVacas-list">
+
+        </table>
+        <div class="conpacto">
+            <div class="informacion">
+                <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
+                <br>
+                <label for="">727 584 3711</label>
+                <br>
+                <label for="">sales@acemar.us</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="ultimo">
+        <div>
+            <label for="">Subtotal:</label>
+            <span id="subtotal"></span>
+            <br>
+            <label for="">Impuesto: </label>
+            <span>7%</span>
+            <br>
+            <label for="">Flete: </label>
+            <span id="flete"></span>
+            <br>
+            <label for="">Total: </label>
+            <span id="final"></span>
+        </div>
+    </div>
+    <div class="btn-eli">
+        <!-- <a href="imprimir" onclick="tabla()">pdf</a> -->
+        <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png"
+                height="80" width="100" /></button>
+    </div>
+</body>
+
+<script src="/javascript/funciones.js"></script>
+<Script>
+    let total = 0,
+        Quantity = 0,
+        flete = 0;
+    for (let p = 0; p < dbVacas.length; p++) {
+        var d = JSON.parse(dbVacas[p]);
+        gato = d.imgmarco;
+        perro = d.cantidad;
+        total = total + Number(gato);
+        Quantity = Quantity + Number(perro);
+    }
+    console.log(Quantity);
+    if (120 >= Quantity) {
+        flete = 8000;
+    } else {
+        flete = 10000;
+    }
+    tot = total + flete;
+    tota = tot * 0.07;
+    totl = tota + tot;
+    total = Number(total.toFixed(2));
+    document.getElementById("subtotal").innerText = `${total}`;
+    document.getElementById("flete").innerText = `${flete}`;
+    document.getElementById("final").innerText = `${totl}`;
+</Script>
+<script>
+    function printDiv(nombreDiv) {
+        var contenidoOriginal = document.body.innerHTML;
+        window.print();
+    }
+</script>
+
+</html>
