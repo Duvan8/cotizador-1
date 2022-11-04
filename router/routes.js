@@ -8,7 +8,7 @@ router.get('/index', controller.inicio);
 router.get('/formulario', controller.formulario);
 router.get('/prueba', controller.prueba);
 router.post('/index', controller.index);
-router.post('/cotizador', controller.prueba);
+router.post('/prueba', controller.prueba);
 router.get('/imprimir', controller.pedido);
 router.get('/formulario/:id', (req,res)=>{
     const id = req.params.id;
