@@ -9,9 +9,6 @@ const pdfService = require('../public/javascript/pdf')
 controller.index = (req, res, next) => {
   res.render("index");
 };
-controller.inicio = (req, res, next) => {
-  res.render("index");
-};
 controller.formulario = (req, res, next) => {
   res.render("formulario");
 };

@@ -4,7 +4,7 @@ const router = express.Router();
 const controller = require("../controller/controller");
 
 router.get('/', controller.index);
-router.get('/index', controller.inicio);
+router.get('/index', controller.index);
 router.get('/formulario', controller.formulario);
 router.get('/prueba', controller.prueba);
 router.post('/index', controller.index);

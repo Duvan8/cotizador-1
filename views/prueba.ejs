@@ -23,7 +23,7 @@
                 </div>
                 <ul class=" justify-content-end quoter-ul">
                     <li class="nav-item ">
-                        <a href="formulario" class="atras">Back</a>
+                        <a href="index" class="atras">Back</a>
                     </li>
                 </ul>
             </ul>
@@ -90,10 +90,10 @@
     tota = tot * 0.07;
     totl = tota + tot;
     total = Number(total.toFixed(2));
-    totl = Number(totl.toFixed(2));
+    totalfinal = Number(totl.toFixed(2));
     document.getElementById("subtotal").innerText = `${total}`;
     document.getElementById("flete").innerText = `${flete}`;
-    document.getElementById("final").innerText = `${totl}`;
+    document.getElementById("final").innerText = `${totalfinal}`;
 </Script>
 <script>
     function printDiv(nombreDiv) {
