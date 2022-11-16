@@ -26,11 +26,30 @@ function AgregarVaca() {
   // Seleccionamos los datos de los inputs de formulario
   cantidad = $("#cantidad").val();
   imgmarco = $("#cbxLenguajes").val();
+  preciocon = $("#precio").val();
+  icod = $("#cod").val();
+  fcod = $("#codfram").val();
+  col = $("#color").val();
+  finse = $("#finih").val();
   sub = cantidad * imgmarco;
-  console.log("🚀 ~ file: funciones.js ~ line 31 ~ AgregarVaca ~ sub", sub);
+  core = $("#core").val();
+  let cr, mr, cod;
+  if (core == "Honey Comb") {
+    cr = "-hc-";
+  } else {
+    cr = "-so-";
+  }
+  if (imgmarco == preciocon) {
+    mr = "-f";
+  } else {
+    mr = " ";
+  }
+  cod = icod + finse + col + cr + fcod + mr;
+
+  console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({
     producto: $("#producto").val(),
-    codigo: $("#codigo").val(),
+    codigo: cod,
     imgpuerta: $("#imgpuerta").val(),
     imgmarco: sub,
     aimgf: $("#marco").val(),
@@ -155,7 +174,6 @@ $(".btnEliminar").bind("click", function () {
   Eliminar(indice_selecionado); // Eliminamos el elemento llamando la funcion de eliminar
   ListarVacas();
 });
-
 
 contarVacas();
 // Esperar el evento de envio del formulario !!

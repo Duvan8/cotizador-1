@@ -61,9 +61,8 @@
           >
             <%= datos.producto%>
           </h5>
-          <h6 style="font-style: italic; text-align: center">
-            <%= datos.codigo%>
-          </h6>
+          <input type="hidden" value="<%= datos.codigo%>" id="cod" />
+          <input type="hidden" value="<%= datos.codframe%>" id="codfram" />
           <div class="linea-form" style="background-color: black"></div>
           <input
             type="hidden"
@@ -179,6 +178,41 @@
                     <option value="Solid">Solid</option>
                   </select>
                 </li>
+                <li class="li-sec caja">
+                  <img
+                    src="/images/icons/simbolos pagina web- core.png"
+                    style="height: 31px; margin: auto; margin-right: 10px"
+                  />
+                  <label class="label-sec">Color</label>
+                  <select
+                    class="form-select form-select-sm selected-line"
+                    aria-label=".form-select-sm example"
+                    name="color"
+                    id="color"
+                  >
+                    <option selected>Select</option>
+                    <option value="w1">White</option>
+                    <option value="g1">Mocca</option>
+                    <option value="m1">Gray</option>
+                  </select>
+                </li>
+                <li class="li-sec caja">
+                    <img
+                      src="/images/icons/simbolos pagina web- core.png"
+                      style="height: 31px; margin: auto; margin-right: 10px"
+                    />
+                    <label class="label-sec">Finish</label>
+                    <select
+                      class="form-select form-select-sm selected-line"
+                      aria-label=".form-select-sm example"
+                      name="finish"
+                      id="finih"
+                    >
+                      <option selected>Select</option>
+                      <option value="m">matt</option>
+                      <option value="h">high gloss</option>
+                    </select>
+                  </li>
                 <li class="li-sec caja">
                   <img
                     src="/images/icons/simbolos pagina web-frame.png"
