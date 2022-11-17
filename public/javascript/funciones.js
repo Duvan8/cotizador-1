@@ -31,6 +31,7 @@ function AgregarVaca() {
   fcod = $("#codfram").val();
   col = $("#color").val();
   finse = $("#finih").val();
+  ker = $("#Kerfs").val();
   sub = cantidad * imgmarco;
   core = $("#core").val();
   let cr, mr, cod;
@@ -44,7 +45,7 @@ function AgregarVaca() {
   } else {
     mr = " ";
   }
-  cod = icod + finse + col + cr + fcod + mr;
+  cod = icod + finse + col+"-"+ ker+ cr + fcod + mr;
 
   console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({

@@ -191,6 +191,13 @@ select:focus {
   margin-left: 0.3rem;
 }
 
+#sfinsh{
+  display: none;
+}
+#scol{
+  display: none;
+}
+
 /* input[type="number"] {
   -moz-appearance: textfield;
 }

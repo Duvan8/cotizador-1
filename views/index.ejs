@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,68 +8,126 @@
     <script src="javascript/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="style/normalize.css" />
     <link rel="stylesheet" href="style/estilos.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="javascript/detalle.js"></script>
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="img-nav">
-            <img class="img-nav" src="https://acemardistributor.com/wp-content/uploads/2022/07/LOGO-Acemar-Gris-2020.png" />
-        </div>
-        <ul class="nav justify-content-end quoter-ul">
-            <li class="nav-item ">
-                <a href="prueba" aria-current="page" class="Quoter-nav">Quoter</a>
-            </li>
-        </ul>
+      <div class="img-nav">
+        <img
+          class="img-nav"
+          src="https://acemardistributor.com/wp-content/uploads/2022/07/LOGO-Acemar-Gris-2020.png"
+        />
+      </div>
+      <ul class="nav justify-content-end quoter-ul">
+        <li class="nav-item">
+          <a href="prueba" aria-current="page" class="Quoter-nav">Quoter</a>
+        </li>
+      </ul>
     </header>
     <div class="linea"></div>
     <table class="tabla">
-        <tbody class="columnas">
-            <% datos.forEach(function (datos) { %>
-            <tr>
-                <td>
-                    <input type="hidden" class="id" value="<%= datos.id%>">
-                </td>
-                <td class="una">
-                    <section id="sec">
-                        <div class="articulo">
-                            <a class="detalle" href="formulario/<%= datos.id%>">
-                                <img class="puerta" src="images/productos/<%= datos.imgpuerta%>">
-                                <h4 style="color: rgb(107, 105, 105); margin-bottom: 10px;" class="nom-prod">
-                                    <%= datos.producto%>
-                                </h4>
-                            </a>
-                        </div>
-                    </section>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
+      <tbody class="columnas">
+        <% datos.forEach(function (datos) { %>
+        <tr>
+          <td>
+            <input type="hidden" class="id" value="<%= datos.id%>" />
+          </td>
+          <td class="una">
+            <section id="sec">
+              <div class="articulo">
+                <a class="detalle" href="formulario/<%= datos.id%>">
+                  <img
+                    class="puerta"
+                    src="images/productos/<%= datos.imgpuerta%>"
+                  />
+                  <h4
+                    style="color: rgb(107, 105, 105); margin-bottom: 10px"
+                    class="nom-prod"
+                  >
+                    <%= datos.producto%>
+                  </h4>
+                </a>
+              </div>
+            </section>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
     </table>
     <footer class="footer">
-        <div class="part">
-            <div class="sec" style="margin-left: 15%;">
-                <h5 class="tit-footer">Sites of interest</h5>
-                <ul>
-                    <a style="text-decoration: none; color:white;" class="cont-footer" href="https://athomefloors.biz/">Colortile</a>
-                </ul>
-                <ul>
-                    <a style="text-decoration: none; color:white;" class="cont-footer" href="https://www.acemar.co/">Acemar</a>
-                </ul>
-                <div class="social" style="margin-left: -20%;">
-                    <a href="https://www.facebook.com/people/Acemar-Wood/100076103297662/"><img src="/images/redes/facebook.jpg" alt=""></a>
-                    <a href="https://www.instagram.com/acemarwood/?utm_medium=copy_link"><img style="height: 30px; width: 30px; margin-top: 30%; margin-right: 20px;" src="/images/redes/instagram.jpg" alt=""></a>
-                    <a href="https://twitter.com/Acemar1958"><img style="height: 30px; width: 30px; margin-top: 40%; margin-right: 10px;" src="https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/twitter-icon-18-256.png" alt=""></a>
-                    <a href="https://www.linkedin.com/in/triplex-acemar-sas-06323556"><img src="/images/redes/LinkedIn.jpg" alt=""></a>
-                    <a href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber"><img src="/images/redes/YouTube.jpg" alt=""></a>
-                </div>
-            </div>
-            <div class="maps">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.17503655854!2d-82.76075328552254!3d27.896601423757517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2faeae4eaaaab%3A0xffbbd9ca69894ee9!2s2310%20Tall%20Pines%20Dr%20Suite%20230%2C%20Largo%2C%20FL%2033771%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1663612375888!5m2!1ses!2sco" width="675" height="300px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+      <div class="part">
+        <div class="sec" style="margin-left: 15%">
+          <h5 class="tit-footer">Sites of interest</h5>
+          <ul>
+            <a
+              style="text-decoration: none; color: white"
+              class="cont-footer"
+              href="https://athomefloors.biz/"
+              >Colortile</a
+            >
+          </ul>
+          <ul>
+            <a
+              style="text-decoration: none; color: white"
+              class="cont-footer"
+              href="https://www.acemar.co/"
+              >Acemar</a
+            >
+          </ul>
+          <div class="social" style="margin-left: -20%">
+            <a
+              href="https://www.facebook.com/people/Acemar-Wood/100076103297662/"
+              ><img src="/images/redes/facebook.jpg" alt=""
+            /></a>
+            <a href="https://www.instagram.com/acemarwood/?utm_medium=copy_link"
+              ><img
+                style="
+                  height: 30px;
+                  width: 30px;
+                  margin-top: 30%;
+                  margin-right: 20px;
+                "
+                src="/images/redes/instagram.jpg"
+                alt=""
+            /></a>
+            <a href="https://twitter.com/Acemar1958"
+              ><img
+                style="
+                  height: 30px;
+                  width: 30px;
+                  margin-top: 40%;
+                  margin-right: 10px;
+                "
+                src="https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/twitter-icon-18-256.png"
+                alt=""
+            /></a>
+            <a href="https://www.linkedin.com/in/triplex-acemar-sas-06323556"
+              ><img src="/images/redes/LinkedIn.jpg" alt=""
+            /></a>
+            <a
+              href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber"
+              ><img src="/images/redes/YouTube.jpg" alt=""
+            /></a>
+          </div>
         </div>
+        <div class="maps">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.17503655854!2d-82.76075328552254!3d27.896601423757517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2faeae4eaaaab%3A0xffbbd9ca69894ee9!2s2310%20Tall%20Pines%20Dr%20Suite%20230%2C%20Largo%2C%20FL%2033771%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1663612375888!5m2!1ses!2sco"
+            width="675"
+            height="300px"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>

@@ -62,7 +62,8 @@
             <%= datos.producto%>
           </h5>
           <input type="hidden" value="<%= datos.codigo%>" id="cod" />
-          <input type="hidden" value="<%= datos.codframe%>" id="codfram" />
+          <input type="hidden" value="<%= datos.id%>" id="id"/>
+            
           <div class="linea-form" style="background-color: black"></div>
           <input
             type="hidden"
@@ -82,12 +83,6 @@
               value="<%= datos.producto%>"
               name="nombre"
               id="producto"
-            />
-            <input
-              type="hidden"
-              value="<%= datos.codigo%>"
-              name="codigo"
-              id="codigo"
             />
             <input
               type="hidden"
@@ -178,41 +173,7 @@
                     <option value="Solid">Solid</option>
                   </select>
                 </li>
-                <li class="li-sec caja">
-                  <img
-                    src="/images/icons/simbolos pagina web- core.png"
-                    style="height: 31px; margin: auto; margin-right: 10px"
-                  />
-                  <label class="label-sec">Color</label>
-                  <select
-                    class="form-select form-select-sm selected-line"
-                    aria-label=".form-select-sm example"
-                    name="color"
-                    id="color"
-                  >
-                    <option selected>Select</option>
-                    <option value="w1">White</option>
-                    <option value="g1">Mocca</option>
-                    <option value="m1">Gray</option>
-                  </select>
-                </li>
-                <li class="li-sec caja">
-                    <img
-                      src="/images/icons/simbolos pagina web- core.png"
-                      style="height: 31px; margin: auto; margin-right: 10px"
-                    />
-                    <label class="label-sec">Finish</label>
-                    <select
-                      class="form-select form-select-sm selected-line"
-                      aria-label=".form-select-sm example"
-                      name="finish"
-                      id="finih"
-                    >
-                      <option selected>Select</option>
-                      <option value="m">matt</option>
-                      <option value="h">high gloss</option>
-                    </select>
-                  </li>
+                
                 <li class="li-sec caja">
                   <img
                     src="/images/icons/simbolos pagina web-frame.png"
@@ -277,7 +238,60 @@
                   value="1"
                 />
               </li>
-
+              <li class="li-sec caja" id="col">
+                <img
+                  src="/images/icons/simbolos pagina web- core.png"
+                  style="height: 31px; margin: auto; margin-right: 10px"
+                />
+                <label class="label-sec">Color</label>
+                <select
+                  class="form-select form-select-sm selected-line"
+                  aria-label=".form-select-sm example"
+                  name="color"
+                  id="color"
+                >
+                  <option value="">Select</option>
+                  <option value="w1">White</option>
+                  <option value="g1">Mocca</option>
+                  <option value="m1">Gray</option>
+                </select>
+              </li>
+              <li class="li-sec caja" id="col">
+                <img
+                  src="/images/icons/simbolos pagina web- core.png"
+                  style="height: 31px; margin: auto; margin-right: 10px"
+                />
+                <label class="label-sec">Kerfs</label>
+                <select
+                  class="form-select form-select-sm selected-line"
+                  aria-label=".form-select-sm example"
+                  name="color"
+                  id="Kerfs"
+                >
+                  <option selected>Select</option>
+                  <option value="4k">4 RUTEOS HORIZONTALES</option>
+                  <option value="5k">5 RUTEOS VERT Y HOR</option>
+                  <option value="9k">RUTEOS INCLINADOS</option>
+                  <option value="6k">6 RUTEOS VERT Y HOR</option>
+                </select>
+              </li>
+              <li class="li-sec caja" id="finsh">
+                <img
+                  src="/images/icons/simbolos pagina web- core.png"
+                  style="height: 31px; margin: auto; margin-right: 10px"
+                />
+                <label class="label-sec">Finish</label>
+                <select
+                  class="form-select form-select-sm selected-line"
+                  aria-label=".form-select-sm example"
+                  name="finish"
+                  id="finih"
+                >
+                  <option value="">Select</option>
+                  <option value="m">matt</option>
+                  <option value="h">high gloss</option>
+                </select>
+              </li>
               <li>
                 <div class="linea-total" style="background-color: black"></div>
                 <label class="label-sec total" name="total">Total: </label>
@@ -303,80 +317,86 @@
           </form>
         </div>
       </div>
-
       <% } %>
     </div>
-    <footer class="footer">
-      <div class="part">
-        <div class="sec" style="margin-left: 15%">
-          <h5 class="tit-footer">Sites of interest</h5>
-          <ul>
-            <a
-              style="text-decoration: none; color: white"
-              class="cont-footer"
-              href="https://athomefloors.biz/"
-              >Colortile</a
-            >
-          </ul>
-          <ul>
-            <a
-              style="text-decoration: none; color: white"
-              class="cont-footer"
-              href="https://www.acemar.co/"
-              >Acemar</a
-            >
-          </ul>
-          <div class="social" style="margin-left: -20%">
-            <a
-              href="https://www.facebook.com/people/Acemar-Wood/100076103297662/"
-              ><img src="/images/redes/facebook.jpg" alt=""
-            /></a>
-            <a href="https://www.instagram.com/acemarwood/?utm_medium=copy_link"
-              ><img
-                style="
-                  height: 30px;
-                  width: 30px;
-                  margin-top: 30%;
-                  margin-right: 20px;
-                "
-                src="/images/redes/instagram.jpg"
-                alt=""
-            /></a>
-            <a href="https://twitter.com/Acemar1958"
-              ><img
-                style="
-                  height: 30px;
-                  width: 30px;
-                  margin-top: 40%;
-                  margin-right: 10px;
-                "
-                src="https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/twitter-icon-18-256.png"
-                alt=""
-            /></a>
-            <a href="https://www.linkedin.com/in/triplex-acemar-sas-06323556"
-              ><img src="/images/redes/LinkedIn.jpg" alt=""
-            /></a>
-            <a
-              href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber"
-              ><img src="/images/redes/YouTube.jpg" alt=""
-            /></a>
+      <footer class="footer">
+        <div class="part">
+          <div class="sec" style="margin-left: 15%">
+            <h5 class="tit-footer">Sites of interest</h5>
+            <ul>
+              <a
+                style="text-decoration: none; color: white"
+                class="cont-footer"
+                href="https://athomefloors.biz/"
+                >Colortile</a
+              >
+            </ul>
+            <ul>
+              <a
+                style="text-decoration: none; color: white"
+                class="cont-footer"
+                href="https://www.acemar.co/"
+                >Acemar</a
+              >
+            </ul>
+            <div class="social" style="margin-left: -20%">
+              <a
+                href="https://www.facebook.com/people/Acemar-Wood/100076103297662/"
+                ><img src="/images/redes/facebook.jpg" alt=""
+              /></a>
+              <a href="https://www.instagram.com/acemarwood/?utm_medium=copy_link"
+                ><img
+                  style="
+                    height: 30px;
+                    width: 30px;
+                    margin-top: 30%;
+                    margin-right: 20px;
+                  "
+                  src="/images/redes/instagram.jpg"
+                  alt=""
+              /></a>
+              <a href="https://twitter.com/Acemar1958"
+                ><img
+                  style="
+                    height: 30px;
+                    width: 30px;
+                    margin-top: 40%;
+                    margin-right: 10px;
+                  "
+                  src="https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/twitter-icon-18-256.png"
+                  alt=""
+              /></a>
+              <a href="https://www.linkedin.com/in/triplex-acemar-sas-06323556"
+                ><img src="/images/redes/LinkedIn.jpg" alt=""
+              /></a>
+              <a
+                href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber"
+                ><img src="/images/redes/YouTube.jpg" alt=""
+              /></a>
+            </div>
+          </div>
+
+          <div class="maps">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.17503655854!2d-82.76075328552254!3d27.896601423757517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2faeae4991bd7%3A0x93b550d0f6a385a4!2s2310%20Tall%20Pines%20Dr%2C%20Largo%2C%20FL%2033771%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1665514952999!5m2!1ses!2sco"
+              width="675"
+              height="300"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
-
-        <div class="maps">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.17503655854!2d-82.76075328552254!3d27.896601423757517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2faeae4991bd7%3A0x93b550d0f6a385a4!2s2310%20Tall%20Pines%20Dr%2C%20Largo%2C%20FL%2033771%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1665514952999!5m2!1ses!2sco"
-            width="675"
-            height="300"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-    </footer>
+      </footer>
   </body>
+  <script>
+    var campo = document.getElementById("id").value;
+    if (campo == 1) {
+      document.getElementById("finsh").id = "sfinsh";
+      document.getElementById("col").id = "scol";
+    }
+  </script>
   <!-- <script src="/javascript/localstorage.js"></script> -->
   <script src="/javascript/funciones.js"></script>
   <!-- <script>
