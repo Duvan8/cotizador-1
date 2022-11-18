@@ -27,8 +27,8 @@ function AgregarVaca() {
   cantidad = $("#cantidad").val();
   imgmarco = $("#cbxLenguajes").val();
   preciocon = $("#precio").val();
-  icod = $("#cod").val();
-  fcod = $("#codfram").val();
+  icod = $("#codinicial").val();
+  fcod = $("#codmarco").val();
   col = $("#color").val();
   finse = $("#finih").val();
   ker = $("#Kerfs").val();
@@ -45,7 +45,7 @@ function AgregarVaca() {
   } else {
     mr = " ";
   }
-  cod = icod + finse + col+"-"+ ker+ cr + fcod + mr;
+  cod = icod + finse + col+ ker+ cr + fcod + mr;
 
   console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({

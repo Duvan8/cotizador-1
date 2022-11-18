@@ -19,8 +19,17 @@ router.get("/formulario/:id", (req, res) => {
       if (error) {
         throw error;
       } else {
-        res.render("formulario", { datos: results[0] });
-        
+        connection.query(
+          "SELECT * FROM codigo WHERE id = ?",
+          [id],
+          (err, resbd) => {
+            if (err) {
+              throw err;
+            } else {
+              res.render("formulario", { datos: results[0], cod: resbd[0] });
+            }
+          }
+        );
       }
     }
   );
