@@ -25,7 +25,6 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "heroku": "^7.65.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1"
   }
