@@ -229,21 +229,6 @@
                   </select>
                 </li>
               </div>
-              <li class="cantidad">
-                <img
-                  src="/images/icons/simbolos pagina web-quantity.png"
-                  style="height: 35px; margin: auto; margin-right: 10px"
-                />
-                <label class="label-sec">Quantity</label>
-                <br />
-                <input
-                  class="input-number"
-                  id="cantidad"
-                  type="number"
-                  onchange="marco();"
-                  value="1"
-                />
-              </li>
               <!--desde aca comienza la generacion de los codigos-->
               <li class="li-sec caja" id="col">
                 <img
@@ -300,6 +285,21 @@
                 </select>
               </li>
               <!--aca terminan los select del codigo-->
+              <li class="cantidad">
+                <img
+                  src="/images/icons/simbolos pagina web-quantity.png"
+                  style="height: 35px; margin: auto; margin-right: 10px"
+                />
+                <label class="label-sec">Quantity</label>
+                <br />
+                <input
+                  class="input-number"
+                  id="cantidad"
+                  type="number"
+                  onchange="marco();"
+                  value="1"
+                />
+              </li>
               <li>
                 <div class="linea-total" style="background-color: black"></div>
                 <label class="label-sec total" name="total">Total: </label>
@@ -406,13 +406,13 @@
     if (color == "false") {
       document.getElementById("col").id = "sfinsh";
     }
-    if(finish == "false"){
+    if (finish == "false") {
       document.getElementById("finsh").id = "sfinsh";
     }
-    if(kerfs == "false"){
+    if (kerfs == "false") {
       document.getElementById("Kerfs").id = "sfinsh";
     }
-    if(core == "false"){
+    if (core == "false") {
       document.getElementById("corese").id = "sfinsh";
     }
   </script>
