@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js"
@@ -14,19 +17,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "3.1.8",
-    "express": "4.18.1",
-    "express-session": "1.17.3",
-    "morgan": "1.10.0",
-    "mysql": "2.18.1",
-    "path": "0.12.7",
-    "pdfkit": "0.13.0",
-    "pdfkit-table": "0.1.99",
-    "session": "0.1.0"
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "pdfkit": "^0.13.0",
+    "pdfkit-table": "^0.1.99",
+    "session": "^0.1.0"
   },
   "devDependencies": {
-    "heroku": "7.65.0",
-    "nodemon": "2.0.20",
-    "ts-node": "10.9.1"
+    "heroku": "^7.65.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1"
   }
 }
