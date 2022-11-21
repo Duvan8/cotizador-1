@@ -4,7 +4,7 @@ const { render, json } = require("express/lib/response");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
-const session = require('express-session'); 
+const session = require('express-session');
 
 app.use(session({
     secret: '123',
