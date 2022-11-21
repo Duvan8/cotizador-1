@@ -1,4 +1,4 @@
-const PDFDocument = require("pdfkit");
+/* const PDFDocument = require("pdfkit");
 function tabla() {
   let obtenerDato = document.getElementsByTagName("td");
 
@@ -22,4 +22,4 @@ function buildPDF(dataCallback, endCallback) {
   doc.end();
 }
 
-module.exports = { buildPDF }
+module.exports = { buildPDF } */
