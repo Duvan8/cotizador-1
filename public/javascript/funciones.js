@@ -32,20 +32,21 @@ function AgregarVaca() {
   col = $("#color").val();
   finse = $("#finih").val();
   ker = $("#Kerfs").val();
+  opn = $("#open").val();
   sub = cantidad * imgmarco;
   core = $("#core").val();
   let cr, mr, cod;
   if (core == "Honey Comb") {
-    cr = "-hc-";
+    cr = "-HC-";
   } else {
-    cr = "-so-";
+    cr = "-SO-";
   }
   if (imgmarco == preciocon) {
-    mr = "-f";
+    mr = "-F";
   } else {
     mr = " ";
   }
-  cod = icod + finse + col+ ker+ cr + fcod + mr;
+  cod =  icod + finse + col+ ker+ cr + fcod + mr;
 
   console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({
