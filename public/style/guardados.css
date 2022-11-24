@@ -150,7 +150,7 @@ table tr td:first-child::before {
   font-size: 22px;
 }
 
-@media (max-width: 1869px) {
+@media (max-width: 1900px) {
   .ultimo {
     margin-top: -7%;
     margin-left: 85%;
