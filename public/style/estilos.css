@@ -145,6 +145,26 @@ section {
 .social{
   margin-left: -55px;
 }
+@media (max-width: 1869px) {
+  .tabla{ 
+    width: 95%;
+    margin-bottom: 10%;
+  }
+  .puerta {
+    margin-top: 0%;
+    height: 100%;
+    width: 250px;
+  }
+
+  .articulo {
+    padding: auto;
+    height: 400px;
+    width: 250px; 
+    margin-left: -50px;
+    cursor: pointer;
+  }
+  
+}
 @media (max-width: 540px) {
   .linea {
     background-color: #fff;
