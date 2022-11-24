@@ -206,7 +206,7 @@ select:focus {
 }
  */
 
-@media (max-width: 1900px) {
+@media (max-width: 3000px) {
   .formulario {
     height: 500px;
     width: 500px;

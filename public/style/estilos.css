@@ -145,7 +145,7 @@ section {
 .social{
   margin-left: -55px;
 }
-@media (max-width: 1900px) {
+@media (max-width: 3000px) {
   .tabla{ 
     width: 95%;
     margin-bottom: 10%;
