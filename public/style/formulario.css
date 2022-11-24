@@ -201,11 +201,6 @@ select:focus {
   display: none;
 }
 
-/* input[type="number"] {
-  -moz-appearance: textfield;
-}
- */
-
 @media (max-width: 3000px) {
   .formulario {
     height: 500px;
@@ -224,9 +219,9 @@ select:focus {
   }
   
   .presentacion {
-    height: 100%;
+    height: 120%;
     width: 100%;
-    margin-left: 70px;
+    margin-left: 80px;
   }
 
   .mrpuert {

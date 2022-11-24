@@ -146,6 +146,9 @@ section {
   margin-left: -55px;
 }
 @media (max-width: 3000px) {
+  tr{
+    margin-bottom: 80px;
+  }
   .tabla{ 
     width: 95%;
     margin-bottom: 10%;
@@ -158,7 +161,7 @@ section {
 
   .articulo {
     padding: auto;
-    height: 400px;
+    height: 500px;
     width: 250px; 
     margin-left: -50px;
     cursor: pointer;

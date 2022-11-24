@@ -7,12 +7,6 @@ const conexion = mysql.createConnection({
   password: "RY9vNZNgxJpTFYo5P2EF",
 });
 
-/* const conexion = mysql.createConnection({
-  host: "acemardistributor.com",
-  database: "distacemar_quotationdoors",
-  user: "distacemar_doors",
-  password: "Acemar123+-",
-}); */
 conexion.connect(function (error) {
   if (error) {
     console.log("error en la conexion");
