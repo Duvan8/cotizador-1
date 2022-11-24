@@ -239,6 +239,9 @@ select:focus {
   }
 }
 @media (max-width: 540px) {
+  tr{
+    width: 60px;
+  }
   .linea {
     background-color: #fff;
     width: 100%;

@@ -157,6 +157,7 @@ section {
     margin-top: 0%;
     height: 100%;
     width: 250px;
+    margin-left: -25px;
   }
 
   .articulo {
@@ -168,7 +169,10 @@ section {
   }
   
 }
-@media (max-width: 540px) {
+@media (max-width: 540px) { 
+  tr{
+    width: 50px;
+  }
   .linea {
     background-color: #fff;
     width: 100%;
@@ -177,6 +181,7 @@ section {
     margin-bottom: 60px;
   }
   .columnas {
+    width: 50px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: minmax(100px, auto);
@@ -225,7 +230,7 @@ section {
   }
   .maps {
     margin-top: 90%;
-    margin-left: -69%;
+    margin-left: -65%;
     width: 5%;
   }
   .maps,
