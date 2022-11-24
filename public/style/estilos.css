@@ -170,6 +170,12 @@ section {
   
 }
 @media (max-width: 540px) { 
+  .puerta {
+    margin-top: 0%;
+    height: 115%;
+    width: 250px;
+    margin-left: -25px;
+  }
   tr{
     width: 50px;
   }
