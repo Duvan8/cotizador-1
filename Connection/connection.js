@@ -8,10 +8,10 @@ const mysql = require("mysql");
 }); */
 
 const conexion = mysql.createConnection({
-  host: "b7jslc2prndhihmsk0yy-mysql.services.clever-cloud.com",
-  database: "b7jslc2prndhihmsk0yy",
-  user: "uu1irodkuuevmegx",
-  password: "RY9vNZNgxJpTFYo5P2EF",
+  host: "31.220.54.202",
+  database: "acem_cotizador",
+  user: "acem_carrito",
+  password: "Acemar1959-+",
 });
 
 conexion.connect(function (error) {
