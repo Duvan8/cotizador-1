@@ -33,6 +33,8 @@ function AgregarVaca() {
   finse = $("#finih").val();
   ker = $("#Kerfs").val();
   opn = $("#open").val();
+  ven = $("#venner").val();
+  console.log("🚀 ~ file: funciones.js:37 ~ AgregarVaca ~ ven", ven);
   sub = cantidad * imgmarco;
   core = $("#core").val();
   let cr, mr, cod;
@@ -40,13 +42,13 @@ function AgregarVaca() {
     cr = "-HC-";
   } else {
     cr = "-SO-";
-  }
+  } 
   if (imgmarco == preciocon) {
     mr = "-F";
   } else {
     mr = " ";
   }
-  cod =  icod + finse + col+ ker+ cr + fcod + mr;
+  cod =  icod + finse + col+ ker+ cr + fcod + mr + ven;
 
   console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({

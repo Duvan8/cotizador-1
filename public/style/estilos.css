@@ -145,7 +145,7 @@ section {
 .social{
   margin-left: -55px;
 }
-@media (max-width: 3000px) {
+@media (min-width: 2000px ) and (  max-width: 3000px) {
   tr{
     margin-bottom: 80px;
   }

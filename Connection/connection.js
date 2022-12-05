@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 /* const conexion = mysql.createConnection({
-  host: "cotizador",
-  database: "carrito",
+  host: "acemardistributors.com",
+  database: "cotizador",
   user: "admin",
-  password: "Acemar1959-+",
+  password: "Acemars1959@",
 }); */
 
 const conexion = mysql.createConnection({
