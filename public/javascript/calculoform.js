@@ -17,3 +17,4 @@ function marco() {
   }
   document.getElementById("lblLenguajeSeleccionado").innerText = `${redondear}`;
 }
+

@@ -13,9 +13,9 @@
 }
 
 .presentacion {
-  height: 100%;
-  width: 100%;
-  margin-left: 70px;
+  height: auto;
+  width: 450px;
+  margin-left: 50px;
 }
 
 .formulario {
@@ -117,7 +117,6 @@ select:focus {
   display: flex;
   height: 30px;
   width: 200px;
-  margin-left: 14%;
 }
 #cantidad {
   width: 120px;
@@ -128,8 +127,8 @@ select:focus {
 }
 .mrpuert {
   position: relative;
-  margin-top: -50%;
-  right: 123%;
+  margin-top: -100%;
+  right: 65%;
 }
 
 .total {
@@ -201,6 +200,19 @@ select:focus {
   display: none;
 }
 
+.container {
+  height: 500px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  -ms-transform: translate(-50vw, -50vw);
+  transform: translate(3vw, 60vw);
+}
 @media (min-width: 2000px ) and (  max-width: 3000px) {
   .formulario {
     height: 500px;

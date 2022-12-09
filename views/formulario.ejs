@@ -54,11 +54,24 @@
           <input type="hidden" value="<%= cod.finish%>" id="codfinish" />
           <input type="hidden" value="<%= cod.kerfs%>" id="codkerfs" />
           <input type="hidden" value="<%= cod.core%>" id="cores" />
+          <input type="hidden" value="<%= cod.veneer%>" id="ven" />
           <%}%>
           <img
             class="presentacion"
-            src="/images/productos/<%= datos.imgpuerta%>"
+            id="imgproducto"
+            src="/images/productos/<%= datos.directorio%>/<%= datos.imgpuerta%>"
           />
+        </div>
+        <div class="container">
+          <div class="center">
+            <input
+            height="300"
+              id="mrpuert"
+              class="mrpuert"
+              type="hidden"
+              src="/images/productos/marcos/<%= datos.imgmarco%>"
+            />
+          </div>
         </div>
         <div class="formulario">
           <h5
@@ -258,7 +271,7 @@
                   class="form-select form-select-sm selected-line"
                   aria-label=".form-select-sm example"
                   name="venner"
-                  id="venner"
+                  id="elvenner"
                 >
                   <option value="">Select</option>
                   <option value="-40">Beech Crown</option>
@@ -350,15 +363,6 @@
               id="agregar"
               class="btn btn-warning btn btn-outline-light agregar"
             />
-            <input
-              height="300px"
-              width="400px"
-              id="mrpuert"
-              name="mrpuert"
-              class="mrpuert"
-              type="hidden"
-              src="/images/productos/frame/<%= datos.imgmarco%>"
-            />
             <input type="hidden" name="juan" value="<%= datos.imgmarco%>" />
           </form>
         </div>
@@ -441,6 +445,7 @@
     var finish = document.getElementById("codfinish").value;
     var kerfs = document.getElementById("codkerfs").value;
     var core = document.getElementById("cores").value;
+    var venr = document.getElementById("ven").value;
     if (color == "false") {
       document.getElementById("col").id = "sfinsh";
     }
@@ -453,20 +458,20 @@
     if (core == "false") {
       document.getElementById("corese").id = "sfinsh";
     }
+    if (venr == "false") {
+      document.getElementById("venne").id = "sfinsh";
+    }
   </script>
-  <!-- <script src="/javascript/localstorage.js"></script> -->
-  <script src="/javascript/funciones.js"></script>
-  <!-- <script>
-    $('.input-number-increment').click(function () {
-        var $input = $(this).parents('.input-number-group').find('.input-number');
-        var val = parseInt($input.val(), 10);
-        $input.val(val + 1);
+  <script>
+    elvenner.addEventListener("change", () => {
+      console.log("entro en el js del veener");
+      imgproducto.setAttribute(
+        "src",
+        "/images/productos/<%= datos.directorio%> /" +
+          elvenner.selectedOptions[0].value +
+          ".jpg"
+      );
     });
-
-    $('.input-number-decrement').click(function () {
-        var $input = $(this).parents('.input-number-group').find('.input-number');
-        var val = parseInt($input.val(), 10);
-        $input.val(val - 1);
-    })
-</script> -->
+  </script>
+  <script src="/javascript/funciones.js"></script>
 </html>

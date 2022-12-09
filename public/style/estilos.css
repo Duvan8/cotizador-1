@@ -16,7 +16,8 @@
   margin-top: -60px;
   margin-bottom: 60px;
 }
-header{
+
+header {
   margin-bottom: 8%;
 }
 .Quoter-nav {
@@ -41,7 +42,6 @@ header{
 }
 
 html {
-  
   position: relative;
 }
 
@@ -99,27 +99,26 @@ section {
   flex-direction: row;
   height: 100%;
   width: 95%;
-  margin-left: 3%;
   margin-bottom: 10%;
 }
 .puerta {
   margin-top: 0%;
-  height: 100%;
-  width: 206px;
+  width: 250px;
+  height: auto;
 }
 .articulo {
   padding: auto;
-  height: 400px;
-  width: 206px;
-  margin-left: -50px;
+  height: 250px;
+  width: 250px;
+  margin-bottom: 40px;
+  margin-left: 50px;
   cursor: pointer;
 }
 .columnas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 50px;
   grid-auto-rows: minmax(100px, auto);
-  margin-left: 200px;
+  margin-left: 40px;
   margin-right: -80px;
 }
 .articulo:hover {
@@ -132,24 +131,25 @@ section {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.detalle{
+.detalle {
   background-color: #ffd700;
-  text-align: right;
+  text-align: center;
   text-decoration: none;
   color: black;
 }
-.tabla{ 
+.tabla {
   width: 85%;
   margin-bottom: 5%;
 }
-.social{
+.social {
   margin-left: -55px;
 }
-@media (min-width: 2000px ) and (  max-width: 3000px) {
-  tr{
+
+@media (min-width: 2000px) and (max-width: 3000px) {
+  tr {
     margin-bottom: 80px;
   }
-  .tabla{ 
+  .tabla {
     width: 95%;
     margin-bottom: 10%;
   }
@@ -163,20 +163,19 @@ section {
   .articulo {
     padding: auto;
     height: 500px;
-    width: 250px; 
+    width: 250px;
     margin-left: -50px;
     cursor: pointer;
   }
-  
 }
-@media (max-width: 540px) { 
+@media (max-width: 540px) {
   .puerta {
     margin-top: 0%;
     height: 125%;
     width: 250px;
     margin-left: -25px;
   }
-  tr{
+  tr {
     width: 50px;
   }
   .linea {
@@ -202,11 +201,11 @@ section {
     width: 206px;
     margin-left: 50%;
     cursor: pointer;
-  } 
-  .detalle{
+  }
+  .detalle {
     text-align: center;
   }
-  .social{
+  .social {
     margin-left: -50px;
   }
   .social,
@@ -231,7 +230,7 @@ section {
     margin-right: 10%;
     border-radius: 20px;
   }
-  .nav-item{
+  .nav-item {
     margin-right: 20%;
   }
   .maps {
@@ -243,7 +242,7 @@ section {
   iframe {
     width: 105%;
   }
-  .part{
+  .part {
     margin-top: 100px;
   }
   .sec {

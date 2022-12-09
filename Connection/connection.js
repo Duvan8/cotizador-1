@@ -1,18 +1,18 @@
 const mysql = require("mysql");
 
-/* const conexion = mysql.createConnection({
-  host: "acemardistributors.com",
-  database: "cotizador",
-  user: "admin",
-  password: "Acemars1959@",
-}); */
-
 const conexion = mysql.createConnection({
   host: "31.220.54.202",
   database: "acem_cotizador",
   user: "acem_carrito",
   password: "Acemar1959-+",
 });
+
+/* const conexion = mysql.createConnection({
+  host: "localhost",
+  database: "carrito",
+  user: "root",
+  password: "",
+}); */
 
 conexion.connect(function (error) {
   if (error) {
