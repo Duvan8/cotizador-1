@@ -10,6 +10,16 @@ function marco() {
   let coste = document.getElementById("precio");
   let costo = coste.value;
   let marco = document.getElementById("mrpuert");
+  
+  let core = document.getElementById("coreshjgjhg");
+  let cor = core.value;
+  console.log("🚀 ~ file: calculoform.js:16 ~ marco ~ cor", cor);
+  if (cor == "Honey Comb") {
+    redondear = 107,72;
+    if (cor == "Honey Comb" && lenguaje == "") {
+      
+    }
+  }
   if (lenguaje == costo) {
     marco.type = "image";
   } else {
