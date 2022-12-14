@@ -29,12 +29,11 @@ function AgregarVaca() {
   preciocon = $("#precio").val();
   icod = $("#codinicial").val();
   fcod = $("#codmarco").val();
-  col = $("#color").val();
-  finse = $("#finih").val();
+  col = $("#colores").val();
+  finse = $("#finihsh").val();
   ker = $("#Kerfs").val();
   opn = $("#open").val();
-  ven = $("#venner").val();
-  console.log("🚀 ~ file: funciones.js:37 ~ AgregarVaca ~ ven", ven);
+  ven = $("#elvenner").val();
   sub = cantidad * imgmarco;
   core = $("#core").val();
   let cr, mr, cod;
@@ -42,13 +41,13 @@ function AgregarVaca() {
     cr = "-HC-";
   } else {
     cr = "-SO-";
-  } 
+  }
   if (imgmarco == preciocon) {
     mr = "-F";
   } else {
     mr = " ";
   }
-  cod =  icod + finse + col+ ker+ cr + fcod + mr + ven;
+  cod = icod + finse + col + cr + fcod + mr + ven;
 
   console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({
@@ -113,7 +112,7 @@ function ListarVacas() {
         "<td><img class='puer' src='images/productos/" +
         d.imgpuerta +
         "'></td>" +
-        "<td><img class='marc' src='images/productos/" +
+        "<td><img class='marc' src='images/productos/marcos/" +
         d.aimgf +
         "'></td>" +
         "<td>" +

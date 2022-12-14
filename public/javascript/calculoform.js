@@ -10,14 +10,19 @@ function marco() {
   let coste = document.getElementById("precio");
   let costo = coste.value;
   let marco = document.getElementById("mrpuert");
-  
   let core = document.getElementById("coreshjgjhg");
   let cor = core.value;
   console.log("🚀 ~ file: calculoform.js:16 ~ marco ~ cor", cor);
   if (cor == "Honey Comb") {
-    redondear = 107,72;
-    if (cor == "Honey Comb" && lenguaje == "") {
-      
+    redondear = 107.72;
+    if (cor == "Honey Comb" && lenguaje == "222.43") {
+      redondear = 222.43;
+    }
+  }
+  else if(cor == "Solid"){
+    redondear = 131.33;
+    if(cor == "Solid" && lenguaje == "222.43"){
+      redondear = 246.04;
     }
   }
   if (lenguaje == costo) {

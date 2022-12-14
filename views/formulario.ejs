@@ -19,7 +19,6 @@
   </head>
 
   <body>
-    <img src="/root/cotizador/public/images/-40.jpg" alt="">
     <header>
       <ul>
         <div class="img-nav">
@@ -66,7 +65,7 @@
         <div class="container">
           <div class="center">
             <input
-            height="300"
+              height="300"
               id="mrpuert"
               class="mrpuert"
               type="hidden"
@@ -94,7 +93,7 @@
           <form action="/prueba" method="post" id="vacas-form">
             <input
               type="hidden"
-              value="<%= datos.imgpuerta%>"
+              value="<%= datos.directorio%>/<%= datos.imgpuerta%>"
               name="puerta"
               id="imgpuerta"
             />
@@ -186,6 +185,7 @@
                     class="form-select form-select-sm selected-line"
                     aria-label=".form-select-sm example"
                     name="core"
+                    onchange="marco();"
                     id="coreshjgjhg"
                   >
                     <option value="Solid">Select</option>
@@ -254,7 +254,8 @@
                   class="form-select form-select-sm selected-line"
                   aria-label=".form-select-sm example"
                   name="color"
-                  id="color"
+                  id="colores"
+                  onchange="change();"
                 >
                   <option value="">Select</option>
                   <option value="W1">White</option>
@@ -316,7 +317,7 @@
                   <option value="-6k">4K</option>
                   <option value="-6k">5K</option>
                   <option value="-6k">6K</option>
-                  <option value="-6k">9 K</option>
+                  <option value="-6k">9K</option>
                 </select>
               </li>
               <li class="li-sec caja" id="finsh">
@@ -329,7 +330,8 @@
                   class="form-select form-select-sm selected-line"
                   aria-label=".form-select-sm example"
                   name="finish"
-                  id="finih"
+                  id="finihsh"
+                  onchange="change();"
                 >
                   <option value="">Select</option>
                   <option value="M">matt</option>
@@ -364,7 +366,11 @@
               id="agregar"
               class="btn btn-warning btn btn-outline-light agregar"
             />
-            <input type="hidden" name="juan" value="<%= datos.imgmarco%>" />
+            <input
+              type="hidden"
+              name="juan"
+              value="/images/productos/marcos/<%=datos.imgmarco%>"
+            />
           </form>
         </div>
       </div>
@@ -464,15 +470,35 @@
     }
   </script>
   <script>
-    elvenner.addEventListener("change", () => {
-      console.log("entro en el js del veener");
+    colores.addEventListener("change", () => {
       imgproducto.setAttribute(
         "src",
-        "/images/productos/<%= datos.directorio%> /" +
+        "/images/productos/<%= datos.directorio%>/" +
+          finihsh.selectedOptions[0].value +
+          colores.selectedOptions[0].value +
+          ".jpg"
+      );
+    });
+    finihsh.addEventListener("change", () => {
+      imgproducto.setAttribute(
+        "src",
+        "/images/productos/<%= datos.directorio%>/" +
+          finihsh.selectedOptions[0].value +
+          colores.selectedOptions[0].value +
+          ".jpg"
+      );
+    });
+  </script>
+  <script>
+    elvenner.addEventListener("change", () => {
+      imgproducto.setAttribute(
+        "src",
+        "/images/productos/<%= datos.directorio%>/" +
           elvenner.selectedOptions[0].value +
           ".jpg"
       );
     });
   </script>
+
   <script src="/javascript/funciones.js"></script>
 </html>
