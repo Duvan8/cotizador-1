@@ -86,6 +86,7 @@ td {
 .puer {
   margin-top: -6px;
   height: 70px;
+  width: auto;
 }
 .informacion {
   width: 50%;
