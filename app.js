@@ -1,3 +1,9 @@
+let https;
+try {
+  https = require('node:https');
+} catch (err) {
+  console.error('https support is disabled!');
+}
 const express = require("express");
 const { engine } = require("express/lib/application");
 const { render, json } = require("express/lib/response");
