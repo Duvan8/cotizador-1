@@ -34,9 +34,40 @@ function AgregarVaca() {
   ker = $("#Kerfs").val();
   opn = $("#open").val();
   ven = $("#elvenner").val();
+  core = $("#coreshjgjhg").val();
+  puert = $("#producto").val();
+  console.log("🚀 ~ file: funciones.js:39 ~ AgregarVaca ~ puert", puert)
+  let cr, mr, cod, totl;
+  switch (puert) {
+    case "Unfinished Basic":
+      if (core == "Honey Comb") {
+        totl = 107.72;
+        if (core == "Honey Comb" && imgmarco == "222.43") {
+          totl = 222.43;
+        }
+      } else {
+        totl = 131.33;
+        if (core == "Solid" && imgmarco == "222.43") {
+          totl = 246.04;
+        }
+      }
+      break;
+    case "Unfinished Basic Frameless":
+      if (core == "Honey Comb") {
+        totl = 125.61;
+        if (core == "Honey Comb" && imgmarco == "246.04") {
+          totl = 240.32;
+        }
+      } else {
+        totl = 145.67;
+        if (core == "Solid" && imgmarco == "246.04") {
+          totl = 260.38;
+        }
+      }
+      break;
+      sub = cantidad * totl;
+  }
   sub = cantidad * imgmarco;
-  core = $("#core").val();
-  let cr, mr, cod;
   if (core == "Honey Comb") {
     cr = "-HC-";
   } else {
@@ -49,7 +80,6 @@ function AgregarVaca() {
   }
   cod = icod + finse + col + cr + fcod + mr + ven;
 
-  console.log("🚀 ~ file: funciones.js ~ line 45 ~ AgregarVaca ~ cod", cod);
   var datos_cliente = JSON.stringify({
     producto: $("#producto").val(),
     codigo: cod,
@@ -60,7 +90,7 @@ function AgregarVaca() {
     width: $("#width").val(),
     finish: $("#finish").val(),
     opening: $("#opening").val(),
-    core: $("#core").val(),
+    core: $("#coreshjgjhg").val(),
     thickness: $("#Thickness").val(),
     precio: $("#precio").val(),
     cantidad: $("#cantidad").val(),
