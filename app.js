@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express(json));
 
-app.set('port', process.env.PORT || 3120);
+app.set('port', process.env.PORT || 3121);
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'views/'));
 
