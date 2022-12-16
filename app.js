@@ -1,6 +1,6 @@
-const http = require("http");
-const url = require("url");
-const request = require("postman-request");
+const http = require('http');
+const url = require('url');
+const request = require('postman-request');
 
 const express = require("express");
 const { engine } = require("express/lib/application");
@@ -9,34 +9,20 @@ const morgan = require("morgan");
 const path = require("path");
 const app = express();
 
-const proxyRequest = (req, res) => {
-  var queryData = url.parse(req.url, true).query;
-  if (queryData.url) {
-    request({
-      url: queryData.url,
-    })
-      .on("error", function (e) {
-        res.end("error en el proxy");
-      })
-      .pipe(res);
-  } else {
-    app.use(express.static(path.join(__dirname, "public")));
-    app.use(morgan("dev"));
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express(json));
+app.use(express.static(path.join(__dirname,'public')));
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended:false}));
+app.use(express(json));
 
-    http.createServer(proxyRequest).listen(7000);
-    /* app.set('port', process.env.PORT || 3119); */
-    app.set("view engine", "ejs");
-    app.set("views", path.join(__dirname, "views/"));
+app.set('port', process.env.PORT || 3120);
+app.set('view engine', 'ejs');
+app.set('views',path.join(__dirname,'views/'));
 
-    app.use(require("./router/routes"));
-    app.use((err, req, res, next) => {
-      res.send({ err: err.message });
-    });
+app.use(require('./router/routes'));
+app.use((err, req, res, next) => {
+    res.send({ err: err.message });
+});
 
-    app.listen(app.get("port"), () => {
-      console.log("Se esta ultilizando el puerto", app.get("port"));
-    });
-  }
-};
+app.listen(app.get('port'), () => {
+    console.log("Se esta ultilizando el puerto",app.get('port'));
+});
