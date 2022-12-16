@@ -19,7 +19,9 @@
     "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "postman-request": "^2.88.1-postman.31",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

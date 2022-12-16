@@ -1,9 +1,7 @@
-let https;
-try {
-  https = require('node:https');
-} catch (err) {
-  console.error('https support is disabled!');
-}
+const http = require('http');
+const url = require('url');
+const request = require('postman-request');
+
 const express = require("express");
 const { engine } = require("express/lib/application");
 const { render, json } = require("express/lib/response");
@@ -16,7 +14,21 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express(json));
 
-app.set('port', process.env.PORT || 3119);
+const proxyRequest = (req,res) => {
+    var queryData = url.parse(req.url, true).query;
+    if(queryData.url){
+        request({
+            url: queryData.url
+        }).on('error', function(e){
+            res.end('error en el proxy')
+        }).pipe(res);
+    }
+    else{
+        res.end('enter url')
+    }
+}
+http.createServer(proxyRequest).listen(7000);
+/* app.set('port', process.env.PORT || 3119); */
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'views/'));
 
