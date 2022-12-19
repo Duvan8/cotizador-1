@@ -1,4 +1,5 @@
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const url = require('url');
 const request = require('postman-request');
 
@@ -14,7 +15,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express(json));
 
-app.set('port', process.env.PORT || 3121);
+app.set('port', process.env.PORT || 80);
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'views/'));
 
