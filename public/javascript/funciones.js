@@ -36,7 +36,7 @@ function AgregarVaca() {
   ven = $("#elvenner").val();
   core = $("#coreshjgjhg").val();
   puert = $("#producto").val();
-  console.log("🚀 ~ file: funciones.js:39 ~ AgregarVaca ~ puert", puert)
+  console.log("🚀 ~ file: funciones.js:39 ~ AgregarVaca ~ puert", puert);
   let cr, mr, cod, totl;
   switch (puert) {
     case "Unfinished Basic":
@@ -53,6 +53,19 @@ function AgregarVaca() {
       }
       break;
     case "Unfinished Basic Frameless":
+      if (core == "Honey Comb") {
+        totl = 125.61;
+        if (core == "Honey Comb" && imgmarco == "246.04") {
+          totl = 240.32;
+        }
+      } else {
+        totl = 145.67;
+        if (core == "Solid" && imgmarco == "246.04") {
+          totl = 260.38;
+        }
+      }
+      break;
+    case "4K Solid Lacquered Door":
       if (core == "Honey Comb") {
         totl = 125.61;
         if (core == "Honey Comb" && imgmarco == "246.04") {
