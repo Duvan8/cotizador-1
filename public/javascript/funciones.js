@@ -30,57 +30,39 @@ function AgregarVaca() {
   icod = $("#codinicial").val();
   fcod = $("#codmarco").val();
   col = $("#colores").val();
-  finse = $("#finihsh").val();
+  finse = $("#finihshddd").val();
   ker = $("#Kerfs").val();
   opn = $("#open").val();
   ven = $("#elvenner").val();
   core = $("#coreshjgjhg").val();
   puert = $("#producto").val();
+  codfinish = $("#codfinish").val();
+  console.log(
+    "🚀 ~ file: funciones.js:40 ~ AgregarVaca ~ codfinish",
+    codfinish
+  );
+  prechith = $("#chig").val();
+  preshith = $("#shig").val();
   console.log("🚀 ~ file: funciones.js:39 ~ AgregarVaca ~ puert", puert);
   let cr, mr, cod, totl;
-  switch (puert) {
-    case "Unfinished Basic":
-      if (core == "Honey Comb") {
-        totl = 107.72;
-        if (core == "Honey Comb" && imgmarco == "222.43") {
-          totl = 222.43;
-        }
+  if (codfinish == "true") {
+    if (finse == "M") {
+      if (preciocon == imgmarco) {
+        sub = imgmarco * cantidad;
       } else {
-        totl = 131.33;
-        if (core == "Solid" && imgmarco == "222.43") {
-          totl = 246.04;
-        }
+        sub = imgmarco * cantidad;
       }
-      break;
-    case "Unfinished Basic Frameless":
-      if (core == "Honey Comb") {
-        totl = 125.61;
-        if (core == "Honey Comb" && imgmarco == "246.04") {
-          totl = 240.32;
-        }
-      } else {
-        totl = 145.67;
-        if (core == "Solid" && imgmarco == "246.04") {
-          totl = 260.38;
-        }
+    }
+    if (finse == "H") {
+      if (preciocon == imgmarco) {
+        sub = prechith * cantidad;
+      }else{
+        sub = preshith * cantidad;
       }
-      break;
-    case "4K Solid Lacquered Door":
-      if (core == "Honey Comb") {
-        totl = 125.61;
-        if (core == "Honey Comb" && imgmarco == "246.04") {
-          totl = 240.32;
-        }
-      } else {
-        totl = 145.67;
-        if (core == "Solid" && imgmarco == "246.04") {
-          totl = 260.38;
-        }
-      }
-      break;
-      sub = cantidad * totl;
+    }
+  } else {
+    sub = imgmarco * cantidad;
   }
-  sub = cantidad * imgmarco;
   if (core == "Honey Comb") {
     cr = "-HC-";
   } else {

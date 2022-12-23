@@ -55,6 +55,8 @@
           <input type="hidden" value="<%= cod.kerfs%>" id="codkerfs" />
           <input type="hidden" value="<%= cod.core%>" id="cores" />
           <input type="hidden" value="<%= cod.veneer%>" id="ven" />
+          <input type="hidden" value="<%= datos.conhigth%>" id="chig" />
+          <input type="hidden" value="<%= datos.sinhight%>" id="shig" />
           <%}%>
           <img
             class="presentacion"
@@ -255,6 +257,7 @@
                   aria-label=".form-select-sm example"
                   name="color"
                   id="colores"
+                  onchange="marco();"
                   onchange="change();"
                 >
                   <option value="">Select</option>
@@ -330,7 +333,8 @@
                   class="form-select form-select-sm selected-line"
                   aria-label=".form-select-sm example"
                   name="finish"
-                  id="finihsh"
+                  id="finihshddd"
+                  onchange="marco();"
                   onchange="change();"
                 >
                   <option value="">Select</option>
@@ -474,16 +478,16 @@
       imgproducto.setAttribute(
         "src",
         "/images/productos/<%= datos.directorio%>/" +
-          finihsh.selectedOptions[0].value +
+          finihshddd.selectedOptions[0].value +
           colores.selectedOptions[0].value +
           ".jpg"
       );
     });
-    finihsh.addEventListener("change", () => {
+    finihshddd.addEventListener("change", () => {
       imgproducto.setAttribute(
         "src",
         "/images/productos/<%= datos.directorio%>/" +
-          finihsh.selectedOptions[0].value +
+          finihshddd.selectedOptions[0].value +
           colores.selectedOptions[0].value +
           ".jpg"
       );

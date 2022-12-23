@@ -1,47 +1,37 @@
 var sub = [];
 /* document.getElementById("imgmac").style.visibility = "hidden"; */
 function marco() {
-  let cbxLenguajes = document.getElementById("cbxLenguajes");
-  let lenguaje = cbxLenguajes.value;
-  let precio = document.getElementById("cantidad");
-  let valor = precio.value;
-  let Total = lenguaje * valor;
-  let redondear = Number(Total.toFixed(2));
-  let coste = document.getElementById("precio");
-  let costo = coste.value;
+  let lenguaje = document.getElementById("cbxLenguajes").value;
+  let valor = document.getElementById("cantidad").value;
+  let costo = document.getElementById("precio").value;
   let marco = document.getElementById("mrpuert");
   let core = document.getElementById("coreshjgjhg");
   let puert = document.getElementById("producto").value;
-  console.log("🚀 ~ file: calculoform.js:15 ~ marco ~ puert", puert)
+  let codfinish = document.getElementById("codfinish").value;
+  let prechith = document.getElementById("chig").value;
+  let preshith = document.getElementById("shig").value;
+  let finishe = document.getElementById("finihshddd").value;
   let cor = core.value;
-  switch (puert) {
-    case "Unfinished Basic":
-      if (cor == "Honey Comb") {
-        redondear = 107.72;
-        if (cor == "Honey Comb" && lenguaje == "222.43") {
-          redondear = 222.43;
-        }
+  if (codfinish == "true") {
+    if (finishe == "M" || core == "Honey Comb") {
+      if (costo == lenguaje) {
+        Total = lenguaje * valor;
       } else {
-        redondear = 131.33;
-        if (cor == "Solid" && lenguaje == "222.43") {
-          redondear = 246.04;
-        }
+        Total = lenguaje * valor;
       }
-      break;
-    case "Unfinished Basic Frameless":
-      if (cor == "Honey Comb") {
-        redondear = 125.61;
-        if (cor == "Honey Comb" && lenguaje == "246.04") {
-          redondear = 240.32;
-        }
+    }
+    if (finishe == "H" || core == "Solid") {
+      if (costo == lenguaje) {
+        Total = prechith * valor;
       } else {
-        redondear = 145.67;
-        if (cor == "Solid" && lenguaje == "246.04") {
-          redondear = 260.38;
-        }
+        Total = preshith * valor;
       }
-      break;
+    }
+  } else {
+    Total = lenguaje * valor;
   }
+  let redondear = Number(Total.toFixed(2));
+
   if (lenguaje == costo) {
     marco.type = "image";
   } else {
