@@ -13,7 +13,10 @@ controller.formulario = (req, res, next) => {
   res.render("formulario");
 };
 controller.prueba = (req, res, next) => {
-  res.render("prueba");
+  res.render("lista");
+};
+controller.pisos = (req, res, next) => {
+  res.render("pisos");
 };
 controller.index = async (req, res) => {
   cnn.query("SELECT * FROM producto", (err, resbd) => {

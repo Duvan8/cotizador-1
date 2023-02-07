@@ -2,7 +2,110 @@
   font-family: monserrat;
   src: url(fuentes/Montserrat-Italic-VariableFont_wght.ttf);
 }
-.img-nav {
+/* boton de quoter */
+.lk-qtr {
+  background-color: #ffd700;
+}
+
+.linea {
+  background-color: #0000002c;
+  width: 100%;
+  height: 1px;
+}
+/* mapa de google responsive */
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 59.25%;
+  position: relative;
+  height: 0;
+}
+.map-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+/* cierra mapa de google responsive */
+/* footer abajo */
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  margin: 0;
+  margin-bottom: 40px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+}
+/* footer abajo */
+.columnas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  margin-left: 40px;
+  margin-right: -80px;
+}
+
+
+.articulo {
+  padding: auto;
+  height: 250px;
+  width: 250px;
+  margin-bottom: 40px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+.puerta {
+  margin-top: 0%;
+  width: 250px;
+  height: auto;
+}
+
+.articulo:hover {
+  box-shadow: 0px 5px 20px black;
+}
+@media (max-width: 1200px) {
+  .columnas {
+    width: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: -42px;
+  }
+}
+@media (max-width: 1120px) {
+  .columnas {
+    width: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: 0px;
+  }
+}
+@media (max-width: 768px) {
+  .columnas {
+    width: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: 0px;
+  }
+}
+@media (max-width: 540px) {
+  .columnas {
+    width: 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: 0px;
+  }
+}
+/*.img-nav {
   display: flex;
   margin: 20px;
   margin-left: 10%;
@@ -137,11 +240,11 @@ section {
   text-decoration: none;
   color: black;
 }
-.tabla {
+/* .tabla {
   width: 85%;
   margin-bottom: 5%;
-}
-.social {
+} */
+/* .social {
   margin-left: -55px;
 }
 
@@ -287,3 +390,4 @@ section {
     height: 70px;
   }
 }
+ */ 

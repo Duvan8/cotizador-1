@@ -5,8 +5,9 @@ const controller = require("../controller/controller");
 
 router.get("/", controller.index);
 router.get("/index", controller.index);
+router.get("/pisos", controller.pisos);
 router.get("/formulario", controller.formulario);
-router.get("/prueba", controller.prueba);
+router.get("/lista", controller.prueba);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
 router.get("/imprimir", controller.pedido);

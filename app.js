@@ -1,8 +1,3 @@
-const https = require('https');
-const fs = require('fs');
-const url = require('url');
-const request = require('postman-request');
-
 const express = require("express");
 const { engine } = require("express/lib/application");
 const { render, json } = require("express/lib/response");
@@ -15,7 +10,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express(json));
 
-app.set('port', 801);
+app.set('port', 80);
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'views/'));
 
@@ -26,4 +21,4 @@ app.use((err, req, res, next) => {
 
 app.listen(app.get('port'), () => {
     console.log("Se esta ultilizando el puerto",app.get('port'));
-});
+}); 

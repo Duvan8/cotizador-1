@@ -21,10 +21,6 @@
 .formulario {
   height: 500px;
   width: 500px;
-  margin-top: -3%;
-  margin-left: 20%;
-  padding: 20px;
-  padding-right: 60px;
 }
 
 .cuestionario {
@@ -37,31 +33,18 @@
   height: 900px;
 }
 .completo {
-  padding-top: 50px;
   width: 80%;
-  margin-bottom: 50px;
-  margin-left: 10%;
   box-shadow: 0px 0px 4px black;
 }
 
-.agregar {
-  margin-left: 35%;
-  color: #0a0a0a;
-}
-.linea {
-  background-color: #000000;
-  width: 100%;
-  height: 1px;
-  margin-top: -60px;
-  margin-bottom: 60px;
-}
 .linea-form {
   background-color: black;
   width: 100%;
   height: 1px;
 }
+
 .linea-total {
-  background-color: black;
+  background-color: #0000002c;
   width: 100%;
   height: 1px;
   margin-top: 70px;
@@ -113,21 +96,16 @@ select:focus {
 .selected-line {
   width: 60%;
 }
-.cantidad {
-  display: flex;
-  height: 30px;
-  width: 200px;
-}
 #cantidad {
   width: 120px;
-  margin-left: 20px;
   text-align: center;
   border-radius: 4px;
   border: 1px solid #cacaca;
 }
 .mrpuert {
+  height: 300px;
   position: relative;
-  margin-top: 160%;
+  margin-top: 30rem;
   left: -50%;
 }
 
@@ -200,16 +178,11 @@ select:focus {
   display: none;
 }
 
-.container {
-  height: 500px;
-  position: relative;
-}
-
 .center {
   margin: 0;
   position: absolute;
 }
-@media (min-width: 2000px ) and (  max-width: 3000px) {
+@media (min-width: 2000px) and (max-width: 3000px) {
   .formulario {
     height: 500px;
     width: 700px;
@@ -224,7 +197,7 @@ select:focus {
     margin-bottom: 5%;
     margin-top: -4%;
   }
-  
+
   .presentacion {
     height: 110%;
     width: 100%;
@@ -236,7 +209,7 @@ select:focus {
     margin-top: -100%;
     right: 65%;
   }
-  
+
   .label-sec {
     text-transform: capitalize;
     font-size: 16px;
@@ -245,17 +218,37 @@ select:focus {
     width: 40%;
   }
 }
+@media (max-width: 1025px) {
+  .presentacion {
+    height: auto;
+    width: 350px;
+    margin-left: 120px;
+  }
+}
+@media (max-width: 688px) {
+  .foto {
+    position: absolute;
+    top: 70em;
+    width: 500px;
+    height: auto;
+    margin-left: auto;
+    margin-bottom: 5%;
+    margin-top: -4%;
+  }
+  .contenido {
+    display: flex;
+    flex-direction: row;
+    height: 130em;
+  }
+  .mrpuert {
+    position: relative;
+    height: auto;
+    width: 300px;
+    margin-left: 30rem;
+    margin-top: 100rem;
+  } 
+}
 @media (max-width: 540px) {
-  tr{
-    width: 60px;
-  }
-  .linea {
-    background-color: #fff;
-    width: 100%;
-    height: 1px;
-    margin-top: -60px;
-    margin-bottom: 60px;
-  }
   .quoter-ul {
     display: flex;
     margin-right: 40%;
@@ -286,15 +279,43 @@ select:focus {
   .contenido {
     display: flex;
     flex-direction: row;
-    height: 120em;
+    height: 100em;
   }
   .mrpuert {
     position: relative;
     top: 45em;
-    height: 500px;
-    width: 250px;
-    margin-left: 140%;
+    height: auto;
+    width: 200px;
+    margin-left: 17rem;
     margin-bottom: 5%;
-    margin-top: -4%;
+  }
+  .presentacion {
+    height: auto;
+    width: 300px;
+  }
+  .formulario {
+    height: 400px;
+    width: 400px;
+  }
+  .caja {
+    margin: 20px auto 40px auto;
+    height: 30px;
+    overflow: hidden;
+    width: 200px;
+    position: relative;
+  }
+  #cantidad {
+    width: 70px;
+    margin-left: -10px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #cacaca;
+  }
+}
+@media (max-width: 361px) {
+  .presentacion {
+    height: auto;
+    width: 255px;
+    margin-left: 50px;
   }
 }

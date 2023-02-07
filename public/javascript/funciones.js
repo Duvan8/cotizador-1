@@ -37,13 +37,9 @@ function AgregarVaca() {
   core = $("#coreshjgjhg").val();
   puert = $("#producto").val();
   codfinish = $("#codfinish").val();
-  console.log(
-    "🚀 ~ file: funciones.js:40 ~ AgregarVaca ~ codfinish",
-    codfinish
-  );
   prechith = $("#chig").val();
   preshith = $("#shig").val();
-  console.log("🚀 ~ file: funciones.js:39 ~ AgregarVaca ~ puert", puert);
+  
   let cr, mr, cod, totl;
   if (codfinish == "true") {
     if (finse == "M") {
@@ -125,7 +121,7 @@ function ListarVacas() {
   for (var i in dbVacas) {
     var d = JSON.parse(dbVacas[i]);
     $("#dbVacas-list").append(
-      "<tr>" +
+      "<tr class='bg-white'>" +
         "<td>" +
         "</td>" +
         "<td>" +
@@ -166,7 +162,7 @@ function ListarVacas() {
         "</td>" +
         "<td> <a id='" +
         i +
-        "' class='btnEliminar' href='prueba'><span class='glyphicon glyphicon-trash'> </span> </a> </td>" +
+        "' class='btnEliminar' href='prueba'><span class='fa-sharp fa-solid fa-trash'> </span> </a> </td>" +
         "</tr>"
     );
   }

@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-/* body {
-  font-family: "Montserrat", sans-serif;
-} */
 .titulo {
   background-color: rgb(231, 231, 231);
   text-align: center;
@@ -12,14 +9,6 @@
 }
 .arr {
   font-size: 30px;
-}
-.linea {
-  background-color: black;
-  width: 95%;
-  height: 1px;
-  margin-top: -60px;
-  margin-bottom: 60px;
-  margin-left: 20px;
 }
 .linea1 {
   display: flex;
@@ -64,7 +53,7 @@ td {
   height: 50px;
   width: 40px;
   padding: 15px;
-  border-bottom: 2px solid #cfcfcf;
+  border-bottom: 2px solid #e6e0e0;
   text-align: center;
 }
 .ultimo {
@@ -149,6 +138,11 @@ table tr td:first-child::before {
   text-decoration: none;
   color: #000;
   font-size: 22px;
+}
+.marc{
+  margin-top: -3px;
+  width: 65px;
+  height: auto;
 }
 
 @media (min-width: 2000px ) and (  max-width: 3000px) {

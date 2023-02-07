@@ -7,13 +7,6 @@ const conexion = mysql.createConnection({
   password: "Acemar1959-+",
 });
 
-/* const conexion = mysql.createConnection({
-  host: "localhost",
-  database: "carrito",
-  user: "root",
-  password: "",
-}); */
-
 conexion.connect(function (error) {
   if (error) {
     console.log("error en la conexion");
