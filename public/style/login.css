@@ -1,0 +1,8 @@
+body{
+    background: linear-gradient(#ffd700,75%, white);
+    /* background: rgb(209, 190, 81) */;
+    background-size: cover;
+}
+.icon-use-pass{
+    background: #FFb400;
+}

@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acemar</title>
-  <script src="/javascript/jquery-2.1.4.min.js"></script>
   <script src="/javascript/jquery-3.6.1.min.js"></script>
   <script src="/javascript/calculoform.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -17,15 +16,24 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-white mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" alt="" width="auto" height="70">
-      </a>
-      <div class="lk-qtr p-2 rounded-pill">
-        <a href="/lista" class="text-decoration-none text-dark">Quoter</a>
-      </div>
-    </div>
+  <nav class="navbar">
+    <a class="navbar-brand ms-5" href="index">
+      <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" alt="" width="auto" height="70">
+    </a>
+    <ul class="nav justify-content-end me-5">
+      <li class="nav-item">
+        <a class="nav-link bg-light text-secondary" href="/index">Doors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="/pisos">Floorings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-secondary" href="/lista">Quoter</a>
+      </li>
+      <li class="nav-item">
+        <a href="/"><i class="fa-solid fa-arrow-right-from-bracket mt-3 ms-3 text-secondary fs-5"></i></a>
+      </li>
+    </ul>
     <div class="mt-2 linea"></div>
   </nav>
   <div class="pt-5 ms-auto me-auto mb-5 completo">
@@ -45,12 +53,12 @@
           <input type="hidden" value="<%= datos.sinhight%>" id="shig" />
           <%}%>
             <img class="presentacion mt-4 ms-auto" id="imgproducto"
-              src="/images/productos/<%= datos.directorio%>/<%= datos.imgpuerta%>" />
+              src="/images/doors/<%= datos.directorio%>/<%= datos.imgpuerta%>" />
       </div>
       <div class="container">
         <div class="center">
           <input height="300" id="mrpuert" class="mrpuert" type="hidden"
-            src="/images/productos/marcos/<%= datos.imgmarco%>" />
+            src="/images/doors/marcos/<%= datos.imgmarco%>" />
         </div>
       </div>
       <div class="formulario me-5 pe-5">
@@ -230,7 +238,7 @@
           <label class="label-sec total" name="total">Total: </label>
           <span id="lblLenguajeSeleccionado"></span>
           <input type="submit" value="Agregar cotizador" id="agregar"
-            class="btn btn-warning btn btn-outline-light ms-5" />
+            class="btn btn-warning btn btn-outline-light ms-5"/>
           <input type="hidden" name="juan" value="/images/productos/marcos/<%=datos.imgmarco%>" />
         </form>
       </div>
@@ -248,27 +256,27 @@
             <div class="row">
               <h5 class="mt-5"><em>Sites of interest</em></h5>
               <a href="https://athomefloors.biz/" class="text-decoration-none text-dark mt-1"><em>Colortile</em></a>
-              <a href="https://www.acemar.co/" class="text-decoration-none text-dark mt-1"><em>Acemar</em></a>
+              <a href="https://www.acemar.co/" class="text-decoration-none text-dark mt-1 "><em>Acemar</em></a>
             </div>
           </div>
           <div class="mt-4">
             <!--Icono de Facebook-->
-            <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;"
+            <a class="btn text-white btn-floating m-1" style="background-color: #000000;"
               href="https://www.facebook.com/people/Acemar-Wood/100076103297662/" role="button"><i
                 class="fab fa-facebook-f"></i></a>
             <!--Icono de Twitter-->
-            <a class="btn text-white btn-floating m-1" style="background-color: #55acee;"
+            <a class="btn text-white btn-floating m-1" style="background-color: #000000;"
               href="https://twitter.com/Acemar1958" role="button"><i class="fab fa-twitter"></i></a>
             <!--Icono de Instagram-->
-            <a class="btn text-white btn-floating m-1" style="background-color: #E1306C;"
+            <a class="btn text-white btn-floating m-1" style="background-color: #000000;"
               href="https://www.instagram.com/acemarwood/?utm_medium=copy_link" role="button"><i
                 class="fab fa-instagram"></i></a>
             <!--Icono de Linkendin-->
-            <a class="btn text-white btn-floating m-1" style="background-color: #0082ca;"
+            <a class="btn text-white btn-floating m-1" style="background-color: #000000;"
               href="https://www.linkedin.com/in/triplex-acemar-sas-06323556" role="button"><i
                 class="fab fa-linkedin-in"></i></a>
             <!--Icono de YouTube-->
-            <a class="btn text-white btn-floating m-1" style="background-color: #c4302b;"
+            <a class="btn text-white btn-floating m-1" style="background-color: #000000;"
               href="https://www.youtube.com/channel/UCbMSDNFB8H_g1aHDDE-jcnA?view_as=subscriber" role="button"><i
                 class="fa-brands fa-youtube"></i></a>
           </div>
@@ -317,7 +325,7 @@
   colores.addEventListener("change", () => {
     imgproducto.setAttribute(
       "src",
-      "/images/productos/<%= datos.directorio%>/" +
+      "/images/doors/<%= datos.directorio%>/" +
       finihshddd.selectedOptions[0].value +
       colores.selectedOptions[0].value +
       ".jpg"
@@ -326,7 +334,7 @@
   finihshddd.addEventListener("change", () => {
     imgproducto.setAttribute(
       "src",
-      "/images/productos/<%= datos.directorio%>/" +
+      "/images/doors/<%= datos.directorio%>/" +
       finihshddd.selectedOptions[0].value +
       colores.selectedOptions[0].value +
       ".jpg"
@@ -337,7 +345,7 @@
   elvenner.addEventListener("change", () => {
     imgproducto.setAttribute(
       "src",
-      "/images/productos/<%= datos.directorio%>/" +
+      "/images/doors/<%= datos.directorio%>/" +
       elvenner.selectedOptions[0].value +
       ".jpg"
     );

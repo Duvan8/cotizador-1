@@ -1,5 +1,4 @@
 var sub = [];
-/* document.getElementById("imgmac").style.visibility = "hidden"; */
 function marco() {
   let lenguaje = document.getElementById("cbxLenguajes").value;
   let valor = document.getElementById("cantidad").value;

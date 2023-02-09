@@ -130,10 +130,10 @@ function ListarVacas() {
         "<td>" +
         d.codigo +
         "</td>" +
-        "<td><img class='puer' src='images/productos/" +
+        "<td><img class='puer' src='images/doors/" +
         d.imgpuerta +
         "'></td>" +
-        "<td><img class='marc' src='images/productos/marcos/" +
+        "<td><img class='marc' src='images/doors/marcos/" +
         d.aimgf +
         "'></td>" +
         "<td>" +
@@ -162,7 +162,7 @@ function ListarVacas() {
         "</td>" +
         "<td> <a id='" +
         i +
-        "' class='btnEliminar' href='prueba'><span class='fa-sharp fa-solid fa-trash'> </span> </a> </td>" +
+        "' class='btnEliminar' href='lista'><span class='fa-sharp fa-solid fa-trash'> </span> </a> </td>" +
         "</tr>"
     );
   }

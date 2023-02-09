@@ -1,10 +1,9 @@
 const connection = require("../Connection/connection");
 const cnn = connection;
-const { render } = require("ejs");
 const controller = {};
-const req = require("express/lib/request");
-const fs = require("fs");
-const pdfService = require('../public/javascript/pdf')
+const bcryptjs = require("bcryptjs");
+const bcrypt = require("bcrypt");
+const pdfService = require("../public/javascript/pdf");
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -18,10 +17,92 @@ controller.prueba = (req, res, next) => {
 controller.pisos = (req, res, next) => {
   res.render("pisos");
 };
-controller.index = async (req, res) => {
-  cnn.query("SELECT * FROM producto", (err, resbd) => {
+controller.login = (req, res, next) => {
+  res.render("login");
+};
+controller.account = (req, res, next) => {
+  res.render("account");
+};
+controller.flooring = (req, res, next) => {
+  res.render("flooring");
+};
+controller.validarlogin = async (req, res, next) => {
+  const usu = await req.body.user;
+  const con = await req.body.pass;
+  console.log(usu, con);
+  cnn.query(
+    "SELECT * FROM cliente WHERE mail=?",
+    [usu],
+    async (err, results) => {
+      if (err) {
+        next(new Error("Error de consulta login", err));
+      }
+      if (results != 0) {
+        if (bcrypt.compareSync(con, results[0].password)) {
+          let rol = results[0].rol;
+          switch (rol) {
+            case "admin":
+              res.redirect("account");
+              break;
+            case "client":
+              res.redirect("index");
+              break;
+          }
+        } else {
+          console.log("datos incorrectos");
+          res.redirect("/");
+        }
+      } else {
+        console.log("datos incorrectos");
+        res.redirect("/");
+      }
+    }
+  );
+};
+
+controller.client = async (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.pass;
+  const phon = req.body.phone;
+  const discon = req.body.discount;
+  const rolex = req.body.rolex;
+  const pass = await bcryptjs.hash(password, 8);
+
+  cnn.query(
+    "INSERT INTO cliente SET ?",
+    {
+      mail: email,
+      password: pass,
+      phone: phon,
+      discount: discon,
+      rol: rolex,
+    },
+    (err) => {
+      if (err) {
+        throw err;
+        console.log("Error al crear la cuenta");
+      } else {
+        res.redirect("/account");
+      }
+    }
+  );
+};
+
+controller.pisos = (req, res) => {
+  cnn.query("SELECT * FROM pisos", (err, resd) => {
     if (err) {
-      console.log("error en consultar productos");
+      console.log("error consulta de los pisos");
+      throw err;
+    } else {
+      res.render("pisos", { datos: resd });
+    }
+  });
+};
+
+controller.index = async (req, res) => {
+  cnn.query("SELECT * FROM puertas", (err, resbd) => {
+    if (err) {
+      console.log("error en consultar puertas");
       throw err;
     } else {
       res.render("index", { datos: resbd });
@@ -30,8 +111,8 @@ controller.index = async (req, res) => {
 };
 controller.pedido = async (req, res) => {
   const stream = res.writeHead(200, {
-    'Content-Type': 'application/pdf',
-    'Content-Disposition': 'attachment;filename=invoice.pdf'
+    "Content-Type": "application/pdf",
+    "Content-Disposition": "attachment;filename=invoice.pdf",
   });
   pdfService.buildPDF(
     (chunk) => stream.write(chunk),
@@ -39,16 +120,4 @@ controller.pedido = async (req, res) => {
   );
 };
 
-controller.detalle = (req, res, next) => {
-  const id = req.body.dd;
-  cnn.query("SELECT * FROM producto WHERE id=?", [id], async (err, results) => {
-    if (err) {
-      console.log("error en la conuslta de los detalles del producto");
-      throw err;
-    } else {
-      res.render("/formulario", { datos: results });
-    }
-  });
-  console.log("id del producto: " + id);
-};
 module.exports = controller;

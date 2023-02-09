@@ -6,11 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acemar</title>
-  <script src="javascript/jquery-3.6.1.min.js"></script>
-  <link rel="stylesheet" href="style/estilos.css" />
+  <script src="/javascript/jquery-3.6.1.min.js"></script>
+  <script src="/javascript/calculopuert.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/style/estilos.css" />
+  <link rel="stylesheet" href="/style/formulario.css" />
+  <link rel="stylesheet" href="/style/flooring.css" />
 </head>
 
 <body>
@@ -20,13 +23,13 @@
     </a>
     <ul class="nav justify-content-end me-5">
       <li class="nav-item">
-        <a class="nav-link bg-light text-secondary" href="index">Doors</a>
+        <a class="nav-link text-secondary" href="/index">Doors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="pisos">Floorings</a>
+        <a class="nav-link bg-light text-secondary" href="/pisos">Floorings</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="lista">Quoter</a>
+        <a class="nav-link text-secondary" href="/lista">Quoter</a>
       </li>
       <li class="nav-item">
         <a href="/"><i class="fa-solid fa-arrow-right-from-bracket mt-3 ms-3 text-secondary fs-5"></i></a>
@@ -34,29 +37,51 @@
     </ul>
     <div class="mt-2 linea"></div>
   </nav>
-  <table class="tabla mb-5 mt-3">
-    <tbody class="columnas">
-      <% datos.forEach(function (datos) { %>
-        <tr>
-          <td>
-            <input type="hidden" value="<%= datos.id%>"/>
-          </td>
-          <td>
-            <section>
-              <div class="articulo">
-                <a class="text-decoration-none text-center" href="formulario/<%= datos.id%>">
-                  <img class="puerta" src="images/doors/<%=datos.directorio%>/<%=datos.imgpuerta%>"/>
-                  <h4 style="font-size: 18px; color: rgb(107, 105, 105); margin-bottom: 10px" class="nom-prod">
-                    <%= datos.producto%>
-                  </h4>
-                </a>
-              </div>
-            </section>
-          </td>
-        </tr>
-        <% }) %>
-    </tbody>
-  </table>
+  <div class="pt-5 ms-auto me-auto mb-5 completo">
+    <div class="cont">
+      <div class="foto">
+        <% if (datos) { %>
+          <input type="hidden" value="<%= datos.layer%>" id="lay">
+          <input type="hidden" value="<%= datos.precio%>" id="prec">
+          <img class="presentacion mt-4 ms-auto" id="imgproducto" src="/images/flooring/<%=datos.imgpiso%>" />
+      </div>
+      <div class="formulario me-3 pe-5 mt-5 container">
+        <h5 style="
+              font-weight: bold;
+              text-transform: capitalize;
+              text-align: center;
+            ">
+          <%= datos.producto%>
+        </h5>
+        <form action="/prueba" method="post" id="vacas-form" class="mt-auto">
+          <li class="li-sec caja">
+            <img src="/images/icons/simbolos pagina web- core.png"
+              style="height: 31px; margin: auto; margin-right: 10px" />
+            <label class="label-sec">Wear Layer</label>
+            <select class="form-select form-select-sm selected-line" id="grosor" onchange="piso();" aria-label=".form-select-sm example">
+              <option value="">Select</option>
+              <option value="1.5">1.5 mm</option>
+              <option value="3">3 mm</option>
+            </select>
+          </li>
+          <li class="li-sec caja">
+            <img src="/images/icons/simbolos pagina web-quantity.png"
+              style="height: 35px; margin: auto; margin-right: 10px" />
+            <label class="label-sec">Quantity</label>
+            <br />
+            <input class="input-number" id="cantidad" type="number" onchange="piso();" value="1" />
+          </li>
+          <div class="linea-total"></div>
+          <label class="label-sec total" name="total">Total: </label>
+          <span id="precio"></span>
+          <div class="text-center">
+            <input type="submit" value="Agregar cotizador" id="agregar" class="btn btn-warning btn-outline-light" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </div>
   <footer class="text-center text-lg-start">
     <!-- Grid container -->
     <div class="border bg-light container p-4">
