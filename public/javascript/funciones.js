@@ -6,22 +6,6 @@ if (dbVacas === null)
   // Si no existe, creamos un array vacio.
   dbVacas = [];
 
-function Mensaje(t) {
-  switch (t) {
-    case 1: //
-      $(".mensaje-alerta").append(
-        "<div class='alert alert-success' role='alert'>Se agrego con exito la vaca</div>"
-      );
-      break;
-    case 2: //
-      $(".mensaje-alerta").append(
-        "<div class='alert alert-danger' role='alert'>Se elimino la vaca</div>"
-      );
-      break;
-    default:
-  }
-}
-
 function AgregarVaca() {
   // Seleccionamos los datos de los inputs de formulario
   cantidad = $("#cantidad").val();
@@ -39,7 +23,7 @@ function AgregarVaca() {
   codfinish = $("#codfinish").val();
   prechith = $("#chig").val();
   preshith = $("#shig").val();
-  
+
   let cr, mr, cod, totl;
   if (codfinish == "true") {
     if (finse == "M") {
@@ -52,7 +36,7 @@ function AgregarVaca() {
     if (finse == "H") {
       if (preciocon == imgmarco) {
         sub = prechith * cantidad;
-      }else{
+      } else {
         sub = preshith * cantidad;
       }
     }

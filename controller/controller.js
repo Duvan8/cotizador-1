@@ -39,6 +39,8 @@ controller.validarlogin = async (req, res, next) => {
       }
       if (results != 0) {
         if (bcrypt.compareSync(con, results[0].password)) {
+          req.session.Login = true;
+          const doc = (req.session.docu = results[0].id);
           let rol = results[0].rol;
           switch (rol) {
             case "admin":
@@ -64,8 +66,10 @@ controller.client = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.pass;
   const phon = req.body.phone;
-  const discon = req.body.discount;
   const rolex = req.body.rolex;
+  const add = req.body.address;
+  const pos = req.body.postal;
+  const sta = req.body.state;
   const pass = await bcryptjs.hash(password, 8);
 
   cnn.query(
@@ -74,8 +78,10 @@ controller.client = async (req, res, next) => {
       mail: email,
       password: pass,
       phone: phon,
-      discount: discon,
       rol: rolex,
+      address: add,
+      postal: pos,
+      state: sta,
     },
     (err) => {
       if (err) {
@@ -87,18 +93,16 @@ controller.client = async (req, res, next) => {
     }
   );
 };
-
 controller.pisos = (req, res) => {
   cnn.query("SELECT * FROM pisos", (err, resd) => {
     if (err) {
       console.log("error consulta de los pisos");
       throw err;
     } else {
-      res.render("pisos", { datos: resd });
+      res.render("pisos", {datos: resd});
     }
   });
 };
-
 controller.index = async (req, res) => {
   cnn.query("SELECT * FROM puertas", (err, resbd) => {
     if (err) {

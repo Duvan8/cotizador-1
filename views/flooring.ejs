@@ -40,12 +40,12 @@
   <div class="pt-5 ms-auto me-auto mb-5 completo">
     <div class="cont">
       <div class="foto">
-        <% if (datos) { %>
-          <input type="hidden" value="<%= datos.layer%>" id="lay">
-          <input type="hidden" value="<%= datos.precio%>" id="prec">
-          <img class="presentacion mt-4 ms-auto" id="imgproducto" src="/images/flooring/<%=datos.imgpiso%>" />
+        <% if (datos) { if(precio){%>
+          <img class="presentacion" id="imgproducto" src="/images/flooring/<%=datos.imgpiso%>" />
       </div>
       <div class="formulario me-3 pe-5 mt-5 container">
+        <input type="hidden" id="layer1" value="<%= precio.layer1%>">
+        <input type="hidden" id="layer3" value="<%= precio.layer3%>">
         <h5 style="
               font-weight: bold;
               text-transform: capitalize;
@@ -58,7 +58,8 @@
             <img src="/images/icons/simbolos pagina web- core.png"
               style="height: 31px; margin: auto; margin-right: 10px" />
             <label class="label-sec">Wear Layer</label>
-            <select class="form-select form-select-sm selected-line" id="grosor" onchange="piso();" aria-label=".form-select-sm example">
+            <select class="form-select form-select-sm selected-line" id="grosor" onchange="piso();"
+              aria-label=".form-select-sm example">
               <option value="">Select</option>
               <option value="1.5">1.5 mm</option>
               <option value="3">3 mm</option>
@@ -67,20 +68,20 @@
           <li class="li-sec caja">
             <img src="/images/icons/simbolos pagina web-quantity.png"
               style="height: 35px; margin: auto; margin-right: 10px" />
-            <label class="label-sec">Quantity</label>
+            <label class="label-sec">palets</label>
             <br />
             <input class="input-number" id="cantidad" type="number" onchange="piso();" value="1" />
           </li>
           <div class="linea-total"></div>
           <label class="label-sec total" name="total">Total: </label>
-          <span id="precio"></span>
+          <span id="prec"></span>
           <div class="text-center">
             <input type="submit" value="Agregar cotizador" id="agregar" class="btn btn-warning btn-outline-light" />
           </div>
         </form>
       </div>
     </div>
-    <% } %>
+    <% }}%>
   </div>
   <footer class="text-center text-lg-start">
     <!-- Grid container -->

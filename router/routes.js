@@ -44,12 +44,22 @@ router.get("/formulario/:id", (req, res) => {
 });
 router.get("/flooring/:id", (req, res) => {
   const id = req.params.id;
+  const doc = req.session.docu;
   connection.query("SELECT * FROM pisos WHERE id=?", [id], (err, results) => {
     if (err) {
       throw err;
     } else {
       nocache(res);
-      res.render("flooring", { datos: results[0] });
+      connection.query(
+        "SELECT * FROM pisosprec WHERE idcliente='" +
+          doc +
+          "' AND idpisos='" +
+          [id] +
+          "'",
+        (err, prec) => {
+          res.render("flooring", {datos:results[0], precio:prec[0]})
+        }
+      );
     }
   });
 });

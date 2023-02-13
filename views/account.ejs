@@ -20,13 +20,10 @@
         </a>
         <ul class="nav justify-content-end me-5">
             <li class="nav-item">
-                <a class="nav-link bg-light text-secondary" href="#">Home</a>
+                <a class="nav-link text-secondary" href="index">Doors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary" href="#">Doors</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-secondary" href="#">Floorings</a>
+                <a class="nav-link text-secondary" href="pisos">Floorings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-secondary" href="lista">Quoter</a>
@@ -38,13 +35,13 @@
         <div class="mt-2 linea"></div>
     </nav>
     <form action="/client" method="post" id="client" class="client">
-        <div class="bg-light p-5 text-secondary container border rounded-3" style="width: 700px;">
+        <div class="bg-light p-5 text-secondary container border rounded-3" id="account">
               <div class="text-center fs-1 fw-bold">Create Account</div>
             <div class="input-group mt-3">
                 <div class="input-group-text bg-warning">
                     <i class="fa-solid fa-envelope text-white"></i>
                 </div>
-                <input required type="email" placeholder="email" name="email" class="form-control">
+                <input required type="email" placeholder="Email" name="email" class="form-control">
             </div>
             <div class="input-group mt-2">
                 <div class="input-group-text bg-warning">
@@ -56,25 +53,43 @@
                 <div class="input-group-text bg-warning">
                     <i class="fa-solid fa-phone text-white"></i>
                 </div>
-                <input required type="number" placeholder="phone" name="phone" class="form-control">
+                <input required type="number" placeholder="Phone" name="phone" class="form-control">
             </div>
             <div class="input-group mt-2">
                 <div class="input-group-text bg-warning">
                     <i class="fa-solid fa-percent text-white"></i>
                 </div>
-                <input required type="number" placeholder="discount" name="discount" class="form-control">
+                <input required type="number" placeholder="Discount" name="discount" class="form-control">
             </div>
             <div class="input-group mt-2">
                 <div class="input-group-text bg-warning">
                     <i class="fa-solid fa-users text-white"></i>
                 </div>
-                <select class="form-select" name="rolex" aria-label=".form-select-lg example">
+                <select class="form-select text-secondary" name="rolex" aria-label=".form-select-lg example">
                     <option selected>Rol</option>
                     <option value="admin">Administrator</option>
                     <option value="client">Client</option>
                 </select>
             </div>
-            <input type="submit" class="btn btn-warning mt-3 w-100" value="create">
+            <div class="input-group mt-2">
+                <div class="input-group-text bg-warning">
+                    <i class="fa-solid fa-location-dot text-white"></i>
+                </div>
+                <input required type="text" placeholder="Address" name="address" class="form-control">
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-text bg-warning">
+                    <i class="fa-solid fa-envelopes-bulk text-white"></i>
+                </div>
+                <input required type="text" placeholder="Postal Code" name="postal" class="form-control">
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-text bg-warning">
+                    <i class="fa-solid fa-flag-usa text-white"></i>
+                </div>
+                <input required type="text" placeholder="State" name="state" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-warning mt-3 w-100 text-white" value="Create">
         </div>
     </form>
 </body>
