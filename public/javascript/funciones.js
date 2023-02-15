@@ -1,12 +1,12 @@
-var dbVacas = sessionStorage.getItem("dbVacas"); //Obtener datos de sessionStorage
+var puertas = sessionStorage.getItem("puertas"); //Obtener datos de sessionStorage
 var operacion = "A"; //"A"=agregar; "E"=edtidar
-dbVacas = JSON.parse(dbVacas); // Covertir a objeto
+puertas = JSON.parse(puertas); // Covertir a objeto
 
-if (dbVacas === null)
+if (puertas === null)
   // Si no existe, creamos un array vacio.
-  dbVacas = [];
+  puertas = [];
 
-function AgregarVaca() {
+function AgregarPuerta() {
   // Seleccionamos los datos de los inputs de formulario
   cantidad = $("#cantidad").val();
   imgmarco = $("#cbxLenguajes").val();
@@ -71,16 +71,16 @@ function AgregarVaca() {
     cantidad: $("#cantidad").val(),
   });
 
-  dbVacas.push(datos_cliente); // Guardar datos en el array definido globalmente
-  sessionStorage.setItem("dbVacas", JSON.stringify(dbVacas));
+  puertas.push(datos_cliente); // Guardar datos en el array definido globalmente
+  sessionStorage.setItem("puertas", JSON.stringify(puertas));
 
-  ListarVacas();
+  ListarPuertas();
 
   return Mensaje(1);
 }
 
-function ListarVacas() {
-  $("#dbVacas-list").html(
+function ListarPuertas() {
+  $("#puertas-list").html(
     "<thead>" +
       "<tr>" +
       "<th>  </th>" +
@@ -102,9 +102,9 @@ function ListarVacas() {
       "</tbody>"
   );
 
-  for (var i in dbVacas) {
-    var d = JSON.parse(dbVacas[i]);
-    $("#dbVacas-list").append(
+  for (var i in puertas) {
+    var d = JSON.parse(puertas[i]);
+    $("#puertas-list").append(
       "<tr class='bg-white'>" +
         "<td>" +
         "</td>" +
@@ -152,42 +152,42 @@ function ListarVacas() {
   }
 }
 
-if (dbVacas.length !== 0) {
-  ListarVacas();
+if (puertas.length !== 0) {
+  ListarPuertas();
 } else {
-  $("#dbVacas-list").append("<h2>No tienes ninguna puerta seleccionada</h2>");
+  $("#puertas-list").append("<h2>No tienes ninguna puerta seleccionada</h2>");
 }
 
-function contarVacas() {
-  var vacas = dbVacas;
-  nVacas = vacas.length;
+function contarpuertas() {
+  var doors = puertas;
+  npuertas = doors.length;
 
-  $("#numeroVacas").append(
+  $("#numeropuertas").append(
     "<a>Tienes actualmente" +
       "<br>" +
       "<span class='badge'>" +
-      nVacas +
-      "</span></a> Vacas"
+      npuertas +
+      "</span></a> doors"
   );
-  return nVacas;
+  return npuertas;
 }
 
 function Eliminar(e) {
-  dbVacas.splice(e, 1); // Args (posición en el array, numero de items a eliminar)
-  sessionStorage.setItem("dbVacas", JSON.stringify(dbVacas));
+  puertas.splice(e, 1); // Args (posición en el array, numero de items a eliminar)
+  sessionStorage.setItem("puertas", JSON.stringify(puertas));
 }
 
 $(".btnEliminar").bind("click", function () {
   indice_selecionado = $(this).attr("id"); // "this" contiene el elemento clikeado en el contexto actual
   Eliminar(indice_selecionado); // Eliminamos el elemento llamando la funcion de eliminar
-  ListarVacas();
+  ListarPuertas();
 });
 
-contarVacas();
+contarpuertas();
 // Esperar el evento de envio del formulario !!
-$("#vacas-form").bind("submit", function () {
+$("#puertas").bind("submit", function () {
   debugger;
-  if (operacion == "A") return AgregarVaca();
+  if (operacion == "A") return AgregarPuerta();
   else {
     return Editar();
   }
