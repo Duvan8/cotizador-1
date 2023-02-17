@@ -14,6 +14,7 @@ router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
+router.post("/piso", controller.piso);
 router.post("/client", controller.client);
 router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);

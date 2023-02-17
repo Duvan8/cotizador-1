@@ -54,7 +54,6 @@ function AgregarPuerta() {
     mr = " ";
   }
   cod = icod + finse + col + cr + fcod + mr + ven;
-
   var datos_cliente = JSON.stringify({
     producto: $("#producto").val(),
     codigo: cod,
@@ -84,8 +83,8 @@ function ListarPuertas() {
     "<thead>" +
       "<tr>" +
       "<th>  </th>" +
-      "<th> producto </th>" +
-      "<th> Codigo </th>" +
+      "<th> product </th>" +
+      "<th> Code </th>" +
       "<th> Door </th>" +
       "<th> Frame </th>" +
       "<th> Height</th>" +

@@ -14,6 +14,9 @@ controller.formulario = (req, res, next) => {
 controller.prueba = (req, res, next) => {
   res.render("lista");
 };
+controller.piso = (req, res, next) => {
+  res.render("lista");
+};
 controller.pisos = (req, res, next) => {
   res.render("pisos");
 };

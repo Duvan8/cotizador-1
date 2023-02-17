@@ -40,6 +40,10 @@
         <table class="table table-responsive table-hover" id="puertas-list">
 
         </table>
+        <h3>Floorings</h3>
+        <table class="table table-responsive table-hover" id="pisos-list">
+
+        </table>
         <div class="conpacto">
             <div class="informacion">
                 <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
@@ -73,6 +77,7 @@
 </body>
 
 <script src="/javascript/funciones.js"></script>
+<script src="/javascript/pisos.js"></script>
 <Script>
     let total = 0,
         Quantity = 0,
@@ -98,6 +103,32 @@
     document.getElementById("flete").innerText = `${flete}`;
     document.getElementById("final").innerText = `${totalfinal}`;
 </Script>
+<script>
+    let totl = 0,
+        Quanty = 0,
+        flet = 0;
+    for (let i = 0; i < pisos.length; i++) {
+        var i = JSON.parse(pisos[i]);
+        prePis = i.precio;
+        canPis = i.cant;
+        tota = tota + Number(prePis);
+        Quan = Quan + Number(canPis);
+    }
+    alert("esta es la cantidad de pisos" + Quan)
+    if (120 >= Quantity) {
+        flet = 8000;
+    } else {
+        flet = 10000;
+    }
+    tot = totl + flet;
+    tota = tot * 0.07;
+    totl = tota + tot;
+    total = Number(total.toFixed(2));
+    totalfinal = Number(totl.toFixed(2));
+    document.getElementById("subtotal").innerText = `${total}`;
+    document.getElementById("flete").innerText = `${flet}`;
+    document.getElementById("final").innerText = `${totalfinal}`;
+</script>
 <script>
     function printDiv(nombreDiv) {
         var contenidoOriginal = document.body.innerHTML;
