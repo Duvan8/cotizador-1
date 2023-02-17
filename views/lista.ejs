@@ -81,7 +81,7 @@
 <Script>
     let total = 0,
         Quantity = 0,
-        flete = 0;
+        flete = 0, PrisPrec = 0 , PrisCant = 0;
     for (let p = 0; p < puertas.length; p++) {
         var d = JSON.parse(puertas[p]);
         gato = d.imgmarco;
@@ -89,46 +89,28 @@
         total = total + Number(gato);
         Quantity = Quantity + Number(perro);
     }
-    if (120 >= Quantity) {
+    for (let i = 0; i < pisos.length; i++) {
+        var q = JSON.parse(pisos[i]);
+        canPris = Number(q.cant);
+        precPris = Number(q.precio);
+        PrisPrec = PrisPrec + precPris;
+        PrisCant = PrisCant + canPris;
+    }
+    totCant = PrisCant + Quantity;
+    if (120 >= totCant) {
         flete = 8000;
     } else {
         flete = 10000;
     }
-    tot = total + flete;
+    tot = total + PrisPrec +flete;
     tota = tot * 0.07;
     totl = tota + tot;
     total = Number(total.toFixed(2));
     totalfinal = Number(totl.toFixed(2));
-    document.getElementById("subtotal").innerText = `${total}`;
+    document.getElementById("subtotal").innerText = `${total+PrisPrec}`;
     document.getElementById("flete").innerText = `${flete}`;
     document.getElementById("final").innerText = `${totalfinal}`;
 </Script>
-<script>
-    let totl = 0,
-        Quanty = 0,
-        flet = 0;
-    for (let i = 0; i < pisos.length; i++) {
-        var i = JSON.parse(pisos[i]);
-        prePis = i.precio;
-        canPis = i.cant;
-        tota = tota + Number(prePis);
-        Quan = Quan + Number(canPis);
-    }
-    alert("esta es la cantidad de pisos" + Quan)
-    if (120 >= Quantity) {
-        flet = 8000;
-    } else {
-        flet = 10000;
-    }
-    tot = totl + flet;
-    tota = tot * 0.07;
-    totl = tota + tot;
-    total = Number(total.toFixed(2));
-    totalfinal = Number(totl.toFixed(2));
-    document.getElementById("subtotal").innerText = `${total}`;
-    document.getElementById("flete").innerText = `${flet}`;
-    document.getElementById("final").innerText = `${totalfinal}`;
-</script>
 <script>
     function printDiv(nombreDiv) {
         var contenidoOriginal = document.body.innerHTML;
