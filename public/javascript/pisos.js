@@ -31,12 +31,12 @@ function Agregarpiso() {
     cod;
 
   if (grosor == 1.5) {
-    prec = layer1;
+    prec = layer1 * cantidad;
     thick = thickness1;
     leng = length1;
     cod = cod1;
   } else {
-    prec = layer3;
+    prec = layer3 * cantidad;
     thick = thickness3;
     leng = length3;
     cod = cod3;
