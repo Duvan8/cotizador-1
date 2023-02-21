@@ -18,6 +18,7 @@ router.post("/piso", controller.piso);
 router.post("/client", controller.client);
 router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);
+router.post("/finalizar", controller.finalizar);
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;
   connection.query(

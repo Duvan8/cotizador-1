@@ -10,9 +10,7 @@ function Agregarpiso() {
   // Seleccionamos los datos de los inputs de formulario de pisos
   layer1 = $("#layer1").val();
   layer3 = $("#layer3").val();
-  clear = $("#clear").val();
-  semiclear = $("#semiclear").val();
-  character = $("#character").val();
+  id = $("#id").val();
   core = $("#core").val();
   thickness1 = $("#thickness1").val();
   thickness3 = $("#thickness3").val();
@@ -46,9 +44,7 @@ function Agregarpiso() {
     producto: $("#producto").val(),
     precio: prec,
     imgp: img,
-    claro: $("#clear").val(),
-    semiclaro: $("#semiclear").val(),
-    personaje: $("#character").val(),
+    id: $("#id").val(),
     centro: $("#core").val(),
     espesor1: thick,
     logni: leng,
@@ -72,16 +68,13 @@ function listarpisos() {
       "<tr>" +
       "<th>  </th>" +
       "<th> Product </th>" +
-      "<th> Code </th>" +
+      "<th> Sku </th>" +
       "<th> Image </th>" +
-      "<th> Door </th>" +
-      "<th> Frame </th>" +
-      "<th> Clear</th>" +
-      "<th> SemiClear</th>" +
-      "<th> Character</th>" +
-      "<th> Core</th>" +
+      "<th> Top Lawyer </th>" +
+      "<th> Core </th>" +
       "<th> Thickness</th>" +
-      "<th> Core</th>" +
+      "<th> Length</th>" +
+      "<th> Cantidad</th>" +
       "<th> subtotal</th>" +
       "<th> </th>" +
       "</tr>" +
@@ -96,6 +89,9 @@ function listarpisos() {
       "<tr class='bg-white'>" +
         "<td>" +
         "</td>" +
+        "<td class='indice' id='indice' name='indice'>" +
+        d.id +
+        "</td>" +
         "<td>" +
         d.producto +
         "</td>" +
@@ -106,19 +102,7 @@ function listarpisos() {
         d.imgp +
         "'></td>" +
         "<td>" +
-        d.wid +
-        "</td>" +
-        "<td>" +
-        d.claro +
-        "%" +
-        "</td>" +
-        "<td>" +
-        d.semiclaro +
-        "%" +
-        "</td>" +
-        "<td>" +
-        d.personaje +
-        "%" +
+        d.wid +' mm' +
         "</td>" +
         "<td>" +
         d.centro +
@@ -129,7 +113,7 @@ function listarpisos() {
         "<td>" +
         d.logni +
         "</td>" +
-        "<td>" +
+        "<td id='cantidad'>" +
         d.cant +
         "</td>" +
         "<td id='precpiso'>" +
@@ -167,6 +151,10 @@ function Elim(e) {
   pisos.splice(e, 1); // Args (posición en el array, numero de items a eliminar)
   sessionStorage.setItem("pisos", JSON.stringify(pisos));
 }
+
+$(".finalizar").bind("click", function(){
+  
+})
 
 $(".btnElim").bind("click", function () {
   indice_selecionado = $(this).attr("id"); // "this" contiene el elemento clikeado en el contexto actual

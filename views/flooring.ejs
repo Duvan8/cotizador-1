@@ -22,9 +22,9 @@
       <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" alt="" width="auto" height="70">
     </a>
     <ul class="nav justify-content-end me-5">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link text-secondary" href="/index">Doors</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link bg-light text-secondary" href="/pisos">Floorings</a>
       </li>
@@ -41,14 +41,12 @@
     <div class="cont">
       <% if (datos) { if(precio){%>
         <div class="foto">
-          <img class="presentacion" id="imgproducto" src="/images/flooring/<%=datos.directorio%>/<%=datos.imgpiso%>"/>
+          <img class="presentacion" id="imgproducto" src="/images/flooring/<%=datos.directorio%>/<%=datos.imgpiso%>" />
         </div>
         <div class="formulario me-3 pe-5 mt-5 container">
           <input type="hidden" id="layer1" value="<%= precio.layer1%>">
           <input type="hidden" id="layer3" value="<%= precio.layer3%>">
-          <input type="hidden" id="clear" value="<%= datos.clear%>">
-          <input type="hidden" id="semiclear" value="<%= datos.semiclear%>">
-          <input type="hidden" id="character" value="<%= datos.character%>">
+          <input type="hidden" id="id" value="<%= datos.id%>">
           <input type="hidden" id="core" value="<%= datos.core%>">
           <input type="hidden" id="thickness1" value="<%= datos.thickness1%>">
           <input type="hidden" id="thickness3" value="<%= datos.thickness3%>">
@@ -68,6 +66,10 @@
             <%= datos.producto%>
           </h5>
           <form action="/piso" method="post" id="pisos" class="mt-auto">
+            <div class="adicional bg-light border ms-auto me-auto pt-2 ps-3">
+              <h6>Grade: 40% Clear, 40% Semiclear, 20% Character
+                Core: Solid Teakwood</h6>
+            </div>
             <li class="li-sec caja">
               <img src="/images/icons/simbolos pagina web- core.png"
                 style="height: 31px; margin: auto; margin-right: 10px" />
@@ -75,7 +77,7 @@
               <select class="form-select form-select-sm selected-line" id="grosor" onchange="piso();"
                 aria-label=".form-select-sm example">
                 <option value="">Select</option>
-                <option value="1.5">1.5 mm</option>
+                <option value="1.5">1.5 mm</option> 
                 <option value="3">3 mm</option>
               </select>
             </li>
@@ -85,7 +87,14 @@
               <label class="label-sec">palets</label>
               <br />
               <input class="input-number" id="cantidad" type="number" onchange="piso();" value="1" />
+              <br>
             </li>
+            <h6 class="li-sec caja">stock: <%= datos.inventario%></h6>
+            <div class="palet bg-light border ms-5 me-auto pt-2 ps-3">
+              <h6>Boxes x Pallet: 30
+                <br>
+                SQF x Pallet: 881,40</h6>
+            </div>
             <div class="linea-total"></div>
             <label class="label-sec total" name="total">Total: </label>
             <span id="prec"></span>
@@ -153,4 +162,5 @@
   </footer>
 </body>
 <script src="/javascript/pisos.js"></script>
+
 </html>

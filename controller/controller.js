@@ -29,6 +29,10 @@ controller.account = (req, res, next) => {
 controller.flooring = (req, res, next) => {
   res.render("flooring");
 };
+controller.finalizar = (req, res) => {
+  const id = req.body.indice;
+  console.log("🚀 ~ file: controller.js:34 ~ id", id);
+}
 controller.validarlogin = async (req, res, next) => {
   const usu = await req.body.user;
   const con = await req.body.pass;
