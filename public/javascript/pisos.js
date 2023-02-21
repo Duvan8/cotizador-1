@@ -30,13 +30,13 @@ function Agregarpiso() {
 
   if (grosor == 1.5) {
     prec = layer1 * cantidad;
-    thick = thickness1;
-    leng = length1;
+    thick = "1/2-12mm";
+    leng = "47 1/4";
     cod = cod1;
   } else {
     prec = layer3 * cantidad;
-    thick = thickness3;
-    leng = length3;
+    thick = "9/16-14mm";
+    leng = "47 1/4-94 1/2";
     cod = cod3;
   }
 
@@ -74,8 +74,8 @@ function listarpisos() {
       "<th> Core </th>" +
       "<th> Thickness</th>" +
       "<th> Length</th>" +
-      "<th> Cantidad</th>" +
-      "<th> subtotal</th>" +
+      "<th> Quantity</th>" +
+      "<th> Subtotal</th>" +
       "<th> </th>" +
       "</tr>" +
       "</thead>" +
@@ -105,7 +105,7 @@ function listarpisos() {
         d.wid +' mm' +
         "</td>" +
         "<td>" +
-        d.centro +
+        'Solid Teakwood' +
         "</td>" +
         "<td>" +
         d.espesor1 +
