@@ -54,7 +54,7 @@ controller.validarlogin = async (req, res, next) => {
               res.redirect("account");
               break;
             case "client":
-              res.redirect("index");
+              res.redirect("pisos");
               break;
           }
         } else {
