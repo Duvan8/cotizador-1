@@ -22,7 +22,8 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "sessionstore": "^0.4.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

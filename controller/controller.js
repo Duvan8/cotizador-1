@@ -4,6 +4,7 @@ const controller = {};
 const bcryptjs = require("bcryptjs");
 const bcrypt = require("bcrypt");
 const pdfService = require("../public/javascript/pdf");
+const sessionstore = require("sessionstore");
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -12,9 +13,6 @@ controller.formulario = (req, res, next) => {
   res.render("formulario");
 };
 controller.prueba = (req, res, next) => {
-  res.render("lista");
-};
-controller.piso = (req, res, next) => {
   res.render("lista");
 };
 controller.pisos = (req, res, next) => {
@@ -29,10 +27,26 @@ controller.account = (req, res, next) => {
 controller.flooring = (req, res, next) => {
   res.render("flooring");
 };
+controller.piso = (req, res, next) => {
+  res.render("lista");
+};
 controller.finalizar = (req, res) => {
-  const id = req.body.indice;
-  console.log("🚀 ~ file: controller.js:34 ~ id", id);
-}
+  var pisos = sessionstore.getItem("pisos"); //Obtener datos de sessionStorage
+  pisos = JSON.parse(pisos); // Covertir a objeto
+
+  let inventario = [],
+    producto = [];
+
+  for (var i in pisos) {
+    var d = JSON.parse(pisos[i]);
+    inventario[i] = d.id;
+    producto[i] = d.producto;
+  }
+  for (var i in pisos) {
+    console.log("este es el arreglo: " + inventario[i], producto[i]);
+  }
+};
+
 controller.validarlogin = async (req, res, next) => {
   const usu = await req.body.user;
   const con = await req.body.pass;
@@ -104,9 +118,8 @@ controller.pisos = (req, res) => {
   cnn.query("SELECT * FROM pisos", (err, resd) => {
     if (err) {
       console.log("error consulta de los pisos");
-      throw err;
     } else {
-      res.render("pisos", {datos: resd});
+      res.render("pisos", { datos: resd });
     }
   });
 };

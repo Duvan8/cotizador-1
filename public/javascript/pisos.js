@@ -63,6 +63,9 @@ function Agregarpiso() {
 }
 
 function listarpisos() {
+  var pisos = sessionStorage.getItem("pisos"); //Obtener datos de sessionStorage
+  var operacion = "A"; //"A"=agregar; "E"=edtidar
+  pisos = JSON.parse(pisos); // Covertir a objeto
   $("#pisos-list").html(
     "<thead>" +
       "<tr>" +
@@ -83,8 +86,13 @@ function listarpisos() {
       "</tbody>"
   );
 
+  let inventario = [],
+    producto = [];
+
   for (var i in pisos) {
     var d = JSON.parse(pisos[i]);
+    inventario[i] = d.id;
+    producto[i] = d.producto;
     $("#pisos-list").append(
       "<tr class='bg-white'>" +
         "<td>" +
@@ -102,10 +110,11 @@ function listarpisos() {
         d.imgp +
         "'></td>" +
         "<td>" +
-        d.wid +' mm' +
+        d.wid +
+        " mm" +
         "</td>" +
         "<td>" +
-        'Solid Teakwood' +
+        "Solid Teakwood" +
         "</td>" +
         "<td>" +
         d.espesor1 +
@@ -124,6 +133,9 @@ function listarpisos() {
         "' class='btnElim' href='lista'><span class='fa-sharp fa-solid fa-trash'> </span> </a> </td>" +
         "</tr>"
     );
+  }
+  for (var i in pisos) {
+    console.log("este es el arreglo: " + inventario[i], producto[i]);
   }
 }
 
@@ -151,10 +163,6 @@ function Elim(e) {
   pisos.splice(e, 1); // Args (posición en el array, numero de items a eliminar)
   sessionStorage.setItem("pisos", JSON.stringify(pisos));
 }
-
-$(".finalizar").bind("click", function(){
-  
-})
 
 $(".btnElim").bind("click", function () {
   indice_selecionado = $(this).attr("id"); // "this" contiene el elemento clikeado en el contexto actual
