@@ -12,6 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style/estilos.css" />
     <link rel="stylesheet" href="style/guardados.css" />
+    <script src="/javascript/ElimCarrito.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,49 @@
         </ul>
         <div class="mt-2 linea"></div>
     </nav>
-    <form action="finalizar" method="post">
+    <form action="/factura" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Produc</th>
+                    <th>Sku</th>
+                    <th>Image</th>
+                    <th>Top Layer</th>
+                    <th>Core</th>
+                    <th>Thickness</th>
+                    <th>Length</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% datos.forEach(function (datos) {%>
+                    <input type="hidden" class="id" value="<%= datos.id%>" class="col-12 val">
+                        <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>"
+                            class="col-12 val id_cliente">
+                        <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idPiso">
+                    <tr>
+                        <td></td>
+                        <td><%= datos.producto%></td>
+                        <td><%= datos.codigo%>-W-UT-RT10</td>
+                        <td><img src="images/flooring/<%=datos.imagen%>" class="puer" alt=""></td>
+                        <td></td>
+                        <td><%= datos.precio%></td>
+                        <td>
+                            <input type="submit" class="elim" name="elim">
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <input type="submit">
+    </form>
+
+
+
+
+    <form action="" method="post">
         <div id="areaImprimir" class="text-center">
             <!-- <h3>Doors</h3>
         <table class="table table-responsive table-hover" id="puertas-list">

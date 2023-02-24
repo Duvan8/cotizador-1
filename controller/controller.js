@@ -1,10 +1,7 @@
 const connection = require("../Connection/connection");
 const cnn = connection;
 const controller = {};
-const bcryptjs = require("bcryptjs");
 const bcrypt = require("bcrypt");
-const pdfService = require("../public/javascript/pdf");
-const sessionstore = require("sessionstore");
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -28,29 +25,45 @@ controller.flooring = (req, res, next) => {
   res.render("flooring");
 };
 controller.piso = (req, res, next) => {
-  res.render("lista");
-};
-controller.finalizar = (req, res) => {
-  var pisos = sessionstore.getItem("pisos"); //Obtener datos de sessionStorage
-  pisos = JSON.parse(pisos); // Covertir a objeto
+  const id = req.body.id;
+  const cant = req.body.cantidad;
+  const ly1 = req.body.layer1;
+  const ly3 = req.body.layer3;
+  const gro = req.body.grosor;
+  const img = req.body.imagen;
+  const cod1 = req.body.cod1;
+  const cod3 = req.body.cod3;
+  const doc = req.session.docu;
 
-  let inventario = [],
-    producto = [];
-
-  for (var i in pisos) {
-    var d = JSON.parse(pisos[i]);
-    inventario[i] = d.id;
-    producto[i] = d.producto;
+  console.log("Este es el codigo 1  "+cod1);
+  if (gro == 1.5) {
+    ly = ly1;
+    cod = cod1;
+  } else {
+    ly = ly3;
+    cod = cod3;
   }
-  for (var i in pisos) {
-    console.log("este es el arreglo: " + inventario[i], producto[i]);
-  }
+  cnn.query(
+    "UPDATE pisos SET inventario=inventario-'" +
+      cant +
+      "' WHERE id = '" +
+      id +
+      "'"
+  );
+  cnn.query("INSERT INTO encabezadofac SET ?", {
+    id_cliente: doc,
+    id_piso: id,
+    cantidad: cant,
+    precio: ly,
+    imagen: img,
+    codigo: cod,
+  });
+  res.redirect("lista");
 };
 
 controller.validarlogin = async (req, res, next) => {
   const usu = await req.body.user;
   const con = await req.body.pass;
-  console.log(usu, con);
   cnn.query(
     "SELECT * FROM cliente WHERE mail=?",
     [usu],
@@ -114,6 +127,7 @@ controller.client = async (req, res, next) => {
     }
   );
 };
+
 controller.pisos = (req, res) => {
   cnn.query("SELECT * FROM pisos", (err, resd) => {
     if (err) {
@@ -123,6 +137,47 @@ controller.pisos = (req, res) => {
     }
   });
 };
+
+controller.elimcarrito = (req, res) => {
+  const id = req.body.dd;
+  const piso = req.body.pp;
+  const cant = req.body.cc;
+  cnn.query(
+    "UPDATE pisos SET inventario = inventario +'" +
+      cant +
+      "' WHERE id ='" +
+      piso +
+      "'"
+  );
+  cnn.query(
+    "DELETE FROM encabezadofac WHERE id = '" + id + "'",
+    async (err) => {
+      if (err) {
+        console.log("error al eliminar en el encabezado de la factura");
+        throw err;
+      } else {
+        res.redirect("/lista");
+      }
+    }
+  );
+};
+
+controller.factura = (req, res) => {
+  const id_cliente = req.body.id_cliente;
+  const id_piso = req.body.idPiso;
+};
+
+controller.carrito = (req, res) => {
+  const doc = req.session.docu;
+  cnn.query("SELECT * FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_cliente = '"+doc+"'", (err, resd) => {
+    if (err) {
+      console.log("error consulta de el encabezada de la factura");
+    } else {
+      res.render("lista", { datos: resd });
+    }
+  });
+};
+
 controller.index = async (req, res) => {
   cnn.query("SELECT * FROM puertas", (err, resbd) => {
     if (err) {
@@ -133,6 +188,7 @@ controller.index = async (req, res) => {
     }
   });
 };
+
 controller.pedido = async (req, res) => {
   const stream = res.writeHead(200, {
     "Content-Type": "application/pdf",

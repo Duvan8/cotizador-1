@@ -9,7 +9,7 @@ router.get("/account", controller.account);
 router.get("/index", controller.index);
 router.get("/pisos", controller.pisos);
 router.get("/formulario", controller.formulario);
-router.get("/lista", controller.prueba);
+router.get("/lista", controller.carrito);
 router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.post("/index", controller.index);
@@ -18,7 +18,9 @@ router.post("/piso", controller.piso);
 router.post("/client", controller.client);
 router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);
-router.post("/finalizar", controller.finalizar);
+router.post("/ElimCarrito", controller.elimcarrito);
+router.post("/factura", controller.factura);
+
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;
   connection.query(
