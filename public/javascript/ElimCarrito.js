@@ -10,7 +10,7 @@ $(document).ready(function(){
         let c=cant.val();
         
         $.ajax({
-            type:"POST",
+            type:"post",
             url:'/elimcarrito',
             data:{
                 dd:d,
@@ -18,5 +18,6 @@ $(document).ready(function(){
                 cc:c,
             }
         });
+        location.reload();
     })
 })

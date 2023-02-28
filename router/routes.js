@@ -9,16 +9,16 @@ router.get("/account", controller.account);
 router.get("/index", controller.index);
 router.get("/pisos", controller.pisos);
 router.get("/formulario", controller.formulario);
-router.get("/lista", controller.carrito);
 router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
+router.get("/lista", controller.lista);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
 router.post("/piso", controller.piso);
 router.post("/client", controller.client);
 router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);
-router.post("/ElimCarrito", controller.elimcarrito);
+router.post("/elimcarrito", controller.elimcarrito);
 router.post("/factura", controller.factura);
 
 router.get("/formulario/:id", (req, res) => {

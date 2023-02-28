@@ -12,7 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style/estilos.css" />
     <link rel="stylesheet" href="style/guardados.css" />
-    <script src="/javascript/ElimCarrito.js"></script>
+    <script src="/javascript/elimcarrito.js"></script>
 </head>
 
 <body>
@@ -33,142 +33,94 @@
         </ul>
         <div class="mt-2 linea"></div>
     </nav>
-    <form action="/factura" method="post">
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Sku</th>
+                <th>Image</th>
+                <th>Top Layer</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% datos.forEach(function (datos) {%>
+                <input type="hidden" value="<%= datos.id_enc%>" id="codigo" class="col-12 val id">
+                <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>" class="col-12 val id_cliente">
+                <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idPiso">
+                <input type="hidden" value="<%= datos.cantidad%>" class="col-12 val cant">
                 <tr>
-                    <th></th>
-                    <th>Produc</th>
-                    <th>Sku</th>
-                    <th>Image</th>
-                    <th>Top Layer</th>
-                    <th>Core</th>
-                    <th>Thickness</th>
-                    <th>Length</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <td></td>
+                    <td>
+                        <%= datos.producto%>
+                    </td>
+                    <td>
+                        <%= datos.codigo%>-W-UT-RT10
+                    </td>
+                    <td><img src="images/flooring/<%=datos.imagen%>" class="puer" alt=""></td>
+                    <td>
+                        <%= datos.layer%>mm
+                    </td>
+                    <td>
+                        <%= datos.cantidad%>
+                    </td>
+                    <td>
+                        <%= datos.precio%>
+                    </td>
+                    <td>
+                        <input type="submit" class="elim btn btn-danger" value="Remove" name="elim">
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <% datos.forEach(function (datos) {%>
-                    <input type="hidden" class="id" value="<%= datos.id%>" class="col-12 val">
-                        <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>"
-                            class="col-12 val id_cliente">
-                        <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idPiso">
-                    <tr>
-                        <td></td>
-                        <td><%= datos.producto%></td>
-                        <td><%= datos.codigo%>-W-UT-RT10</td>
-                        <td><img src="images/flooring/<%=datos.imagen%>" class="puer" alt=""></td>
-                        <td></td>
-                        <td><%= datos.precio%></td>
-                        <td>
-                            <input type="submit" class="elim" name="elim">
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-        <input type="submit">
-    </form>
+                <% }) %>
+        </tbody>    
+    </table>
+    <input type="submit">
 
-
-
-
-    <form action="" method="post">
-        <div id="areaImprimir" class="text-center">
-            <!-- <h3>Doors</h3>
+    <div id="areaImprimir" class="text-center">
+        <!-- <h3>Doors</h3>
         <table class="table table-responsive table-hover" id="puertas-list">
 
         </table> -->
-            <h3>Floorings</h3>
-            <table class="table table-responsive table-hover" id="pisos-list">
+        <!-- <h3>Floorings</h3>
+        <table class="table table-responsive table-hover" id="pisos-list">
 
-            </table>
-            <div class="conpacto">
-                <div class="informacion">
-                    <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
-                    <br>
-                    <label for="">727 584 3711</label>
-                    <br>
-                    <label for="">sales@acemar.us</label>
-                </div>
+        </table> -->
+        <div class="conpacto">
+            <div class="informacion">
+                <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
+                <br>
+                <label for="">727 584 3711</label>
+                <br>
+                <label for="">sales@acemar.us</label>
             </div>
         </div>
-        <div class="ultimo">
-            <div>
-                <label for="">Subtotal:</label>
-                <span id="subtotal"></span>
-                <br>
-                <label for="">Taks: </label>
-                <span>0%</span>
-                <br>
-                <label for="">Shipping: </label>
-                <span id="flete"></span>
-                <br>
-                <label for="">Total: </label>
-                <span id="final"></span>
-            </div>
+    </div>
+    <div class="ultimo">
+        <div>
+            <label for="">Subtotal:</label>
+            <span id="subtotal"><%= prec[0].sum %></span>
+            <br>
+            <label for="">Taks: </label>
+            <span>0%</span>
+            <br>
+            <label for="">Shipping: </label>
+            <span id="flete"></span>
+            <br>
+            <label for="">Total: </label>
+            <span id="final"><%= prec[0].sum %></span>
+            {{<%= prec[0].sum %>}}
         </div>
-        <div class="btn-eli">
-            <!-- <button type="button" class="btn btn-secondary me-5">Secondary</button> -->
-            <input type="submit" class="btn btn-secondary me-5 finalizar" id="finalizar" value="Secondary">
-            <!-- <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png"
+    </div>
+    <div class="btn-eli">
+        <!-- <button type="button" class="btn btn-secondary me-5">Secondary</button> -->
+        <input type="submit" class="btn btn-secondary me-5 finalizar" id="finalizar" value="Secondary">
+        <!-- <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png"
                 height="80" width="100" /></button> -->
-        </div>
-    </form>
+    </div>
 </body>
-
-<script src="/javascript/funciones.js"></script>
-<script src="/javascript/pisos.js"></script>
-<Script>
-    let total = 0,
-        Quantity = 0,
-        flete = 0, PrisPrec = 0, PrisCant = 0;
-    for (let p = 0; p < puertas.length; p++) {
-        var d = JSON.parse(puertas[p]);
-        gato = d.imgmarco;
-        perro = d.cantidad;
-        total = total + Number(gato);
-        Quantity = Quantity + Number(perro);
-    }
-    for (let i = 0; i < pisos.length; i++) {
-        var q = JSON.parse(pisos[i]);
-        canPris = Number(q.cant);
-        precPris = Number(q.precio);
-        PrisPrec = PrisPrec + precPris;
-        PrisCant = PrisCant + canPris;
-    }
-    totCant = PrisCant + Quantity;
-    if (120 >= totCant) {
-        flete = 0;
-    } else {
-        flete = 0;
-    }
-    tot = total + PrisPrec + flete;
-    tota = tot * 0;
-    totl = tota + tot;
-    total = Number(total.toFixed(2));
-    totalfinal = Number(totl.toFixed(2));
-    document.getElementById("subtotal").innerText = `${total + PrisPrec}`;
-    document.getElementById("flete").innerText = `${flete}`;
-    document.getElementById("final").innerText = `${totalfinal}`;
-</Script>
-<script>
-    function printDiv(nombreDiv) {
-        var contenidoOriginal = document.body.innerHTML;
-        window.print();
-    }
-</script>
-<script>
-    boton.addEventListener("click", function () {
-        window.history.back();
-    }, false);
-</script>
-<script type="text/javascript">
-    function back() {
-        history.back();
-    }
-</script>
+<script src="/javascript/preclist.js"></script>
+<script src="/javascript/pdf.js"></script>
 
 </html>
