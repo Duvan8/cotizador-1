@@ -33,50 +33,54 @@
         </ul>
         <div class="mt-2 linea"></div>
     </nav>
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>Product</th>
-                <th>Sku</th>
-                <th>Image</th>
-                <th>Top Layer</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% datos.forEach(function (datos) {%>
-                <input type="hidden" value="<%= datos.id_enc%>" id="codigo" class="col-12 val id">
-                <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>" class="col-12 val id_cliente">
-                <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idPiso">
-                <input type="hidden" value="<%= datos.cantidad%>" class="col-12 val cant">
+    <form action="/finalizar" method="post">
+        <table>
+            <thead>
                 <tr>
-                    <td></td>
-                    <td>
-                        <%= datos.producto%>
-                    </td>
-                    <td>
-                        <%= datos.codigo%>-W-UT-RT10
-                    </td>
-                    <td><img src="images/flooring/<%=datos.imagen%>" class="puer" alt=""></td>
-                    <td>
-                        <%= datos.layer%>mm
-                    </td>
-                    <td>
-                        <%= datos.cantidad%>
-                    </td>
-                    <td>
-                        <%= datos.precio%>
-                    </td>
-                    <td>
-                        <input type="submit" class="elim btn btn-danger" value="Remove" name="elim">
-                    </td>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Sku</th>
+                    <th>Image</th>
+                    <th>Top Layer</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
                 </tr>
-                <% }) %>
-        </tbody>    
-    </table>
-    <input type="submit">
+            </thead>
+            <tbody>
+                <% datos.forEach(function (datos) {%>
+                    <input type="hidden" value="<%= datos.id_enc%>" id="codigo" class="col-12 val id">
+                    <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>" class="col-12 val id_cliente">
+                    <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idpiso" name="idpiso">
+                    <input type="hidden" value="<%= datos.cantidad%>" class="col-12 val cant">
+                    <input type="hidden" value="<%= datos.precio%>" class="col-12 val precio" name="precio">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <%= datos.producto%>
+                        </td>
+                        <td>
+                            <%= datos.codigo%>-W-UT-RT10
+                        </td>
+                        <td><img src="images/flooring/<%=datos.imagen%>" class="puer" alt=""></td>
+                        <td>
+                            <%= datos.layer%>mm
+                        </td>
+                        <td>
+                            <%= datos.cantidad%>
+                        </td>
+                        <td>
+                            <%= datos.precio%>
+                        </td>
+                        <td>
+                            <input type="submit" class="elim btn btn-danger" value="Remove" name="elim">
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <input type="hidden" value="<%= fac[0].id_factura %>" name="factura">
+        <input type="submit">
+    </form>
 
     <div id="areaImprimir" class="text-center">
         <!-- <h3>Doors</h3>
@@ -100,7 +104,9 @@
     <div class="ultimo">
         <div>
             <label for="">Subtotal:</label>
-            <span id="subtotal"><%= prec[0].sum %></span>
+            <span id="subtotal">
+                <%= prec[0].sum %>
+            </span>
             <br>
             <label for="">Taks: </label>
             <span>0%</span>
@@ -109,8 +115,9 @@
             <span id="flete"></span>
             <br>
             <label for="">Total: </label>
-            <span id="final"><%= prec[0].sum %></span>
-            {{<%= prec[0].sum %>}}
+            <span id="final">
+                <%= prec[0].sum %>
+            </span>
         </div>
     </div>
     <div class="btn-eli">
@@ -121,6 +128,5 @@
     </div>
 </body>
 <script src="/javascript/preclist.js"></script>
-<script src="/javascript/pdf.js"></script>
 
 </html>

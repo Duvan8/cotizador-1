@@ -20,6 +20,7 @@ router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);
 router.post("/elimcarrito", controller.elimcarrito);
 router.post("/factura", controller.factura);
+router.post("/finalizar", controller.finalizar);
 
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;

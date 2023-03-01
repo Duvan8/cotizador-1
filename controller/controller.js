@@ -27,6 +27,28 @@ controller.flooring = (req, res, next) => {
 controller.lista = (req, res, next) => {
   res.render("lista");
 };
+
+controller.finalizar = (req, res) => {
+  const fac = req.body.factura;
+  const doc = req.session.docu;
+  cnn.query(
+    "UPDATE encabezadofac SET id_enc = '" +
+      fac +
+      "' WHERE id_enc='1' AND id_cliente='" +
+      doc +
+      "'"
+  );
+  cnn.query(
+    "UPDATE factura SET id_encabezado = '" +
+      fac +
+      "' WHERE id_factura = '" +
+      fac +
+      "'"
+  );
+  cnn.query("DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '"+doc+"'");
+  res.redirect("/pisos");
+};
+
 controller.piso = (req, res, next) => {
   const id = req.body.id;
   const cant = req.body.cantidad;
@@ -37,8 +59,8 @@ controller.piso = (req, res, next) => {
   const cod1 = req.body.cod1;
   const cod3 = req.body.cod3;
   const doc = req.session.docu;
-
-  console.log("Este es el codigo 1  " + cod1);
+  const d = 1,
+    b = 5000;
   if (gro == 1.5) {
     ly = ly1;
     cod = cod1;
@@ -54,6 +76,7 @@ controller.piso = (req, res, next) => {
       "'"
   );
   cnn.query("INSERT INTO encabezadofac SET ?", {
+    id_enc: d,
     id_cliente: doc,
     id_piso: id,
     cantidad: cant,
@@ -61,6 +84,11 @@ controller.piso = (req, res, next) => {
     imagen: img,
     codigo: cod,
     layer: gro,
+  });
+  cnn.query("INSERT INTO  factura SET ?", {
+    id_encabezado: b,
+    id_cliente: doc,
+    total: d,
   });
   res.redirect("lista");
 };
@@ -144,7 +172,6 @@ controller.pisos = (req, res) => {
 
 controller.elimcarrito = (req, res) => {
   const id = req.body.dd;
-  console.log("🚀 ~ file: controller.js:147 ~ id:", id);
   const piso = req.body.pp;
   const cant = req.body.cc;
   cnn.query(
@@ -177,18 +204,34 @@ controller.lista = (req, res) => {
   cnn.query(
     "SELECT * FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_cliente = '" +
       doc +
+      "' AND id_enc = '" +
+      1 +
       "'",
     (err, resd) => {
       if (err) {
         console.log("error consulta de el encabezada de la factura");
       } else {
-        cnn.query("SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac", (err, sum) => {
-          if (err) {
-            throw err;
-          } else {
-            res.render("lista", { datos: resd, prec:sum });
+        cnn.query(
+          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac",
+          (err, sum) => {
+            if (err) {
+              throw err;
+            } else {
+              cnn.query(
+                "SELECT * FROM factura WHERE id_encabezado = 5000 AND id_cliente = '" +
+                  doc +
+                  "'",
+                (err, rept) => {
+                  if (err) {
+                    throw err;
+                  } else {
+                    res.render("lista", { datos: resd, prec: sum, fac: rept });
+                  }
+                }
+              );
+            }
           }
-        });
+        );
       }
     }
   );

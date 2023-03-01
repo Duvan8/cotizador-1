@@ -69,7 +69,7 @@
             <input type="hidden" id="layer3" name="layer3" value="<%= precio.layer3%>">
             <input type="hidden" id="cod1" name="cod1" class="cod1" value="<%= datos.cod1%>">
             <input type="hidden" id="cod3" name="cod3" class="cod3" value="<%= datos.cod3%>">
-            id="imgpiso" />
+            <input type="hidden" id="stock" class="stock" value="<%= datos.inventario%>">
             <div class="adicional bg-light border ms-auto me-auto pt-2 ps-3">
               <h6>Grade: 40% Clear, 40% Semiclear, 20% Character
                 Core: Solid Teakwood</h6>
@@ -78,7 +78,7 @@
               <img src="/images/icons/simbolos pagina web- core.png"
                 style="height: 31px; margin: auto; margin-right: 10px" />
               <label class="label-sec">Wear Layer</label>
-              <select class="form-select form-select-sm selected-line" id="grosor" name="grosor" onchange="piso();"
+              <select required class="form-select form-select-sm selected-line" id="grosor" name="grosor" onchange="piso();"
                 aria-label=".form-select-sm example">
                 <option value="">Select</option>
                 <option value="1.5">1.5 mm</option>
@@ -106,7 +106,7 @@
             <span id="prec" name="prec"></span>
             <div class="text-center">
               <input type="submit" value="Add to Quote" id="agregar"
-                class="btn btn-warning btn btn-outline-light ms-5" />
+                class="btn btn-warning btn btn-outline-light ms-5 agregar"/>
             </div>
           </form>
         </div>
