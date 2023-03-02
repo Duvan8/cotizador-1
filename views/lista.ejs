@@ -34,7 +34,7 @@
         <div class="mt-2 linea"></div>
     </nav>
     <form action="/finalizar" method="post">
-        <table>
+        <table id="tabla">
             <thead>
                 <tr>
                     <th></th>
@@ -76,6 +76,7 @@
                         </td>
                     </tr>
                     <% }) %>
+                    <input type="hidden" value="<%= prec[0].sum %>" name="total">
             </tbody>
         </table>
         <input type="hidden" value="<%= fac[0].id_factura %>" name="factura">
@@ -123,7 +124,7 @@
     <div class="btn-eli">
         <!-- <button type="button" class="btn btn-secondary me-5">Secondary</button> -->
         <input type="submit" class="btn btn-secondary me-5 finalizar" id="finalizar" value="Secondary">
-        <!-- <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png"
+         <!-- <button type="submit" class="btn-del" onclick="printDiv('areaImprimir')"> <img src="images/icons/impresora.png"
                 height="80" width="100" /></button> -->
     </div>
 </body>

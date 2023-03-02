@@ -27,9 +27,24 @@ controller.flooring = (req, res, next) => {
 controller.lista = (req, res, next) => {
   res.render("lista");
 };
+controller.facturas = (req, res, next) => {
+  res.render("facturas");
+};
+
+controller.facturas = (req, res) => {
+  cnn.query("SELECT * FROM factura INNER JOIN cliente ON(factura.id_cliente=cliente.id)", (err,resp) => {
+    if(err){
+      throw err;
+    }
+    else{
+      res.render("facturas", {datos:resp});
+    }
+  })
+};
 
 controller.finalizar = (req, res) => {
   const fac = req.body.factura;
+  const total = req.body.total;
   const doc = req.session.docu;
   cnn.query(
     "UPDATE encabezadofac SET id_enc = '" +
@@ -41,11 +56,15 @@ controller.finalizar = (req, res) => {
   cnn.query(
     "UPDATE factura SET id_encabezado = '" +
       fac +
-      "' WHERE id_factura = '" +
+      "',total = '"+total+"' WHERE id_factura = '" +
       fac +
       "'"
   );
-  cnn.query("DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '"+doc+"'");
+  cnn.query(
+    "DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '" +
+      doc +
+      "'"
+  );
   res.redirect("/pisos");
 };
 
@@ -212,7 +231,7 @@ controller.lista = (req, res) => {
         console.log("error consulta de el encabezada de la factura");
       } else {
         cnn.query(
-          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac",
+          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '"+doc+"' AND id_enc = '1'",
           (err, sum) => {
             if (err) {
               throw err;
