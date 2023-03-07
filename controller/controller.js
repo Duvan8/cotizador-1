@@ -30,16 +30,21 @@ controller.lista = (req, res, next) => {
 controller.facturas = (req, res, next) => {
   res.render("facturas");
 };
+controller.vacio = (req, res, next) => {
+  res.render("vacio");
+};
 
 controller.facturas = (req, res) => {
-  cnn.query("SELECT * FROM factura INNER JOIN cliente ON(factura.id_cliente=cliente.id)", (err,resp) => {
-    if(err){
-      throw err;
+  cnn.query(
+    "SELECT * FROM factura INNER JOIN cliente ON(factura.id_cliente=cliente.id)",
+    (err, resp) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("facturas", { datos: resp });
+      }
     }
-    else{
-      res.render("facturas", {datos:resp});
-    }
-  })
+  );
 };
 
 controller.finalizar = (req, res) => {
@@ -56,7 +61,9 @@ controller.finalizar = (req, res) => {
   cnn.query(
     "UPDATE factura SET id_encabezado = '" +
       fac +
-      "',total = '"+total+"' WHERE id_factura = '" +
+      "',total = '" +
+      total +
+      "' WHERE id_factura = '" +
       fac +
       "'"
   );
@@ -218,7 +225,7 @@ controller.factura = (req, res) => {
   const id_piso = req.body.idPiso;
 };
 
-controller.lista = (req, res) => {
+controller.lista = async (req, res, next)  => {
   const doc = req.session.docu;
   cnn.query(
     "SELECT * FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_cliente = '" +
@@ -231,7 +238,9 @@ controller.lista = (req, res) => {
         console.log("error consulta de el encabezada de la factura");
       } else {
         cnn.query(
-          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '"+doc+"' AND id_enc = '1'",
+          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
+            doc +
+            "' AND id_enc = '1'",
           (err, sum) => {
             if (err) {
               throw err;
@@ -240,10 +249,11 @@ controller.lista = (req, res) => {
                 "SELECT * FROM factura WHERE id_encabezado = 5000 AND id_cliente = '" +
                   doc +
                   "'",
-                (err, rept) => {
-                  if (err) {
-                    throw err;
-                  } else {
+                (expx, rept) => {
+                  if(rept.length === 0){
+                    res.redirect("vacio");
+                  }
+                  else{
                     res.render("lista", { datos: resd, prec: sum, fac: rept });
                   }
                 }

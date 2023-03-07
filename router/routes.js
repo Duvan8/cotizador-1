@@ -13,6 +13,7 @@ router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.get("/lista", controller.lista);
 router.get("/facturas", controller.facturas);
+router.get("/vacio", controller.vacio);
 router.post("/facturas", controller.facturas);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
