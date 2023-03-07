@@ -33,6 +33,9 @@ controller.facturas = (req, res, next) => {
 controller.vacio = (req, res, next) => {
   res.render("vacio");
 };
+controller.compra = (req, res, next) => {
+  res.render("compra");
+};
 
 controller.facturas = (req, res) => {
   cnn.query(
@@ -75,14 +78,14 @@ controller.finalizar = (req, res) => {
   res.redirect("/pisos");
 };
 
-controller.detalle = async (req,res) => {
+controller.compra = async (req,res) => {
   const id = req.body.dd;
   cnn.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
     if(err){
       throw err;
     }
     else{
-      res.render("/detalle", {data:results});
+      res.render("/compra", {data:results});
     }
   })
 }

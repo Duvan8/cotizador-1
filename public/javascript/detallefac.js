@@ -5,11 +5,10 @@ $(document).ready(function () {
     let id = $(".idfac").eq(btn);
 
     let d = id.val();
-    console.log("🚀 ~ file: detallefac.js:8 ~ $ ~ d:", d);
 
     $.ajax({
       type: "post",
-      url: "/detalle",
+      url: "/compra",
       data: {
         dd: d,
       },
