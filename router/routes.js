@@ -13,6 +13,7 @@ router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.get("/lista", controller.lista);
 router.get("/facturas", controller.facturas);
+router.get("/detalle", controller.detalle);
 router.post("/facturas", controller.facturas);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
@@ -23,6 +24,7 @@ router.post("/validarlogin", controller.validarlogin);
 router.post("/elimcarrito", controller.elimcarrito);
 router.post("/factura", controller.factura);
 router.post("/finalizar", controller.finalizar);
+router.post("/detalle", controller.detalle);
 
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;

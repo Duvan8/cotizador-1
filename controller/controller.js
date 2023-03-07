@@ -68,6 +68,18 @@ controller.finalizar = (req, res) => {
   res.redirect("/pisos");
 };
 
+controller.detalle = async (req,res) => {
+  const id = req.body.dd;
+  cnn.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
+    if(err){
+      throw err;
+    }
+    else{
+      res.render("/detalle", {data:results});
+    }
+  })
+}
+
 controller.piso = (req, res, next) => {
   const id = req.body.id;
   const cant = req.body.cantidad;
