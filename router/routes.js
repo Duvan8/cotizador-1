@@ -13,11 +13,8 @@ router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.get("/lista", controller.lista);
 router.get("/facturas", controller.facturas);
-<<<<<<< HEAD
 router.get("/detalle", controller.detalle);
-=======
 router.get("/vacio", controller.vacio);
->>>>>>> 4f7df08b54a1a83b84e2f48d06f6aefb883aefec
 router.post("/facturas", controller.facturas);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
