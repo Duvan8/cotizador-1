@@ -6,19 +6,19 @@ const path = require("path");
 const app = express();
 const cookieSession = require('cookie-session')
 
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express(json));
 
 app.use(cookieSession({
     name: 'session',
     keys: ['key1', 'key2']
-  }))
+}))
 
 app.set('port', 80);
 app.set('view engine', 'ejs');
-app.set('views',path.join(__dirname,'views/'));
+app.set('views', path.join(__dirname, 'views/'));
 
 app.use(require('./router/routes'));
 app.use((err, req, res, next) => {
@@ -26,5 +26,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(app.get('port'), () => {
-    console.log("Se esta ultilizando el puerto",app.get('port'));
+    console.log("Se esta ultilizando el puerto", app.get('port'));
 }); 
