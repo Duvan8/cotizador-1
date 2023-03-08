@@ -2,11 +2,13 @@ $(document).ready(function(){
     $('.elim').on('click',function(){
         let btn=$('.elim').index(this);
         let id=$('.id').eq(btn);
-        let idpiso=$('.idPiso').eq(btn);
+        let idpiso=$('#idPiso').eq(btn);
         let cant=$('.cant').eq(btn);
+
 
         let d=id.val();
         let p=idpiso.val();
+        alert(p)
         let c=cant.val();
         
         $.ajax({

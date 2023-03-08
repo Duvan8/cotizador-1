@@ -13,7 +13,6 @@ router.get("/imprimir", controller.pedido);
 router.get("/flooring", controller.flooring);
 router.get("/lista", controller.lista);
 router.get("/facturas", controller.facturas);
-router.get("/compra", controller.compra);
 router.get("/vacio", controller.vacio);
 router.post("/facturas", controller.facturas);
 router.post("/index", controller.index);
@@ -25,7 +24,6 @@ router.post("/validarlogin", controller.validarlogin);
 router.post("/elimcarrito", controller.elimcarrito);
 router.post("/factura", controller.factura);
 router.post("/finalizar", controller.finalizar);
-router.post("/compra", controller.compra);
 
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;
@@ -73,6 +71,18 @@ router.get("/flooring/:id", (req, res) => {
     }
   });
 });
+router.get("/compra/:id",(req,res) => {
+  const id = req.params.id;
+  connection.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
+    console.log("🚀 ~ file: controller.js:85 ~ cnn.query ~ results:", results);
+    if(err){
+      throw err;
+    }
+    else{
+      res.render("compra", {data:results});
+    }
+  })
+})
 function nocache(res) {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
   res.header("Expires", "-1");

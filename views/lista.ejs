@@ -36,7 +36,7 @@
             </ul>
             <div class="mt-2 linea"></div>
         </nav>
-        <form action="/finalizar" method="post">
+        
             <table id="tabla">
                 <thead>
                     <tr>
@@ -54,7 +54,7 @@
                         <input type="hidden" value="<%= datos.id_enc%>" id="codigo" class="col-12 val id">
                         <input type="hidden" name="id_cliente" value="<%= datos.id_cliente%>"
                             class="col-12 val id_cliente">
-                        <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idpiso" name="idpiso">
+                        <input type="hidden" value="<%= datos.id_piso%>" class="col-12 val idpiso" id="idpiso" name="idpiso">
                         <input type="hidden" value="<%= datos.cantidad%>" class="col-12 val cant">
                         <input type="hidden" value="<%= datos.precio%>" class="col-12 val precio" name="precio">
                         <tr>
@@ -116,13 +116,12 @@
                 </div>
             </div>
     </div>
-    <div class="col text-center">
-        <input type="submit" value="Finalizar" class="btn btn-secondary regular-button mb-3">
-    </div>
-    </form>
-
     <div class="btn-eli">
-        <button id="btnCrearPdf" class="btn btn-secondary me-5">Crear pdf</button>
+        <input type="submit" value="Finish" class="btn btn-secondary me-5">
+    </div>
+    
+    <div class="btn-eli">
+        <button id="btnCrearPdf" class="btn btn-secondary me-5 final">PDF</button>
     </div>
 </body>
 <script src="/javascript/preclist.js"></script>

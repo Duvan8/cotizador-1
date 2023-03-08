@@ -33,9 +33,6 @@ controller.facturas = (req, res, next) => {
 controller.vacio = (req, res, next) => {
   res.render("vacio");
 };
-controller.compra = (req, res, next) => {
-  res.render("compra");
-};
 
 controller.facturas = (req, res) => {
   cnn.query(
@@ -80,12 +77,15 @@ controller.finalizar = (req, res) => {
 
 controller.compra = async (req,res) => {
   const id = req.body.dd;
+  console.log("🚀 ~ file: controller.js:83 ~ controller.compra= ~ id:", id);
   cnn.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
+    console.log("🚀 ~ file: controller.js:85 ~ cnn.query ~ results:", results);
     if(err){
       throw err;
     }
     else{
-      res.render("/compra", {data:results});
+      res.render("compra", {data:results});
+      res.redirect("compra"); 
     }
   })
 }
@@ -103,10 +103,10 @@ controller.piso = (req, res, next) => {
   const d = 1,
     b = 5000;
   if (gro == 1.5) {
-    ly = ly1;
+    ly = ly1*cant;
     cod = cod1;
   } else {
-    ly = ly3;
+    ly = ly3*cant;
     cod = cod3;
   }
   cnn.query(
@@ -124,7 +124,7 @@ controller.piso = (req, res, next) => {
     precio: ly,
     imagen: img,
     codigo: cod,
-    layer: gro,
+    layer: gro, 
   });
   cnn.query("INSERT INTO  factura SET ?", {
     id_encabezado: b,
@@ -214,6 +214,7 @@ controller.pisos = (req, res) => {
 controller.elimcarrito = (req, res) => {
   const id = req.body.dd;
   const piso = req.body.pp;
+  console.log("🚀 ~ file: controller.js:217 ~ piso:", piso)
   const cant = req.body.cc;
   cnn.query(
     "UPDATE pisos SET inventario = inventario +'" +
@@ -223,7 +224,7 @@ controller.elimcarrito = (req, res) => {
       "'"
   );
   cnn.query(
-    "DELETE FROM encabezadofac WHERE id_enc = '" + id + "'",
+    "DELETE FROM encabezadofac WHERE id_enc = '" + id + "' AND id_piso = '"+piso+"'",
     async (err) => {
       if (err) {
         console.log("error al eliminar en el encabezado de la factura");
