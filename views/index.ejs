@@ -15,9 +15,7 @@
 
 <body>
   <nav class="navbar">
-    <a class="navbar-brand ms-5" href="index">
-      <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" alt="" width="auto" height="70">
-    </a>
+    <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="navbar-brand ms-5" alt="" width="auto" height="70">
     <ul class="nav justify-content-end me-5">
       <!-- <li class="nav-item">
         <a class="nav-link bg-light text-secondary" href="index">Doors</a>
@@ -39,13 +37,13 @@
       <% datos.forEach(function (datos) { %>
         <tr>
           <td>
-            <input type="hidden" value="<%= datos.id%>"/>
+            <input type="hidden" value="<%= datos.id%>" />
           </td>
           <td>
             <section>
               <div class="articulo">
                 <a class="text-decoration-none text-center" href="formulario/<%= datos.id%>">
-                  <img class="puerta" src="images/doors/<%=datos.directorio%>/<%=datos.imgpuerta%>"/>
+                  <img class="puerta" src="images/doors/<%=datos.directorio%>/<%=datos.imgpuerta%>" />
                   <h4 style="font-size: 18px; color: rgb(107, 105, 105); margin-bottom: 10px" class="nom-prod">
                     <%= datos.producto%>
                   </h4>

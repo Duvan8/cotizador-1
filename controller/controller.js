@@ -109,6 +109,8 @@ controller.piso = (req, res, next) => {
     ly = ly3*cant;
     cod = cod3;
   }
+
+
   cnn.query(
     "UPDATE pisos SET inventario=inventario-'" +
       cant +
@@ -244,17 +246,13 @@ controller.factura = (req, res) => {
 controller.lista = async (req, res, next)  => {
   const doc = req.session.docu;
   cnn.query(
-    "SELECT * FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_cliente = '" +
-      doc +
-      "' AND id_enc = '" +
-      1 +
-      "'",
+    "SELECT id_enc,id_cliente,id_piso,codigo,imagen,cantidad,precio,layer,producto,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '"+1+"' AND id_cliente = '"+doc+"' GROUP BY id_enc,id_cliente,id_piso,layer;",
     (err, resd) => {
       if (err) {
         console.log("error consulta de el encabezada de la factura");
       } else {
         cnn.query(
-          "SELECT ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
+          "SELECT  ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
             doc +
             "' AND id_enc = '1'",
           (err, sum) => {

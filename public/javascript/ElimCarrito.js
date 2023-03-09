@@ -8,7 +8,6 @@ $(document).ready(function(){
 
         let d=id.val();
         let p=idpiso.val();
-        alert(p)
         let c=cant.val();
         
         $.ajax({

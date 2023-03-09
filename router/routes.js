@@ -65,24 +65,38 @@ router.get("/flooring/:id", (req, res) => {
           [id] +
           "'",
         (err, prec) => {
-          res.render("flooring", {datos:results[0], precio:prec[0]})
+          res.render("flooring", { datos: results[0], precio: prec[0] });
         }
       );
     }
   });
 });
-router.get("/compra/:id",(req,res) => {
+router.get("/compra/:id", (req, res) => {
   const id = req.params.id;
-  connection.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
-    console.log("🚀 ~ file: controller.js:85 ~ cnn.query ~ results:", results);
-    if(err){
-      throw err;
+  connection.query(
+    "SELECT codigo,imagen,layer,cantidad,producto, SUM(cantidad) AS cant, ROUND(SUM(precio),2) AS pr FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '" +
+      id +
+      "' GROUP BY id_enc,id_cliente,id_piso,layer;",
+    (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        connection.query(
+          "SELECT ROUND(SUM(precio),2) AS sum FROM encabezadofac WHERE id_enc = '" +
+            id +
+            "'",
+          (err, exp) => {
+            if (err) {
+              throw err;
+            } else {
+              res.render("compra", { data: results , total : exp});
+            }
+          }
+        );
+      }
     }
-    else{
-      res.render("compra", {data:results});
-    }
-  })
-})
+  );
+});
 function nocache(res) {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
   res.header("Expires", "-1");

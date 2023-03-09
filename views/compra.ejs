@@ -16,9 +16,7 @@
 
 <body>
     <nav class="navbar">
-        <a class="navbar-brand ms-5" href="index">
-            <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" alt="" width="auto" height="70">
-        </a>
+        <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="navbar-brand ms-5" alt="" width="auto" height="70">
         <ul class="nav justify-content-end me-5">
             <!-- <li class="nav-item">
             <a class="nav-link bg-light text-secondary" href="index">Doors</a>
@@ -35,13 +33,15 @@
         </ul>
         <div class="mt-2 linea"></div>
     </nav>
-    <table class="table table-hover">
+    <table id="tabla">
         <thead>
             <tr>
-                <th>id de la factura</th>
-                <th>usuario</th>
-                <th>total</th>
-                <th>detalle</th>
+                <th>Product</th>
+                <th>Sku</th>
+                <th>Image</th>
+                <th>Top Layer</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
@@ -53,23 +53,29 @@
                     <td>
                         <%= data.codigo%>-W-UT-RT10
                     </td>
-                    
+
                     <td><img src="/images/flooring/<%=data.imagen%>" class="puer" alt=""></td>
-                    
+
 
                     <td>
                         <%= data.layer%>mm
                     </td>
                     <td>
-                        <%= data.cantidad%>
+                        <%= data.cant%>
                     </td>
                     <td>
-                        <%= data.precio%>
+                        <%= data.pr%>
                     </td>
                 </tr>
                 <%})%>
         </tbody>
     </table>
+    <div class="ultimo mt-auto">
+        <label>Total:</label>
+        <span id="subtotal">
+            <%= total[0].sum %>
+        </span>
+    </div>
     <footer class="text-center text-lg-start">
         <!-- Grid container -->
         <div class="border bg-light container p-4">
