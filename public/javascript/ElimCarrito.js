@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('.elim').on('click',function(){
         let btn=$('.elim').index(this);
         let id=$('.id').eq(btn);
-        let idpiso=$('#idPiso').eq(btn);
+        let idpiso=$('.idpiso').eq(btn);
         let cant=$('.cant').eq(btn);
 
 
