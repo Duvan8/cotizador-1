@@ -9,14 +9,15 @@ function finis(){
     Swal.fire({
     type: '',
     showCancelButton: true,
-    confirmButtonText: 'Si',
-    cancelButtonText: "No",
+    confirmButtonText: 'Yes',
+    cancelButtonText: "Not",
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    html: `<h1>Sale Made</h1>
-    <p>Sale saved with id <strong>`+fac+`</strong></p>
+    html: `<h1>THANK YOU</h1>
+    <p>YOUR REQUEST IS BEIGN PROCESSED<strong></strong></p>
     <br>
-    <a href="#">Imprimir ticket</a>
+    <p>Ticket #`+fac+`</p>
+    <p>We have sent you an email with the pre-order number.</p>
     `,
   }).then((result) => {
     if (result.value) {

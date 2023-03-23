@@ -68,8 +68,8 @@ controller.finalizar = async (req, res) => {
     port: 998,
     secure: false,
     auth: {
-      user: "testtwo@fazttech.net",
-      pass: "testtwocontraseña",
+      user: "sistemas@acemar.co",
+      pass: "Acesistem",
     },
     tls: {
       rejectUnauthorized: false,
@@ -77,8 +77,8 @@ controller.finalizar = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: '"FaztTech Server" <testtwo@fazttech.xyz>', // sender address,
-    to: "fazttech@gmail.com",
+    from: '"FaztTech Server" <sistemas@acemar.co>', // sender address,
+    to: "duvan3828@gmail.com",
     subject: "Website Contact Form",
     // text: 'Hello World'
     html: contentHTML,
@@ -90,8 +90,6 @@ controller.finalizar = async (req, res) => {
   // Preview only available when sending through an Ethereal account
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
-  res.redirect("/success.html");
 
   cnn.query(
     "UPDATE encabezadofac SET id_enc = '" +
