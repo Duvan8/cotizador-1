@@ -8,15 +8,22 @@ function piso() {
   v = parseInt(valor);
   s = parseInt(stock);
   if (s < v) {
-    alert("no hay unidades disponibles");
+    Swal.fire("no units available");
     agregar.type = "hidden";
   } else {
     if (layer == 3) {
       price = layer2 * valor;
+      boxes = 25;
+      sq = 734.5;
     } else {
       price = layer1 * valor;
+      boxes = 30;
+      sq = 881.4;
     }
+    var pre = price.toFixed(2);
     agregar.type = "submit";
   }
-  document.getElementById("prec").innerText = `${price}`;
+  document.getElementById("prec").innerText = `${pre}`;
+  document.getElementById("box").innerText = `${boxes}`;
+  document.getElementById("sqf").innerText = `${sq}`;
 }

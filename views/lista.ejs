@@ -15,12 +15,23 @@
     <script src="/javascript/ElimCarrito.js"></script>
     <script src="/javascript/html2pdf.bundle.min.js"></script>
     <script src="/javascript/pdf.js"></script>
+
+
+    
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js">
+  <script src="https://unpkg.com/sweetalert2"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
 </head>
 
 <body>
     <div id="pdf">
         <nav class="navbar">
-            <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="navbar-brand ms-5" alt="" width="auto" height="70">
+            <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="navbar-brand ms-5" alt="" width="auto"
+                height="70">
             <ul class="nav justify-content-end me-5">
                 <li class="nav-item">
                     <a class="nav-link text-secondary" href="pisos">Floorings</a>
@@ -39,11 +50,15 @@
                 <tr>
                     <th></th>
                     <th>Product</th>
-                    <th>Sku</th>
+                    <th>SKU</th>
                     <th>Image</th>
                     <th>Top Layer</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <th>Pallets</th>
+                    <th>SQF per Pallet</th>
+                    <th>Boxes per pallet</th>
+                    <th>SQL per Box</th>
+                    <th>Unit Price SQF</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +85,18 @@
                             <%= datos.cantg%>
                         </td>
                         <td>
+                            <%= datos.sqf%>
+                        </td>
+                        <td>
+                            <%= datos.box%>
+                        </td>
+                        <td>
+                            <%= datos.sqfbox%>
+                        </td>
+                        <td>
+                            <%= datos.precun%>
+                        </td>
+                        <td>
                             <%= datos.precg%>
                         </td>
                         <td>
@@ -77,12 +104,11 @@
                         </td>
                     </tr>
                     <% }) %>
-                        <form action="/finalizar" method="post">
+                        <form action="/finalizar" name="finalizar" method="post" onsubmit="return finis()">
                             <input type="hidden" value="<%= prec[0].sum %>" name="total">
             </tbody>
         </table>
-        <input type="hidden" value="<%= fac[0].id_factura %>" name="factura">
-
+        <input type="hidden" value="<%= fac[0].id_factura %>" name="factura" id="factura">
         <div id="areaImprimir" class="text-center">
             <div class="conpacto">
                 <div class="informacion">

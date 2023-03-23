@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="/style/estilos.css" />
   <link rel="stylesheet" href="/style/formulario.css" />
   <link rel="stylesheet" href="/style/flooring.css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js">
+  <script src="https://unpkg.com/sweetalert2"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
 </head>
 
 <body>
@@ -86,17 +92,18 @@
             <li class="li-sec caja">
               <img src="/images/icons/simbolos pagina web-quantity.png"
                 style="height: 35px; margin: auto; margin-right: 10px" />
-              <label class="label-sec">palets</label>
+              <label class="label-sec">pallets</label>
               <br />
-              <input class="input-number" name="cantidad" id="cantidad" type="number" onchange="piso();" value="1" />
+              <input class="input-number" name="cantidad" id="cantidad" type="number" onchange="piso();" value="1"
+                min="1" pattern="^[0-9]+" />
               <br>
             </li>
             <h6 class="li-sec caja">stock: <%= datos.inventario%>
             </h6>
             <div class="palet bg-light border ms-5 me-auto pt-2 ps-3">
-              <h6>Boxes x Pallet: 30
+              <h6>Boxes x Pallet: <span id="box"></span>
                 <br>
-                SQF x Pallet: 881,40
+                SQF x Pallet: <span id="sqf"></span>
               </h6>
             </div>
             <div class="linea-total"></div>

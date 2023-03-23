@@ -2,6 +2,7 @@ const connection = require("../Connection/connection");
 const cnn = connection;
 const controller = {};
 const bcrypt = require("bcrypt");
+var nodemailer = require("nodemailer");
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -47,10 +48,51 @@ controller.facturas = (req, res) => {
   );
 };
 
-controller.finalizar = (req, res) => {
+controller.finalizar = async (req, res) => {
   const fac = req.body.factura;
   const total = req.body.total;
   const doc = req.session.docu;
+
+  contentHTML = `
+        <h1>User Information</h1>
+        <ul>
+            <li>Username: </li>
+            <li>User Email: </li>
+            <li>PhoneNumber: </li>
+        </ul>
+        <p></p>
+    `;
+
+  let transporter = nodemailer.createTransport({
+    host: "imap.gmail.com",
+    port: 998,
+    secure: false,
+    auth: {
+      user: "testtwo@fazttech.net",
+      pass: "testtwocontraseña",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: '"FaztTech Server" <testtwo@fazttech.xyz>', // sender address,
+    to: "fazttech@gmail.com",
+    subject: "Website Contact Form",
+    // text: 'Hello World'
+    html: contentHTML,
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+  res.redirect("/success.html");
+
   cnn.query(
     "UPDATE encabezadofac SET id_enc = '" +
       fac +
@@ -75,20 +117,27 @@ controller.finalizar = (req, res) => {
   res.redirect("/pisos");
 };
 
-controller.compra = async (req,res) => {
+controller.compra = async (req, res) => {
   const id = req.body.dd;
   console.log("🚀 ~ file: controller.js:83 ~ controller.compra= ~ id:", id);
-  cnn.query("SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '"+id+"'", (err,results) => {
-    console.log("🚀 ~ file: controller.js:85 ~ cnn.query ~ results:", results);
-    if(err){
-      throw err;
+  cnn.query(
+    "SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '" +
+      id +
+      "'",
+    (err, results) => {
+      console.log(
+        "🚀 ~ file: controller.js:85 ~ cnn.query ~ results:",
+        results
+      );
+      if (err) {
+        throw err;
+      } else {
+        res.render("compra", { data: results });
+        res.redirect("compra");
+      }
     }
-    else{
-      res.render("compra", {data:results});
-      res.redirect("compra"); 
-    }
-  })
-}
+  );
+};
 
 controller.piso = (req, res, next) => {
   const id = req.body.id;
@@ -103,13 +152,12 @@ controller.piso = (req, res, next) => {
   const d = 1,
     b = 5000;
   if (gro == 1.5) {
-    ly = ly1*cant;
+    ly = ly1 * cant;
     cod = cod1;
   } else {
-    ly = ly3*cant;
+    ly = ly3 * cant;
     cod = cod3;
   }
-
 
   cnn.query(
     "UPDATE pisos SET inventario=inventario-'" +
@@ -126,7 +174,7 @@ controller.piso = (req, res, next) => {
     precio: ly,
     imagen: img,
     codigo: cod,
-    layer: gro, 
+    layer: gro,
   });
   cnn.query("INSERT INTO  factura SET ?", {
     id_encabezado: b,
@@ -216,7 +264,6 @@ controller.pisos = (req, res) => {
 controller.elimcarrito = (req, res) => {
   const id = req.body.dd;
   const piso = req.body.pp;
-  console.log("🚀 ~ file: controller.js:217 ~ piso:", piso)
   const cant = req.body.cc;
   cnn.query(
     "UPDATE pisos SET inventario = inventario +'" +
@@ -226,7 +273,11 @@ controller.elimcarrito = (req, res) => {
       "'"
   );
   cnn.query(
-    "DELETE FROM encabezadofac WHERE id_enc = '" + id + "' AND id_piso = '"+piso+"'",
+    "DELETE FROM encabezadofac WHERE id_enc = '" +
+      id +
+      "' AND id_piso = '" +
+      piso +
+      "'",
     async (err) => {
       if (err) {
         console.log("error al eliminar en el encabezado de la factura");
@@ -243,41 +294,64 @@ controller.factura = (req, res) => {
   const id_piso = req.body.idPiso;
 };
 
-controller.lista = async (req, res, next)  => {
+controller.lista = async (req, res, next) => {
   const doc = req.session.docu;
-  cnn.query(
-    "SELECT id_enc,id_cliente,id_piso,codigo,imagen,cantidad,precio,layer,producto,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '"+1+"' AND id_cliente = '"+doc+"' GROUP BY id_enc,id_cliente,id_piso,layer;",
-    (err, resd) => {
-      if (err) {
-        console.log("error consulta de el encabezada de la factura");
-      } else {
-        cnn.query(
-          "SELECT  ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
-            doc +
-            "' AND id_enc = '1'",
-          (err, sum) => {
-            if (err) {
-              throw err;
-            } else {
-              cnn.query(
-                "SELECT * FROM factura WHERE id_encabezado = 5000 AND id_cliente = '" +
-                  doc +
-                  "'",
-                (expx, rept) => {
-                  if(rept.length === 0){
-                    res.redirect("vacio");
+  var sql =
+    "SELECT id_enc,id_cliente,id_piso,codigo,imagen,cantidad,precio,layer,producto,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '" +
+    1 +
+    "' AND id_cliente = '" +
+    doc +
+    "' GROUP BY id_enc,id_cliente,id_piso,layer;";
+  cnn.query(sql, (err, resd) => {
+    if (err) {
+      console.log("error consulta de el encabezada de la factura");
+    } else {
+      cnn.query(
+        "SELECT  ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
+          doc +
+          "' AND id_enc = '1'",
+        (err, sum) => {
+          if (err) {
+            throw err;
+          } else {
+            cnn.query(
+              "SELECT * FROM factura WHERE id_encabezado = 5000 AND id_cliente = '" +
+                doc +
+                "'",
+              (expx, rept) => {
+                if (rept.length === 0) {
+                  res.redirect("vacio");
+                } else {
+                  var sqf = 0;
+                  for (let index = 0; index < resd.length; index++) {
+                    const layer = resd[index].layer;
+                    const precio = resd[index].precg;
+                    const cantidad = resd[index].cantg;
+                    var unitario = precio / cantidad;
+                    var precun = unitario.toFixed(2);
+                    if (layer == 3) {
+                      sqf = 734.5;
+                      box = 25;
+                      sqfbox = sqf / box;
+                    } else {
+                      sqf = 881.4;
+                      box = 30;
+                      sqfbox = sqf / box;
+                    }
+                    resd[index].sqf = sqf;
+                    resd[index].box = box;
+                    resd[index].sqfbox = sqfbox;
+                    resd[index].precun = precun;
                   }
-                  else{
-                    res.render("lista", { datos: resd, prec: sum, fac: rept });
-                  }
+                  res.render("lista", { datos: resd, prec: sum, fac: rept });
                 }
-              );
-            }
+              }
+            );
           }
-        );
-      }
+        }
+      );
     }
-  );
+  });
 };
 
 controller.index = async (req, res) => {
