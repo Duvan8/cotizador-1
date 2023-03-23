@@ -16,7 +16,7 @@ app.use(cookieSession({
     keys: ['key1', 'key2']
 }))
 
-app.set('port', 80);
+app.set('port', 3000);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views/'));
 
