@@ -2,7 +2,10 @@ const connection = require("../Connection/connection");
 const cnn = connection;
 const controller = {};
 const bcrypt = require("bcrypt");
-var nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
+const path = require("path");
+const Pdfprinter = require("pdfmake");
+const fs = require("fs");
 
 controller.index = (req, res, next) => {
   res.render("index");
@@ -53,43 +56,46 @@ controller.finalizar = async (req, res) => {
   const total = req.body.total;
   const doc = req.session.docu;
 
-  contentHTML = `
-        <h1>User Information</h1>
-        <ul>
-            <li>Username: </li>
-            <li>User Email: </li>
-            <li>PhoneNumber: </li>
-        </ul>
-        <p></p>
-    `;
+  const fonts = require("./fonts");
+  const {content} = require("../public/javascript/pdfContent");
+
+  let docDefinition = {
+    content: content    
+  };
+
+  const printer = new Pdfprinter(fonts);
+  let pdfDoc = printer.createPdfKitDocument(docDefinition);
+  pdfDoc.pipe(fs.createWriteStream("./pdfs/pdfTest.pdf"));
+  pdfDoc.end();
 
   let transporter = nodemailer.createTransport({
-    host: "imap.gmail.com",
-    port: 998,
-    secure: false,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
-      user: "sistemas@acemar.co",
-      pass: "Acesistem",
-    },
-    tls: {
-      rejectUnauthorized: false,
+      user: "acemardistributors.com@gmail.com", // generated ethereal user
+      pass: "chgrioaywvdsnuxg", // generated ethereal password
     },
   });
 
-  let info = await transporter.sendMail({
-    from: '"FaztTech Server" <sistemas@acemar.co>', // sender address,
-    to: "duvan3828@gmail.com",
-    subject: "Website Contact Form",
-    // text: 'Hello World'
-    html: contentHTML,
+  transporter.verify().then(() => {
+    console.log("todo a salido fenomenal");
   });
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  await transporter.sendMail({
+    from: '"Fred Foo 👻" <acemardistributors.com@gmail.com>', // sender address
+    to: "sistemas@acemar.co", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
+    attachments: [
+      {
+        filename: "acemarcotizador.pdf", // <= Here: made sure file name match
+        path: path.join(__dirname, "../pdfs/pdfTest.pdf"), // <= Here
+        contentType: "application/pdf",
+      },
+    ],
+  });
 
   cnn.query(
     "UPDATE encabezadofac SET id_enc = '" +

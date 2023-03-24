@@ -25,6 +25,7 @@
     "nodemailer": "^6.9.1",
     "path": "^0.12.7",
     "pdfmake": "^0.2.7",
+    "requests": "^0.3.0",
     "session": "^0.1.0",
     "sessionstore": "^0.4.8"
   },
