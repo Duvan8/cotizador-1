@@ -1,57 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acemar</title>
-    <script src="javascript/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/estilos.css" />
-    <link rel="stylesheet" href="style/guardados.css" />
-    <script src="/javascript/ElimCarrito.js"></script>
-    <script src="/javascript/html2pdf.bundle.min.js"></script>
-    <script  type="module" src="/javascript/pdf.js"></script>
-    <script type="module" src="../controller/pdfContent.js"></script>
-
-
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js">
-    <script src="https://unpkg.com/sweetalert2"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
+    <title>Ejemplo de tabla</title>
+    <script src="/javascript/pdf.js"></script>
 </head>
 
 <body>
-    <div id="pdf">
-        <nav class="navbar">
-                <ul class="nav justify-content-end me-5 ">
-                    <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="ms-5 mt-1" alt="" width="auto" height="40">
-                    <img src="/images/redes/waterwille.jpg" class="ms-3" alt="" width="auto" height="50">
-                </ul>
-                <h3>PRE-ORDER</h3>
-                <ul class="nav justify-content-end me-5 bg-white">
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="pisos">Floorings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link bg-light text-secondary" href="lista">Quoter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/"><i
-                                class="fa-solid fa-arrow-right-from-bracket mt-3 ms-3 text-secondary fs-5"></i></a>
-                    </li>
-                </ul>
-            <div class="mt-2 linea"></div>
-        </nav>
-        <table id="tablasss">
+    <form action="/finalizar" method="post">
+        <table id="tabla">
             <thead>
                 <tr>
                     <th></th>
@@ -110,50 +68,14 @@
                         </td>
                     </tr>
                     <% }) %>
-                        <form action="/finalizar" name="finalizar" method="post" onsubmit="return finis()">
-                            <input type="hidden" value="<%= prec[0].sum %>" name="total">
             </tbody>
         </table>
-        <input type="hidden" value="<%= fac[0].id_factura %>" name="factura" id="factura">
-        <div id="areaImprimir" class="text-center">
-            <div class="conpacto">
-                <div class="informacion">
-                    <label for="">2310 Tall Pines Drive - Suite 230, Largo Florida 33771</label>
-                    <br>
-                    <label for="">727 584 3711</label>
-                    <br>
-                    <label for="">sales@acemar.us</label>
-                </div>
-            </div>
-        </div>
-        <div class="ultimo">
-            <div>
-                <label for="">Subtotal:</label>
-                <span id="subtotal">
-                    <%= prec[0].sum %>
-                </span>
-                <br>
-                <label for="">Taks: </label>
-                <span>0%</span>
-                <br>
-                <label for="">Shipping: </label>
-                <span id="flete"></span>
-                <br>
-                <label for="">Total: </label>
-                <span id="final">
-                    <%= prec[0].sum %>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="btn-eli">
-        <input type="submit" value="Finish" class="btn btn-secondary me-5">
-    </div>
+        <input type="submit">
     </form>
-    <div class="btn-eli mt-2">
-        <button id="btnCrearPdf" class="btn btn-secondary me-5">PDF</button>
-    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.17/jspdf.plugin.autotable.min.js"></script>
+
 </body>
-<script src="/javascript/preclist.js"></script>
 
 </html>

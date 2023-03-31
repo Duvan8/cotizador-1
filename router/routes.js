@@ -1,4 +1,5 @@
 const express = require("express");
+const { query } = require("../Connection/connection");
 const connection = require("../Connection/connection");
 const router = express.Router();
 const controller = require("../controller/controller");
@@ -14,6 +15,7 @@ router.get("/flooring", controller.flooring);
 router.get("/lista", controller.lista);
 router.get("/facturas", controller.facturas);
 router.get("/vacio", controller.vacio);
+router.get("/precios", controller.precios);
 router.post("/facturas", controller.facturas);
 router.post("/index", controller.index);
 router.post("/prueba", controller.prueba);
@@ -22,7 +24,6 @@ router.post("/client", controller.client);
 router.post("/pisos", controller.pisos);
 router.post("/validarlogin", controller.validarlogin);
 router.post("/elimcarrito", controller.elimcarrito);
-router.post("/factura", controller.factura);
 router.post("/finalizar", controller.finalizar);
 
 router.get("/formulario/:id", (req, res) => {
@@ -89,7 +90,7 @@ router.get("/compra/:id", (req, res) => {
             if (err) {
               throw err;
             } else {
-              res.render("compra", { data: results , total : exp});
+              res.render("compra", { data: results, total: exp });
             }
           }
         );
@@ -97,6 +98,24 @@ router.get("/compra/:id", (req, res) => {
     }
   );
 });
+
+router.get("/precli/:id", (req, res) => {
+  const id = req.params.id;
+  connection.query(
+    "SELECT * FROM pisosprec INNER JOIN pisos ON (pisosprec.idpisos = pisos.id) WHERE idcliente = '" +
+      id +
+      "'",
+    (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("precli", { datos: results });
+      }
+    }
+  );
+});
+
+
 function nocache(res) {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
   res.header("Expires", "-1");

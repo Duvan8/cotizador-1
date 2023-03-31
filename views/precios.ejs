@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios</title>
+</head>
+
+<body>
+    <form action="/precli" method="post">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>usuario</th>
+                    <th>precios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% datos.forEach(function (datos) {%>
+                    <tr>
+                        <td>
+                            <input type="text" name="id" value="<%= datos.id %>">
+                        </td>
+                        <td>
+                            <%= datos.mail %>
+                        </td>
+                        <td>
+                            <a href="precli/<%= datos.id %>">precios</a>
+                        </td>
+                    </tr>
+                    <%})%>
+            </tbody>
+        </table>
+    </form>
+</body>
+
+</html>

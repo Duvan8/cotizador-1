@@ -7,6 +7,8 @@ const path = require("path");
 const Pdfprinter = require("pdfmake");
 const fs = require("fs");
 
+const PDFDocument = require("pdfkit");
+
 controller.index = (req, res, next) => {
   res.render("index");
 };
@@ -52,21 +54,70 @@ controller.facturas = (req, res) => {
 };
 
 controller.finalizar = async (req, res) => {
-  const fac = req.body.factura;
-  const total = req.body.total;
-  const doc = req.session.docu;
+  // Ruta donde se guardará el archivo PDF
+  const path = "../pdfs/archivo.pdf";
 
-  const fonts = require("./fonts");
-  const {content} = require("../public/javascript/pdfContent");
+  // Crear un nuevo documento PDF
+  const doc = new PDFDocument();
 
-  let docDefinition = {
-    content: content    
+  // Stream para guardar el archivo PDF
+  const stream = fs.createWriteStream(path);
+
+  // Configurar el encabezado del archivo PDF
+  doc.info.Title = "Tabla de productos";
+  doc.info.Author = "Tu nombre";
+
+  // Agregar la tabla al documento PDF
+  doc.fontSize(10).text("Tabla de productos", 100, 50);
+
+  const table = {
+    headers: [
+      "",
+      "Product",
+      "SKU",
+      "Image",
+      "Top Layer",
+      "Pallets",
+      "SQF per Pallet",
+      "Boxes per pallet",
+      "SQL per Box",
+      "Unit Price SQF",
+      "Total",
+    ],
+    rows: [],
   };
 
-  const printer = new Pdfprinter(fonts);
-  let pdfDoc = printer.createPdfKitDocument(docDefinition);
-  pdfDoc.pipe(fs.createWriteStream("./pdfs/pdfTest.pdf"));
-  pdfDoc.end();
+  datos.forEach(function (datos) {
+    const row = [
+      "",
+      datos.producto,
+      `${datos.codigo}-W-UT-RT10`,
+      { image: `images/flooring/${datos.imagen}`, fit: [50, 50] },
+      `${datos.layer}mm`,
+      datos.cantg,
+      datos.sqf,
+      datos.box,
+      datos.sqfbox,
+      datos.precun,
+      datos.precg,
+    ];
+    table.rows.push(row);
+  });
+
+  doc.table(table, {
+    prepareHeader: () => doc.font("Helvetica-Bold"),
+    prepareRow: (row, i) => doc.font("Helvetica").fontSize(8),
+    // Opciones adicionales de la tabla
+    // Consulta la documentación de pdfkit para más información
+  });
+
+  // Finalizar el documento y guardar el archivo
+  doc.end();
+  stream.on("finish", () => console.log(`Archivo PDF guardado en: ${path}`));
+  doc.pipe(stream);
+  /* const fac = req.body.factura;
+  const total = req.body.total;
+  const doc = req.session.docu;
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -117,22 +168,28 @@ controller.finalizar = async (req, res) => {
     "DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '" +
       doc +
       "'"
-  );
+  ); */
   res.redirect("/pisos");
 };
 
+controller.precios = (req, res) => {
+  cnn.query("SELECT * FROM cliente", (err, resb) => {
+    if(err){
+      throw err;
+    }else{
+      res.render("precios", {datos:resb});
+    }
+  });
+};
+
+
 controller.compra = async (req, res) => {
   const id = req.body.dd;
-  console.log("🚀 ~ file: controller.js:83 ~ controller.compra= ~ id:", id);
   cnn.query(
     "SELECT * FROM encabezadofac INNER JOIN pisos ON (encabezadofac.id_piso=pisos.id) WHERE id_enc = '" +
       id +
       "'",
     (err, results) => {
-      console.log(
-        "🚀 ~ file: controller.js:85 ~ cnn.query ~ results:",
-        results
-      );
       if (err) {
         throw err;
       } else {
@@ -231,7 +288,7 @@ controller.client = async (req, res, next) => {
   const add = req.body.address;
   const pos = req.body.postal;
   const sta = req.body.state;
-  const pass = await bcryptjs.hash(password, 8);
+  const pass = await bcrypt.hash(password, 8);
 
   cnn.query(
     "INSERT INTO cliente SET ?",
@@ -291,11 +348,6 @@ controller.elimcarrito = (req, res) => {
       }
     }
   );
-};
-
-controller.factura = (req, res) => {
-  const id_cliente = req.body.id_cliente;
-  const id_piso = req.body.idPiso;
 };
 
 controller.lista = async (req, res, next) => {
