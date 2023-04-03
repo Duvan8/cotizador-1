@@ -182,6 +182,41 @@ controller.precios = (req, res) => {
   });
 };
 
+controller.inventario = (req,res) => {
+  cnn.query("SELECT * FROM pisos", (err, results) => {
+    if(err){
+      throw err;
+    }else{
+      res.render("inventario", {datos:results});
+    }
+  })
+
+}
+
+controller.actprec = (req,res) => {
+  const id = req.body.dd;
+  const ll = req.body.ll;
+  const yy = req.body.yy;
+
+  cnn.query("UPDATE pisosprec SET layer1= '"+ll+"', layer3='"+yy+"' WHERE idpisos = '"+id+"'", (err) => {
+    if(err){
+      throw err;
+    }
+  })
+}
+
+controller.actinv = (req,res) => {
+  const id = req.body.dd;
+  const ll = req.body.ll;
+  console.log("🚀 ~ file: controller.js:211 ~ ll:", ll);
+  const yy = req.body.yy;
+
+  cnn.query("UPDATE pisos SET inventario= '"+ll+"', inventario3='"+yy+"' WHERE id = '"+id+"'", (err) => {
+    if(err){
+      throw err;
+    }
+  })
+}
 
 controller.compra = async (req, res) => {
   const id = req.body.dd;

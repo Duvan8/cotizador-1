@@ -26,9 +26,6 @@
   <nav class="navbar">
     <img src="/images/redes/LOGO-Acemar-Gris-2020 US.png" class="navbar-brand ms-5" alt="" width="auto" height="70">
     <ul class="nav justify-content-end me-5">
-      <!-- <li class="nav-item">
-        <a class="nav-link text-secondary" href="/index">Doors</a>
-      </li> -->
       <li class="nav-item">
         <a class="nav-link bg-light text-secondary" href="/pisos">Floorings</a>
       </li>
@@ -54,9 +51,7 @@
           <input type="hidden" id="length1" value="<%= datos.length1%>">
           <input type="hidden" id="length3" value="<%= datos.length3%>">
           <input type="hidden" id="width" value="<%= datos.width%>">
-
           <input type="hidden" id="codigo" value="<%= datos.codigo%>">
-
           <h5 style="
               font-weight: bold;
               text-transform: capitalize;
@@ -74,6 +69,7 @@
             <input type="hidden" id="cod1" name="cod1" class="cod1" value="<%= datos.cod1%>">
             <input type="hidden" id="cod3" name="cod3" class="cod3" value="<%= datos.cod3%>">
             <input type="hidden" id="stock" class="stock" value="<%= datos.inventario%>">
+            <input type="hidden" id="stock3" class="stock3" value="<%= datos.inventario3%>">
             <div class="adicional bg-light border ms-auto me-auto pt-2 ps-3">
               <h6>Grade: 40% Clear, 40% Semiclear, 20% Character
                 Core: Solid Teakwood</h6>
@@ -95,10 +91,12 @@
               <label class="label-sec">pallets</label>
               <br />
               <input class="input-number" name="cantidad" id="cantidad" type="number" onchange="piso();" value="1"
-                min="1" pattern="^[0-9]+" />
+                min="1"/>
               <br>
             </li>
-            <h6 class="li-sec caja">stock: <%= datos.inventario%>
+            <h6 class="li-sec caja" id="inv1">stock: <%= datos.inventario%>
+            </h6>
+            <h6 class="li-sec caja" id="inv3">stock: <%= datos.inventario3%>
             </h6>
             <div class="palet bg-light border ms-5 me-auto pt-2 ps-3">
               <h6>Boxes x Pallet: <span id="box"></span>

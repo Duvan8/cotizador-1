@@ -11,6 +11,9 @@
   width: 200px;
   height: 60px;
 }
+#inv1{
+  display: none;
+}
 @media (min-width: 1800px) and (max-width: 3000px) {
   .cont {
     display: flex;
