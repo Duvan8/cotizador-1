@@ -28,6 +28,7 @@ router.post("/elimcarrito", controller.elimcarrito);
 router.post("/finalizar", controller.finalizar);
 router.post("/actprec", controller.actprec);
 router.post("/actinv", controller.actinv);
+router.post("/base", controller.base);
 
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;

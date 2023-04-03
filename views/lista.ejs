@@ -13,10 +13,9 @@
     <link rel="stylesheet" href="style/estilos.css" />
     <link rel="stylesheet" href="style/guardados.css" />
     <script src="/javascript/ElimCarrito.js"></script>
-    <script src="/javascript/html2pdf.bundle.min.js"></script>
     <script src="/javascript/pdf.js"></script>
-
-
+    <script src="/javascript/html2pdf.bundle.min.js"></script>
+    <script  type="module" src="/javascript/pdf.js"></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css"
         rel="stylesheet" />
@@ -50,7 +49,7 @@
                 </ul>
             <div class="mt-2 linea"></div>
         </nav>
-        <table id="tabla">
+        <table id="table" name="table">
             <thead>
                 <tr>
                     <th></th>
@@ -146,11 +145,11 @@
         </div>
     </div>
     <div class="btn-eli">
-        <input type="submit" value="Finish" class="btn btn-secondary me-5">
+        <input type="submit" class="fin" value="Finish" class="btn btn-secondary me-5">
     </div>
     </form>
     <div class="btn-eli mt-2">
-        <button id="btnCrearPdf" class="btn btn-secondary me-5">PDF</button>
+        <input type="submit" id="btghvxc">
     </div>
 </body>
 <script src="/javascript/preclist.js"></script>

@@ -7,6 +7,10 @@ const path = require("path");
 const Pdfprinter = require("pdfmake");
 const fs = require("fs");
 
+const jsdom = require("jsdom");
+const { createCanvas } = require("canvas");
+const { JSDOM } = jsdom;
+
 const PDFDocument = require("pdfkit");
 
 controller.index = (req, res, next) => {
@@ -53,71 +57,31 @@ controller.facturas = (req, res) => {
   );
 };
 
+controller.base = async (req,res) => {
+  const bas = req.body.dd;
+
+  console.log("🚀 ~ file: controller.js:58 ~ controller.base= ~ bas:", bas)
+
+  console.log(bas);
+}
+
 controller.finalizar = async (req, res) => {
-  // Ruta donde se guardará el archivo PDF
-  const path = "../pdfs/archivo.pdf";
-
-  // Crear un nuevo documento PDF
-  const doc = new PDFDocument();
-
-  // Stream para guardar el archivo PDF
-  const stream = fs.createWriteStream(path);
-
-  // Configurar el encabezado del archivo PDF
-  doc.info.Title = "Tabla de productos";
-  doc.info.Author = "Tu nombre";
-
-  // Agregar la tabla al documento PDF
-  doc.fontSize(10).text("Tabla de productos", 100, 50);
-
-  const table = {
-    headers: [
-      "",
-      "Product",
-      "SKU",
-      "Image",
-      "Top Layer",
-      "Pallets",
-      "SQF per Pallet",
-      "Boxes per pallet",
-      "SQL per Box",
-      "Unit Price SQF",
-      "Total",
-    ],
-    rows: [],
-  };
-
-  datos.forEach(function (datos) {
-    const row = [
-      "",
-      datos.producto,
-      `${datos.codigo}-W-UT-RT10`,
-      { image: `images/flooring/${datos.imagen}`, fit: [50, 50] },
-      `${datos.layer}mm`,
-      datos.cantg,
-      datos.sqf,
-      datos.box,
-      datos.sqfbox,
-      datos.precun,
-      datos.precg,
-    ];
-    table.rows.push(row);
-  });
-
-  doc.table(table, {
-    prepareHeader: () => doc.font("Helvetica-Bold"),
-    prepareRow: (row, i) => doc.font("Helvetica").fontSize(8),
-    // Opciones adicionales de la tabla
-    // Consulta la documentación de pdfkit para más información
-  });
-
-  // Finalizar el documento y guardar el archivo
-  doc.end();
-  stream.on("finish", () => console.log(`Archivo PDF guardado en: ${path}`));
-  doc.pipe(stream);
-  /* const fac = req.body.factura;
+  const fac = req.body.factura;
   const total = req.body.total;
   const doc = req.session.docu;
+
+
+  const fonts = require("./fonts");
+  const {content} = require("../public/javascript/pdfContent");
+
+  let docDefinition = {
+    content: content    
+  };
+
+  const printer = new Pdfprinter(fonts);
+  let pdfDoc = printer.createPdfKitDocument(docDefinition);
+  pdfDoc.pipe(fs.createWriteStream("./pdfs/pdfTest.pdf"));
+  pdfDoc.end();
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -168,7 +132,7 @@ controller.finalizar = async (req, res) => {
     "DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '" +
       doc +
       "'"
-  ); */
+  );
   res.redirect("/pisos");
 };
 
