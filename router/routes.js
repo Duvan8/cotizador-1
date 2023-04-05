@@ -30,6 +30,8 @@ router.post("/actprec", controller.actprec);
 router.post("/actinv", controller.actinv);
 router.post("/base", controller.base);
 
+router.get("/calcpdf", controller.calcpdf);
+
 router.get("/formulario/:id", (req, res) => {
   const id = req.params.id;
   connection.query(

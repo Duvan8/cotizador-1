@@ -66,15 +66,19 @@ controller.base = async (req, res) => {
 };
 
 controller.finalizar = async (req, res) => {
-  const fac = req.body.factura;
-  const total = req.body.total;
   const doc = req.session.docu;
-  
-  const fonts = require("./fonts");
-  const {content} = require("../public/javascript/pdfContent");
 
+  const fonts = require("./fonts");
+
+  const conte = req.body;
+  console.log("🚀 ~ file: controller.js:74 ~ controller.finalizar= ~ conte:", conte);
   let docDefinition = {
-    content: content    
+    content: [
+      {
+        headerRows:1,
+        ...conte
+      },
+    ],
   };
 
   const printer = new Pdfprinter(fonts);
@@ -110,7 +114,6 @@ controller.finalizar = async (req, res) => {
       },
     ],
   });
-  res.redirect("/pisos");
 };
 
 controller.precios = (req, res) => {
@@ -371,28 +374,71 @@ controller.lista = async (req, res, next) => {
                 if (rept.length === 0) {
                   res.redirect("vacio");
                 } else {
-                  var sqf = 0;
-                  for (let index = 0; index < resd.length; index++) {
-                    const layer = resd[index].layer;
-                    const precio = resd[index].precg;
-                    const cantidad = resd[index].cantg;
-                    var unitario = precio / cantidad;
-                    var precun = unitario.toFixed(2);
-                    if (layer == 3) {
-                      sqf = 734.5;
-                      box = 25;
-                      sqfbox = sqf / box;
-                    } else {
-                      sqf = 881.4;
-                      box = 30;
-                      sqfbox = sqf / box;
-                    }
-                    resd[index].sqf = sqf;
-                    resd[index].box = box;
-                    resd[index].sqfbox = sqfbox;
-                    resd[index].precun = precun;
-                  }
+                  calcpdf(resd);
                   res.render("lista", { datos: resd, prec: sum, fac: rept });
+                }
+              }
+            );
+          }
+        }
+      );
+    }
+  });
+};
+function calcpdf(resd) {
+  var sqf = 0;
+  for (let index = 0; index < resd.length; index++) {
+    const layer = resd[index].layer;
+    const precio = resd[index].precg;
+    const cantidad = resd[index].cantg;
+    var unitario = precio / cantidad;
+    var precun = unitario.toFixed(2);
+    if (layer == 3) {
+      sqf = 734.5;
+      box = 25;
+      sqfbox = sqf / box;
+    } else {
+      sqf = 881.4;
+      box = 30;
+      sqfbox = sqf / box;
+    }
+    resd[index].sqf = sqf;
+    resd[index].box = box;
+    resd[index].sqfbox = sqfbox;
+    resd[index].precun = precun;
+  }
+}
+
+controller.calcpdf = (req, res) => {
+  const doc = req.session.docu;
+  var sql =
+    "SELECT producto,codigo,imagen,layer,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '" +
+    1 +
+    "' AND id_cliente = '" +
+    doc +
+    "' GROUP BY id_enc,id_cliente,id_piso,layer;";
+  cnn.query(sql, (err, resd) => {
+    if (err) {
+      console.log("error consulta de el encabezada de la factura");
+    } else {
+      cnn.query(
+        "SELECT  ROUND(SUM(precio), 2) AS sum FROM encabezadofac WHERE id_cliente = '" +
+          doc +
+          "' AND id_enc = '1'",
+        (err, sum) => {
+          if (err) {
+            throw err;
+          } else {
+            cnn.query(
+              "SELECT * FROM factura WHERE id_encabezado = 5000 AND id_cliente = '" +
+                doc +
+                "'",
+              (expx, rept) => {
+                if (rept.length === 0) {
+                  res.redirect("vacio");
+                } else {
+                  calcpdf(resd);
+                  res.json({ datos: resd, prec: sum, fac: rept });
                 }
               }
             );

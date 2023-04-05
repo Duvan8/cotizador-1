@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acemar</title>
     <script src="javascript/jquery-2.1.4.min.js"></script>
-    <script src="/javascript/pdf.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -37,7 +36,7 @@
                 </ul>
             <div class="mt-2 linea"></div>
         </nav>
-        <table id="table" name="table">
+        <table id="tabla" name="table">
             <thead>
                 <tr>
                     <th></th>
@@ -96,7 +95,7 @@
                         </td>
                     </tr>
                     <% }) %>
-                        <form action="/finalizar" name="finalizar" method="post">
+                        <form id="tab">
                             <input type="hidden" value="<%= prec[0].sum %>" name="total">
             </tbody>
         </table>
@@ -139,6 +138,7 @@
     <div class="btn-eli mt-2">
         <input type="submit" id="btghvxc">
     </div>
+    <script src="/javascript/pdfContent.js"></script>
 </body>
 
 
