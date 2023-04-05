@@ -2,15 +2,15 @@ const connection = require("../Connection/connection");
 const cnn = connection;
 const controller = {};
 const bcrypt = require("bcrypt");
-const nodemailer = require("nodemailer");
 const path = require("path");
+
+const nodemailer = require("nodemailer");
 const Pdfprinter = require("pdfmake");
 const fs = require("fs");
-
+const jsPDF = require("jspdf");
 const jsdom = require("jsdom");
 const { createCanvas } = require("canvas");
 const { JSDOM } = jsdom;
-
 const PDFDocument = require("pdfkit");
 
 controller.index = (req, res, next) => {
@@ -57,20 +57,19 @@ controller.facturas = (req, res) => {
   );
 };
 
-controller.base = async (req,res) => {
+controller.base = async (req, res) => {
   const bas = req.body.dd;
 
-  console.log("🚀 ~ file: controller.js:58 ~ controller.base= ~ bas:", bas)
+  console.log("🚀 ~ file: controller.js:58 ~ controller.base= ~ bas:", bas);
 
   console.log(bas);
-}
+};
 
 controller.finalizar = async (req, res) => {
   const fac = req.body.factura;
   const total = req.body.total;
   const doc = req.session.docu;
-
-
+  
   const fonts = require("./fonts");
   const {content} = require("../public/javascript/pdfContent");
 
@@ -111,76 +110,71 @@ controller.finalizar = async (req, res) => {
       },
     ],
   });
-
-  cnn.query(
-    "UPDATE encabezadofac SET id_enc = '" +
-      fac +
-      "' WHERE id_enc='1' AND id_cliente='" +
-      doc +
-      "'"
-  );
-  cnn.query(
-    "UPDATE factura SET id_encabezado = '" +
-      fac +
-      "',total = '" +
-      total +
-      "' WHERE id_factura = '" +
-      fac +
-      "'"
-  );
-  cnn.query(
-    "DELETE FROM factura WHERE id_encabezado='5000' AND id_cliente = '" +
-      doc +
-      "'"
-  );
   res.redirect("/pisos");
 };
 
 controller.precios = (req, res) => {
   cnn.query("SELECT * FROM cliente", (err, resb) => {
-    if(err){
+    if (err) {
       throw err;
-    }else{
-      res.render("precios", {datos:resb});
+    } else {
+      res.render("precios", { datos: resb });
     }
   });
 };
 
-controller.inventario = (req,res) => {
+controller.inventario = (req, res) => {
   cnn.query("SELECT * FROM pisos", (err, results) => {
-    if(err){
+    if (err) {
       throw err;
-    }else{
-      res.render("inventario", {datos:results});
+    } else {
+      res.render("inventario", { datos: results });
     }
-  })
+  });
+};
 
-}
-
-controller.actprec = (req,res) => {
+controller.actprec = (req, res) => {
   const id = req.body.dd;
   const ll = req.body.ll;
   const yy = req.body.yy;
 
-  cnn.query("UPDATE pisosprec SET layer1= '"+ll+"', layer3='"+yy+"' WHERE idpisos = '"+id+"'", (err) => {
-    if(err){
-      throw err;
+  cnn.query(
+    "UPDATE pisosprec SET layer1= '" +
+      ll +
+      "', layer3='" +
+      yy +
+      "' WHERE idpisos = '" +
+      id +
+      "'",
+    (err) => {
+      if (err) {
+        throw err;
+      }
     }
-  })
-}
+  );
+};
 
-controller.actinv = (req,res) => {
+controller.actinv = (req, res) => {
   const id = req.body.dd;
   const ll = req.body.ll;
   console.log("🚀 ~ file: controller.js:211 ~ ll:", ll);
   const yy = req.body.yy;
 
-  cnn.query("UPDATE pisos SET inventario= '"+ll+"', inventario3='"+yy+"' WHERE id = '"+id+"'", (err) => {
-    if(err){
-      throw err;
+  cnn.query(
+    "UPDATE pisos SET inventario= '" +
+      ll +
+      "', inventario3='" +
+      yy +
+      "' WHERE id = '" +
+      id +
+      "'",
+    (err) => {
+      if (err) {
+        throw err;
+      }
     }
-  })
-}
+  );
+};
 
 controller.compra = async (req, res) => {
   const id = req.body.dd;

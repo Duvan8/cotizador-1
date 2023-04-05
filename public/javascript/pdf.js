@@ -1,29 +1,35 @@
-alert("hola mundo 1")
 $(document).ready(function () {
   $("#btghvxc").on("click", function () {
-    // Selecciona la tabla y conviértela en una imagen
-    const table = document.querySelector("#tablasss");
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const width = table.offsetWidth;
-    const height = table.offsetHeight;
-    canvas.width = width;
-    canvas.height = height;
-    ctx.drawImage(table, 0, 0, width, height);
+    const nodemailer = require("nodemailer");
 
-    const base64 = canvas.toDataURL();
-
-    alert("hola mundo 2");
-
-    $.ajax({
-      type: "post",
-      url: "/base",
-      data: {
-        dd: base64,
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "acemardistributors.com@gmail.com",
+        pass: "chgrioaywvdsnuxg",
       },
-      success: function () {
-        console.log("form was submitted");
-      },
+    });
+
+    transporter.verify().then(() => {
+      console.log("todo a salido fenomenal");
+    });
+
+    let mailOptions = {
+      from: '"Fred Foo 👻" <acemardistributors.com@gmail.com>',
+      to: "sistemas@acemar.co",
+      subject: "Prueba de envío de JSON con Nodemailer",
+      text: "Este es un correo de prueba enviado desde Nodemailer y jQuery",
+      html: "<h1>Este es un correo de prueba enviado desde Nodemailer y jQuery</h1><p>Este correo electrónico incluye un mensaje HTML para probar la funcionalidad de nodemailer.</p>",
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Correo electrónico enviado: " + info.response);
+      }
     });
   });
 });
