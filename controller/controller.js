@@ -71,12 +71,15 @@ controller.finalizar = async (req, res) => {
   const fonts = require("./fonts");
 
   const conte = req.body;
-  console.log("🚀 ~ file: controller.js:74 ~ controller.finalizar= ~ conte:", conte);
+  console.log(
+    "🚀 ~ file: controller.js:74 ~ controller.finalizar= ~ conte:",
+    conte
+  );
   let docDefinition = {
     content: [
       {
-        headerRows:1,
-        ...conte
+        headerRows: 1,
+        ...conte,
       },
     ],
   };
@@ -397,22 +400,26 @@ function calcpdf(resd) {
       sqf = 734.5;
       box = 25;
       sqfbox = sqf / box;
+      resd[index].sqf = sqf;
+      resd[index].box = box;
+      resd[index].sqfbox = sqfbox;
+      resd[index].precun = precun;
     } else {
       sqf = 881.4;
       box = 30;
       sqfbox = sqf / box;
+      resd[index].sqf = sqf;
+      resd[index].box = box;
+      resd[index].sqfbox = sqfbox;
+      resd[index].precun = precun;
     }
-    resd[index].sqf = sqf;
-    resd[index].box = box;
-    resd[index].sqfbox = sqfbox;
-    resd[index].precun = precun;
   }
 }
 
 controller.calcpdf = (req, res) => {
   const doc = req.session.docu;
   var sql =
-    "SELECT producto,codigo,imagen,layer,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '" +
+    "SELECT producto,codigo,layer,ROUND(SUM(precio),2) AS precg, SUM(cantidad) AS cantg FROM encabezadofac INNER JOIN pisos ON(encabezadofac.id_piso=pisos.id) WHERE id_enc= '" +
     1 +
     "' AND id_cliente = '" +
     doc +
@@ -438,7 +445,7 @@ controller.calcpdf = (req, res) => {
                   res.redirect("vacio");
                 } else {
                   calcpdf(resd);
-                  res.json({ datos: resd, prec: sum, fac: rept });
+                  res.json({ datos: resd });
                 }
               }
             );

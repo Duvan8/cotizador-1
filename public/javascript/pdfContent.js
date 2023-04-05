@@ -17,14 +17,12 @@ fomu.addEventListener("submit", async function (e) {
         "auto",
         "auto",
         "auto",
-        "auto",
       ],
       body: [
         [
           "Product",
           "SKU",
-          "Image",
-          "Top Layer",
+          "Top Layer",  
           "Pallets",
           "SQF per Pallet",
           "Boxes per pallet",
