@@ -37,13 +37,14 @@ fomu.addEventListener("submit", async function (e) {
     },
   };
 
-  console.log(content.table.body);
-  console.log(json.datos);
-
   await fetch("http://localhost:3000/finalizar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(content),
   });
-  window.location.href = "/pisos";
+
+  await fetch("http://localhost:3000/base", {
+    method: "POST"
+  });
+  window.location.href = "http://localhost:3000/pisos";
 });
